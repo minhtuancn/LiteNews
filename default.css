@@ -1,0 +1,94 @@
+body {
+	/* background: #ccc; */
+	font-family: Arial, Helvetica, Verdana;
+	font-weight: bold;
+	font-size: 1.2em;
+	margin: 10px;
+}
+
+.error {
+	padding: 5px 0px;
+	margin: 5px auto;
+	background: #f99;
+	border: 1px solid #f00;
+	border-radius: 5px;
+	width: 98%;
+	text-align: center;
+}
+
+.button, .settingsButton {
+	padding: 5px;
+	background: #f0f0f0;
+	border: 1px solid #aaa;
+	border-radius: 5px;
+	display: table-cell;
+	cursor: pointer;
+}
+
+.buttonActive {
+	background: #ddd;
+}
+
+.settingsButton {
+	float: right;
+}
+
+.indexLink {
+	padding: 7px 0px;
+	margin: 5px auto;
+	background: #fff;
+	border: 1px solid #aaa;
+	border-radius: 5px;
+	width: 95%;
+	min-width: 200px;
+	text-align: center;
+	cursor: pointer;
+	opacity: 0.8;
+}
+
+.indexLinkActive {
+	opacity: 1.0;
+}
+
+.indexLink img {
+	min-width: 25%;
+}
+
+.titleLink {
+	padding: 10px 5px;
+	margin: 5px auto;
+	background: #fff;
+	border: 1px solid #aaa;
+	border-radius: 5px;
+	width: 95%;
+	text-align: left;
+	cursor: pointer;
+}
+
+.titleLinkActive {
+	opacity: 0.70;
+}
+
+.contentBox {
+	padding: 10px;
+	margin: 5px auto;
+	background: #fff;
+	border: 1px solid #aaa;
+	border-radius: 5px;
+	width: 95%;
+	text-align: left;
+}
+
+p.contentTitle {
+	margin-top: 0.5em;
+	font-size: 1.4em;
+}
+
+p.contentSubtitle {
+	font-size: 1.2em;
+}
+
+p.contentText {
+	font-size: 1.0em;
+	font-weight: normal;
+}
