@@ -1,9 +1,11 @@
 <?php
 class Config {
-	public static $mysqlHost = "localhost";
-	public static $mysqlDB = "db";
-	public static $mysqlUsername = "root";
+	public static $mysqlHost = "";
+	public static $mysqlDB = "";
+	public static $mysqlUsername = "";
 	public static $mysqlPassword = "";
+	
+	public static $log = true;
 	
 	public static $websites = array(
 		array('name'=>"Iltalehti", 'url'=>"http://iltalehti.fi", 'listPath'=>"", 'logo'=>"iltalehti.png"),
@@ -22,6 +24,7 @@ class Config {
 	public static $userSettingsCookie = "settings";
 	
 	public static $defaultUserSettings = array(
+		"locale"=>"fi",
 		"bgColor"=>0
 	);
 	
