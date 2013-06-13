@@ -1,4 +1,6 @@
 <?php
+require_once("Config.php");
+
 class Template {
 	private $template;
 	private $title;
@@ -27,8 +29,18 @@ class Template {
 	}
 	
 	
+	public function getTemplate() {
+		return $this->template;
+	}
+	
+	
 	public function getTitle() {
 		return $this->title;
+	}
+	
+	
+	public function getContent() {
+		return $this->content;
 	}
 	
 	
