@@ -15,7 +15,9 @@ class ListController extends Controller {
 		if($lastUpdate < Config::$listRefreshFreq && $lastUpdate != -1)
 			$titles = $this->db->LoadTitles($website['name']);
 		else {
-			$parser = new Parser(
+			$parserName = str_replace(array(" ", "-"), "", $website['name'])."Parser";
+			
+			$parser = new $parserName(
 				$website['name'],
 				file_get_contents(str_replace(" ", "+", $website['url'].$website['listPath'])),
 				isset($website['rss'])
@@ -28,8 +30,10 @@ class ListController extends Controller {
 		$content = array();
 		
 		foreach($titles as $title) {
-			if(substr(substr($title['url'], strpos($title['url'], "href")), 5, 4) != "http")
+			if(substr($title['url'], 0, 4) != "http") {
+				$title['url'] = "?page=".$website['name']."&amp;href=".$title['url'];
 				$content[] = $title;
+			}
 		}
 		
 		$this->template->setContent($content);

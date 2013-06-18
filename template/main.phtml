@@ -1,8 +1,8 @@
 <?php foreach($this->content['websites'] as $website): ?>
-<div class="indexLink" onclick="this.className+=' indexLinkActive';location.href='?page=<?php echo $website['name']; ?>';"><img src="logo/<?php echo $website['logo']; ?>" alt="<?php echo $website['name']; ?>" /></div>
+<a href="?page=<?php echo $website['name']; ?>" class="indexLink" onclick="this.className+=' indexLinkActive';"><img src="logo/<?php echo $website['logo']; ?>" alt="<?php echo $website['name']; ?>" /></a>
 <?php
 endforeach;
 if($this->content['userSettings']):
 ?>
-<div class="settingsButton" onclick="this.className+=' buttonActive';location.href='?page=settings';">Asetukset</div>
+<a href="?page=settings" class="buttonRight" onclick="this.className+=' buttonActive';"><?php echo $this->__("Settings"); ?></a>
 <?php endif; ?>

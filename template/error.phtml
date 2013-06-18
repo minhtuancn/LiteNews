@@ -1,1 +1,1 @@
-<div class="button" onclick="this.className+=' buttonActive';window.history.go(-1);">Edelliselle sivulle</div><div class="error"><?php echo $this->content['code']; ?> - <?php echo $this->content['message']; ?></div>
+<a href="javascript:window.history.go(-1)" class="button" onclick="this.className+=' buttonActive';"><?php echo $this->__("Previous page"); ?></a><div class="error"><?php echo $this->content['code']; ?> - <?php echo $this->__($this->content['message']); ?></div>

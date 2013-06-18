@@ -1,16 +1,25 @@
 <?php
 require_once("Config.php");
+require_once("Locale.php");
 
 class Template {
+	private $locale;
 	private $template;
 	private $title;
 	private $content;
 	
 	
-	public function __construct($template=NULL, $title=NULL, $content=NULL) {
+	public function __construct($locale="en", $template=NULL, $title=NULL, $content=NULL) {
+		$this->locale = new Locale($locale);
+		
 		$this->template = $template;
 		$this->title = $title;
 		$this->content = $content;
+	}
+	
+	
+	private function __($str) {
+		return $this->locale->translate($str);
 	}
 	
 	
@@ -20,7 +29,7 @@ class Template {
 	
 	
 	public function setTitle($title) {
-		$this->title = htmlspecialchars($title);
+		$this->title = $title;
 	}
 	
 	

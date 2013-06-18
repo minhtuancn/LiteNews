@@ -7,19 +7,19 @@ class SettingsController extends Controller {
 		}
 		
 		$this->template->setTemplate("settings");
-		$this->template->setTitle("Asetukset");
+		$this->template->setTitle("Settings");
 		
 		$content = array();
 		
 		foreach(Config::$defaultUserSettings as $settingName => $settingValue) {
 			if(isset($_POST[$settingName])) {
-				if(setcookie(Config::$userSettingsCookie."[".$settingName."]", $_POST[$settingName])) {
+				if(setcookie(Config::$userSettingsCookie."[".$settingName."]", $_POST[$settingName], time() + Config::$settingsCookieExpire)) {
 					$content['saveSuccess'] = true;
-					$content['saveNotice'] = "Asetukset tallennettu";
+					$content['saveNotice'] = "Settings succesfully saved";
 					$_COOKIE[Config::$userSettingsCookie][$settingName] = $_POST[$settingName];
 				}
 				else
-					$content['saveNotice'] = "Asetusten tallennus epäonnistui";
+					$content['saveNotice'] = "Saving settings failed";
 			}
 		}
 		

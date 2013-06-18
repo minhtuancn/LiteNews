@@ -1,71 +1,60 @@
 body {
-	/* background: #ccc; */
 	font-family: Arial, Helvetica, Verdana;
 	font-weight: bold;
 	font-size: 1.2em;
 	margin: 10px;
 }
 
-.error {
-	padding: 5px 0px;
-	margin: 5px auto;
-	background: #f99;
-	border: 1px solid #f00;
-	border-radius: 5px;
-	width: 98%;
-	text-align: center;
+a {
+	color: #000;
+	text-decoration: none;
 }
 
-.button, .settingsButton {
+a.button, a.buttonRight {
 	padding: 5px;
 	background: #f0f0f0;
 	border: 1px solid #aaa;
 	border-radius: 5px;
-	display: table-cell;
-	cursor: pointer;
+	display: inline-block;
 }
 
-.buttonActive {
+a.buttonActive {
 	background: #ddd;
 }
 
-.settingsButton {
+a.buttonRight {
 	float: right;
 }
 
-.indexLink {
-	padding: 7px 0px;
+a.indexLink, a.titleLink {
 	margin: 5px auto;
 	background: #fff;
 	border: 1px solid #aaa;
 	border-radius: 5px;
-	width: 95%;
 	min-width: 200px;
+	display: block;
+}
+
+a.indexLink {
+	padding: 7px;
 	text-align: center;
-	cursor: pointer;
 	opacity: 0.8;
 }
 
-.indexLinkActive {
+a.indexLinkActive {
 	opacity: 1.0;
 }
 
-.indexLink img {
+a.indexLink img {
 	min-width: 25%;
 }
 
-.titleLink {
+a.titleLink {
 	padding: 10px 5px;
-	margin: 5px auto;
-	background: #fff;
-	border: 1px solid #aaa;
-	border-radius: 5px;
-	width: 95%;
 	text-align: left;
-	cursor: pointer;
 }
 
-.titleLinkActive {
+a.titleLinkActive {
 	opacity: 0.70;
 }
 
@@ -75,7 +64,6 @@ body {
 	background: #fff;
 	border: 1px solid #aaa;
 	border-radius: 5px;
-	width: 95%;
 	text-align: left;
 }
 
@@ -91,4 +79,23 @@ p.contentSubtitle {
 p.contentText {
 	font-size: 1.0em;
 	font-weight: normal;
+}
+
+.success, .error {
+	padding: 5px;
+	margin: 5px auto;
+	background: #f99;
+	border: 1px solid #f00;
+	border-radius: 5px;
+	display: table;
+}
+
+.success {
+	background: #5f8;
+	border: 1px solid #2f2;
+}
+
+.error {
+	background: #f99;
+	border: 1px solid #f00;
 }

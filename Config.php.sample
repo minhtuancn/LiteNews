@@ -1,10 +1,12 @@
 <?php
 class Config {
+	// MySQL connection settings
 	public static $mysqlHost = "";
 	public static $mysqlDB = "";
 	public static $mysqlUsername = "";
 	public static $mysqlPassword = "";
 	
+	// Enable logging
 	public static $log = true;
 	
 	public static $websites = array(
@@ -13,28 +15,49 @@ class Config {
 		array('name'=>"Kaleva", 'url'=>"http://www.kaleva.fi", 'listPath'=>"/uutiset", 'logo'=>"kaleva.png"),
 		array('name'=>"Helsingin Sanomat", 'url'=>"http://www.hs.fi", 'listPath'=>"/uutiset", 'logo'=>"hs.png"),
 		array('name'=>"It-viikko", 'url'=>"http://www.itviikko.fi", 'listPath'=>"/uutislista", 'logo'=>"itviikko.png"),
-		array('name'=>"MTV3", 'url'=>"http://mtv3.fi", 'listPath'=>"/rss/uutiset.rss", 'logo'=>"mtv3.png", 'rss'=>true)
+		array('name'=>"MTV3", 'url'=>"http://mtv3.fi", 'listPath'=>"/rss/uutiset.rss", 'logo'=>"mtv3.png", 'rss'=>true),
+		array('name'=>"BBC", 'url'=>"http://m.bbc.co.uk", 'listPath'=>"/news", 'logo'=>"bbc.png"),
+		array('name'=>"NYT", 'url'=>"http://www.nytimes.com", 'listPath'=>"/services/xml/rss/nyt/GlobalHome.xml", 'logo'=>"nyt.png", 'rss'=>true)
 	);
 	
 	// Frequencies in minutes
 	public static $listRefreshFreq = 3;
 	public static $articleRefreshFreq = 60;
 	
-	public static $allowUserSettings = false;
+	public static $allowUserSettings = true;
 	public static $userSettingsCookie = "settings";
+	public static $settingsCookieExpire = 31536000; // In seconds. 31536000 is an one year.
 	
 	public static $defaultUserSettings = array(
-		"locale"=>"fi",
-		"bgColor"=>0
+		"lang"=>"fi",
+		"bgColor"=>0 // Index in $bgColors
+	);
+	
+	public static $locales = array(
+		"en",
+		"fi"
 	);
 	
 	public static $bgColors = array(
-		array('name'=>"Harmaa", 'hex'=>"ccc"),
-		array('name'=>"Vaaleanpunainen", 'hex'=>"fab"),
-		array('name'=>"Musta", 'hex'=>"000"),
-		array('name'=>"Keltainen", 'hex'=>"dd3"),
-		array('name'=>"Sininen", 'hex'=>"9cd"),
-		array('name'=>"Vihreä", 'hex'=>"5f8")
+		array('name'=>"Gray", 'hex'=>"ccc"),
+		array('name'=>"Pink", 'hex'=>"fbc"),
+		array('name'=>"Black", 'hex'=>"000"),
+		array('name'=>"Yellow", 'hex'=>"ff7"),
+		array('name'=>"Dark blue", 'hex'=>"246"),
+		array('name'=>"Light blue", 'hex'=>"adf")
+		// Green already taken in success box: array('name'=>"Green", 'hex'=>"5f8")
 	);
+	
+	
+	public static function GetUserSetting($name) {
+		if(isset(self::$defaultUserSettings[$name])) {
+			if(self::$allowUserSettings && isset($_COOKIE[self::$userSettingsCookie][$name]))
+				return htmlspecialchars($_COOKIE[self::$userSettingsCookie][$name]);
+			
+			return self::$defaultUserSettings[$name];
+		}
+		
+		return false;
+	}
 }
 ?>

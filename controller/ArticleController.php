@@ -14,12 +14,21 @@ class ArticleController extends Controller {
 		if($lastUpdate < Config::$articleRefreshFreq && $lastUpdate != -1)
 			$contentList = $this->db->LoadArticle($website['name'], $this->href);
 		else {
-			$parser = new Parser($website['name'], @file_get_contents(str_replace(" ", "+", $website['url'].$this->href)));
+			$parserName = str_replace(array(" ", "-"), "", $website['name'])."Parser";
+			
+			$parser = new $parserName(
+				$website['name'],
+				@file_get_contents(str_replace(" ", "+", $website['url'].$this->href))
+			);
+			
 			$contentList = $parser->GetArticle();
 			$this->db->UpdateArticle($website['name'], $this->href, $contentList);
 		}
 		
-		$this->template->setTitle($contentList['title'].' - '.$website['name']);
+		if(!empty($contentList['title']))
+			$this->template->setTitle($contentList['title'].' - '.$website['name']);
+		else
+			$this->template->setTitle(404);
 		
 		$content = array();
 		$content['title'] = $contentList['title'];
