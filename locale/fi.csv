@@ -17,10 +17,12 @@
 "en", "Englanti"
 "fi", "Suomi"
 
-"Background color", "Taustaväri"
+"Theme", "Teema"
 "Gray", "Harmaa"
 "Pink", "Vaaleanpunainen"
 "Black", "Musta"
 "Yellow", "Keltainen"
 "Dark blue", "Tummansininen"
 "Light blue", "Vaaleansininen"
+
+"Stats", "Tilastot"

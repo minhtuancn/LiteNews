@@ -1,5 +1,5 @@
 <?php
-class NYTParser extends Parser {
+class NewYorkTimesParser extends Parser {
 	public function GetTitles() {
 		$titles = array();
 		$items = $this->dom->getElementsByTagName('item');

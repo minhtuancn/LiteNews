@@ -52,10 +52,7 @@ class Controller {
 		$this->InitPage($page, $href);
 		
 		$this->layout->setTitle($this->template->getTitle());
-		$this->layout->setContent(array(
-			'bgColor'=>Config::$bgColors[Config::GetUserSetting("bgColor")]['hex'],
-			'content'=>$this->template->getHTML()
-		));
+		$this->layout->setContent(array('content'=>$this->template->getHTML()));
 		
 		return $this->layout->getHTML();
 	}

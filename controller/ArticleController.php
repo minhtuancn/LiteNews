@@ -10,19 +10,15 @@ class ArticleController extends Controller {
 		
 		$this->template->setTemplate("article");
 		
-		$lastUpdate = $this->db->ArticleLastUpdate($website['name'], $this->href);
+		$lastUpdate = $this->db->ArticleLastUpdate($website['id'], $this->href);
 		if($lastUpdate < Config::$articleRefreshFreq && $lastUpdate != -1)
-			$contentList = $this->db->LoadArticle($website['name'], $this->href);
+			$contentList = $this->db->LoadArticle($website['id'], $this->href);
 		else {
 			$parserName = str_replace(array(" ", "-"), "", $website['name'])."Parser";
-			
-			$parser = new $parserName(
-				$website['name'],
-				@file_get_contents(str_replace(" ", "+", $website['url'].$this->href))
-			);
+			$parser = new $parserName(@file_get_contents(str_replace(" ", "+", $website['url'].$this->href)));
 			
 			$contentList = $parser->GetArticle();
-			$this->db->UpdateArticle($website['name'], $this->href, $contentList);
+			$this->db->UpdateArticle($website['id'], $this->href, $contentList);
 		}
 		
 		if(!empty($contentList['title']))

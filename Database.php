@@ -31,11 +31,11 @@ class Database {
 	
 	
 	public function ListLastUpdate($website) {
-		$query = $this->db->prepare("SELECT LastUpdate FROM TitleListUpdate WHERE WebsiteName=?");
+		$query = $this->db->prepare("SELECT LastUpdate FROM TitleListUpdate WHERE WebsiteID=?");
 		$lastUpdate = new DateTime();
 		
 		if(!$query->execute(array($website)) || $query->rowCount() == 0) {
-			$this->db->prepare("INSERT INTO TitleListUpdate (WebsiteName, LastUpdate) VALUES (?, ?)")->execute(array($website, $lastUpdate->getTimestamp()));
+			$this->db->prepare("INSERT INTO TitleListUpdate (WebsiteID, LastUpdate) VALUES (?, ?)")->execute(array($website, $lastUpdate->getTimestamp()));
 			return -1;
 		}
 		else
@@ -48,7 +48,7 @@ class Database {
 	
 	
 	public function ArticleLastUpdate($website, $url) {
-		$query = $this->db->prepare("SELECT LastUpdate FROM Article WHERE WebsiteName=? AND URL=?");
+		$query = $this->db->prepare("SELECT LastUpdate FROM Article WHERE WebsiteID=? AND URL=?");
 		
 		if(!$query->execute(array($website, $url)) || $query->rowCount() == 0)
 			return -1;
@@ -64,7 +64,7 @@ class Database {
 	public function LoadTitles($website) {
 		$titles = array();
 		
-		$query = $this->db->prepare("SELECT Title, URL FROM TitleList WHERE WebsiteName=? ORDER BY ID ASC");
+		$query = $this->db->prepare("SELECT Title, URL FROM TitleList WHERE WebsiteID=? ORDER BY ID ASC");
 		if(!$query->execute(array($website)))
 			return $titles;
 		
@@ -80,7 +80,7 @@ class Database {
 	public function LoadArticle($website, $url) {
 		$article = array();
 		
-		$query = $this->db->prepare("SELECT ID, Title, SubTitle FROM Article WHERE WebsiteName=? AND URL=?");
+		$query = $this->db->prepare("SELECT ID, Title, SubTitle FROM Article WHERE WebsiteID=? AND URL=?");
 		if(!$query->execute(array($website, $url)))
 			return $article;
 		
@@ -101,16 +101,16 @@ class Database {
 	
 	
 	public function UpdateTitles($website, $data) {
-		if(!$this->db->prepare("DELETE FROM TitleList WHERE WebsiteName=?")->execute(array($website)))
+		if(!$this->db->prepare("DELETE FROM TitleList WHERE WebsiteID=?")->execute(array($website)))
 			return;
 	
 		foreach($data as $title) {
-			if(!$this->db->prepare("INSERT INTO TitleList (WebsiteName, Title, URL) VALUES (?, ?, ?)")->execute(array($website, $title['title'], $title['url'])))
+			if(!$this->db->prepare("INSERT INTO TitleList (WebsiteID, Title, URL) VALUES (?, ?, ?)")->execute(array($website, $title['title'], $title['url'])))
 				return;
 		}
 		
 		$timestamp = new DateTime();
-		$this->db->prepare("UPDATE TitleListUpdate SET LastUpdate=? WHERE WebsiteName=?")->execute(array($timestamp->getTimestamp(), $website));
+		$this->db->prepare("UPDATE TitleListUpdate SET LastUpdate=? WHERE WebsiteID=?")->execute(array($timestamp->getTimestamp(), $website));
 	}
 	
 	
@@ -128,7 +128,7 @@ class Database {
 			return;
 		
 		$timestamp = new DateTime();
-		if(!$this->db->prepare("INSERT INTO Article (WebsiteName, URL, Title, SubTitle, LastUpdate) VALUES (?, ?, ?, ?, ?)")->execute(array($website, $url, $data['title'], $data['subTitle'], $timestamp->getTimestamp())))
+		if(!$this->db->prepare("INSERT INTO Article (WebsiteID, URL, Title, SubTitle, LastUpdate) VALUES (?, ?, ?, ?, ?)")->execute(array($website, $url, $data['title'], $data['subTitle'], $timestamp->getTimestamp())))
 			return;
 		
 		$newArticleID = $this->db->lastInsertId("ID");

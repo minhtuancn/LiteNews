@@ -1,0 +1,111 @@
+body {
+	font-family: Arial, Helvetica, Verdana;
+	font-weight: bold;
+	font-size: 1.2em;
+	margin: 10px;
+	clear: both;
+	
+	background: #ccc;
+}
+
+a {
+	color: #000;
+	text-decoration: none;
+}
+
+a.button, a.buttonRight {
+	padding: 5px;
+	border: 1px solid;
+	border-radius: 5px;
+	display: inline-block;
+	
+	background: #f0f0f0;
+	border-color: #aaa;
+}
+
+a.buttonActive {
+	background: #ddd;
+}
+
+a.buttonRight {
+	float: right;
+}
+
+a.indexLink, a.titleLink {
+	margin: 5px auto;
+	border: 1px solid;
+	border-radius: 5px;
+	min-width: 200px;
+	display: block;
+	
+	background: #fff;
+	border-color: #aaa;
+}
+
+a.indexLink {
+	padding: 7px;
+	text-align: center;
+	opacity: 0.8;
+}
+
+a.indexLinkActive {
+	opacity: 1.0;
+}
+
+a.indexLink img {
+	min-width: 200px;
+	width: 50%;
+	max-width: 400px;
+}
+
+a.titleLink {
+	padding: 10px 5px;
+	text-align: left;
+}
+
+a.titleLinkActive {
+	opacity: 0.70;
+}
+
+.contentBox {
+	padding: 10px;
+	margin: 5px auto;
+	border: 1px solid;
+	border-radius: 5px;
+	text-align: left;
+	
+	background: #fff;
+	border-color: #aaa;
+}
+
+p.contentTitle {
+	margin-top: 0.5em;
+	font-size: 1.4em;
+}
+
+p.contentSubtitle {
+	font-size: 1.2em;
+}
+
+p.contentText {
+	font-size: 1.0em;
+	font-weight: normal;
+}
+
+.success, .error {
+	padding: 5px;
+	margin: 5px auto;
+	border: 1px solid;
+	border-radius: 5px;
+	display: table;
+}
+
+.success {
+	background: #5f8;
+	border-color: #2f2;
+}
+
+.error {
+	background: #f99;
+	border-color: #f00;
+}

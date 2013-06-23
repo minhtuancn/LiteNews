@@ -1,0 +1,30 @@
+body {
+	background: #246;
+}
+
+a.button, a.buttonRight {
+	background: #f0f0f0;
+	border-color: #aaa;
+}
+
+a.buttonActive {
+	background: #ddd;
+}
+
+a.indexLink, a.titleLink {
+	background: #fff;
+	border-color: #aaa;
+}
+
+a.indexLinkActive {
+	opacity: 1.0;
+}
+
+a.titleLinkActive {
+	opacity: 0.70;
+}
+
+.contentBox {
+	background: #fff;
+	border-color: #aaa;
+}

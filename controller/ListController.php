@@ -11,20 +11,19 @@ class ListController extends Controller {
 		$this->template->setTemplate("list");
 		$this->template->setTitle($website['name']);
 		
-		$lastUpdate = $this->db->ListLastUpdate($website['name']);
+		$lastUpdate = $this->db->ListLastUpdate($website['id']);
 		if($lastUpdate < Config::$listRefreshFreq && $lastUpdate != -1)
-			$titles = $this->db->LoadTitles($website['name']);
+			$titles = $this->db->LoadTitles($website['id']);
 		else {
 			$parserName = str_replace(array(" ", "-"), "", $website['name'])."Parser";
 			
 			$parser = new $parserName(
-				$website['name'],
 				file_get_contents(str_replace(" ", "+", $website['url'].$website['listPath'])),
 				isset($website['rss'])
 			);
 			
 			$titles = $parser->GetTitles();
-			$this->db->UpdateTitles($website['name'], $titles);
+			$this->db->UpdateTitles($website['id'], $titles);
 		}
 		
 		$content = array();
