@@ -3,10 +3,10 @@ require_once("Config.php");
 require_once("Locale.php");
 
 class Template {
-	private $locale;
-	private $template;
-	private $title;
-	private $content;
+	protected $locale;
+	protected $template;
+	protected $title;
+	protected $content;
 	
 	
 	public function __construct($locale="en", $template=NULL, $title=NULL, $content=NULL) {
@@ -18,7 +18,7 @@ class Template {
 	}
 	
 	
-	private function __($str) {
+	protected function __($str) {
 		return $this->locale->translate($str);
 	}
 	

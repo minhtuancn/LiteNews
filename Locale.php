@@ -1,6 +1,6 @@
 <?php
 class Locale {
-	private $translations;
+	protected $translations;
 	
 	
 	public function __construct($language="en") {

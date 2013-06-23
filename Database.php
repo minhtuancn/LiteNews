@@ -2,7 +2,7 @@
 require_once("Config.php");
 
 class Database {
-	private $db;
+	protected $db;
 	
 	
 	public function __construct($host, $username, $password, $database) {

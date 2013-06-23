@@ -2,9 +2,9 @@
 require_once("Controller.php");
 
 class LiteNews {
-	private $controller;
-	private $page;
-	private $href;
+	protected $controller;
+	protected $page;
+	protected $href;
 	
 	
 	public function __construct($page=NULL, $href=NULL) {
