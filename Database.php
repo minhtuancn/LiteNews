@@ -139,5 +139,16 @@ class Database {
 				return;
 		}
 	}
+	
+	
+	public function GetLoads($websiteName) {
+		$query = $this->db->prepare("SELECT COUNT(*) FROM Log WHERE URL LIKE ?");
+		$query->execute(array("/%page=".str_replace(" ", "%20", $websiteName)."%"));
+		$loads = $query->fetch();
+		if($loads != false)
+			return $loads[0];
+		else
+			return NULL;
+	}
 }
 ?>

@@ -23,6 +23,9 @@ class SettingsController extends Controller {
 			}
 		}
 		
+		$this->layout->setLocale(Config::GetUserSetting("lang"));
+		$this->template->setLocale(Config::GetUserSetting("lang"));
+		
 		$this->template->setContent($content);
 	}
 }

@@ -23,6 +23,11 @@ class Template {
 	}
 	
 	
+	public function setLocale($locale) {
+		$this->locale = new Locale($locale);
+	}
+	
+	
 	public function setTemplate($template) {
 		$this->template = $template;
 	}

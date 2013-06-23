@@ -79,12 +79,13 @@ a.titleLinkActive {
 }
 
 p.contentTitle {
-	margin-top: 0.5em;
+	margin: 10px 0px 17px;
 	font-size: 1.4em;
 }
 
 p.contentSubtitle {
 	font-size: 1.2em;
+	margin: 12px 0px;
 }
 
 p.contentText {
