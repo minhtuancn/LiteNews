@@ -2,12 +2,12 @@ body {
 	background: #246;
 }
 
-a.button, a.buttonRight {
+a.button {
 	background: #f0f0f0;
 	border-color: #aaa;
 }
 
-a.buttonActive {
+a.button:active, a.button:focus {
 	background: #ddd;
 }
 
@@ -16,11 +16,11 @@ a.indexLink, a.titleLink {
 	border-color: #aaa;
 }
 
-a.indexLinkActive {
+a.indexLink:active, a.indexLink:focus {
 	opacity: 1.0;
 }
 
-a.titleLinkActive {
+a.titleLink:active, a.titleLink:focus {
 	opacity: 0.70;
 }
 

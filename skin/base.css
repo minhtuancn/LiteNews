@@ -13,7 +13,7 @@ a {
 	text-decoration: none;
 }
 
-a.button, a.buttonRight {
+a.button {
 	padding: 5px;
 	border: 1px solid;
 	border-radius: 5px;
@@ -23,7 +23,7 @@ a.button, a.buttonRight {
 	border-color: #aaa;
 }
 
-a.buttonActive {
+a.button:active, a.button:focus {
 	background: #ddd;
 }
 
@@ -48,7 +48,7 @@ a.indexLink {
 	opacity: 0.8;
 }
 
-a.indexLinkActive {
+a.indexLink:active, a.indexLink:focus {
 	opacity: 1.0;
 }
 
@@ -63,7 +63,7 @@ a.titleLink {
 	text-align: left;
 }
 
-a.titleLinkActive {
+a.titleLink:active, a.titleLink:focus {
 	opacity: 0.70;
 }
 
