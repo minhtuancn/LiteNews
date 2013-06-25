@@ -26,6 +26,9 @@ class ListController extends Controller {
 			$this->db->UpdateTitles($website['id'], $titles);
 		}
 		
+		if(($limit = Config::GetUserSetting("limit")) > 0)
+			$titles = array_slice($titles, 0, $limit);
+		
 		$content = array();
 		
 		foreach($titles as $title) {

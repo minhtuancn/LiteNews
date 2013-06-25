@@ -9,6 +9,8 @@ class Config {
 	// Enable logging
 	public static $log = true;
 	
+	// Sort by popylarity based on logs. (So logging must be enabled)
+	public static $websitesSortByPopularity = true;
 	public static $websites = array(
 		array('id'=>1, 'name'=>"Iltalehti", 'url'=>"http://iltalehti.fi", 'listPath'=>"", 'logo'=>"iltalehti.png"),
 		array('id'=>2, 'name'=>"Iltasanomat", 'url'=>"http://iltasanomat.fi", 'listPath'=>"", 'logo'=>"iltasanomat.png"),
@@ -30,7 +32,8 @@ class Config {
 	
 	public static $defaultUserSettings = array(
 		"lang"=>"fi",
-		"theme"=>0
+		"theme"=>0,
+		"limit"=>0
 	);
 	
 	public static $locales = array("en", "fi");
