@@ -64,6 +64,6 @@ class Template {
 		if(file_exists("template/".$this->template.".phtml"))
 			include("template/".$this->template.".phtml");
 		
-		return str_replace("\n", "", ob_get_clean());
+		return str_replace(array("\n", "\r"), "", ob_get_clean());
 	}
 }
