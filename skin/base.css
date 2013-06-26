@@ -2,10 +2,8 @@ body {
 	font-family: Arial, Helvetica, Verdana;
 	font-weight: bold;
 	font-size: 1.2em;
-	margin: 10px;
+	margin: 10px 10px 20px;
 	clear: both;
-	
-	background: #ccc;
 }
 
 a {
@@ -18,13 +16,6 @@ a.button {
 	border: 1px solid;
 	border-radius: 5px;
 	display: inline-block;
-	
-	background: #f0f0f0;
-	border-color: #aaa;
-}
-
-a.button:active, a.button:focus {
-	background: #ddd;
 }
 
 a.buttonRight {
@@ -37,19 +28,12 @@ a.indexLink, a.titleLink {
 	border-radius: 5px;
 	min-width: 200px;
 	display: block;
-	
-	background: #fff;
-	border-color: #aaa;
 }
 
 a.indexLink {
 	padding: 7px;
 	text-align: center;
 	opacity: 0.8;
-}
-
-a.indexLink:active, a.indexLink:focus {
-	opacity: 1.0;
 }
 
 a.indexLink img {
@@ -63,19 +47,13 @@ a.titleLink {
 	text-align: left;
 }
 
-a.titleLink:active, a.titleLink:focus {
-	opacity: 0.70;
-}
-
 .contentBox {
 	padding: 10px;
 	margin: 5px auto;
 	border: 1px solid;
 	border-radius: 5px;
 	text-align: left;
-	
-	background: #fff;
-	border-color: #aaa;
+	clear: both;
 }
 
 p.contentTitle {
@@ -99,6 +77,7 @@ p.contentText {
 	border: 1px solid;
 	border-radius: 5px;
 	display: table;
+	float: left;
 }
 
 .success {
@@ -109,4 +88,37 @@ p.contentText {
 .error {
 	background: #f99;
 	border-color: #f00;
+}
+
+/* All below should be overwritten by theme files */
+
+body {
+	background: #ccc;
+}
+
+a.button {
+	background: #f0f0f0;
+	border-color: #aaa;
+}
+
+a.button:active, a.button:focus {
+	background: #ddd;
+}
+
+a.indexLink, a.titleLink {
+	background: #fff;
+	border-color: #aaa;
+}
+
+a.indexLink:active, a.indexLink:focus {
+	opacity: 1.0;
+}
+
+a.titleLink:active, a.titleLink:focus {
+	opacity: 0.70;
+}
+
+.contentBox {
+	background: #fff;
+	border-color: #aaa;
 }

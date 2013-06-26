@@ -150,5 +150,10 @@ class Database {
 		else
 			return NULL;
 	}
+	
+	
+	public function GetBrowserData() {
+		//$query = $this->db->prepare("")
+	}
 }
 ?>
