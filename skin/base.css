@@ -61,7 +61,7 @@ p.contentTitle {
 	font-size: 1.4em;
 }
 
-p.contentSubtitle {
+p.contentSubTitle {
 	font-size: 1.2em;
 	margin: 12px 0px;
 }
@@ -88,6 +88,14 @@ p.contentText {
 .error {
 	background: #f99;
 	border-color: #f00;
+}
+
+.stats {
+	margin-bottom: 15px;
+	padding: 5px 0px 5px 10px;
+	display: block; 
+	overflow: hidden;
+	background: #d3d3d3;
 }
 
 /* All below should be overwritten by theme files */

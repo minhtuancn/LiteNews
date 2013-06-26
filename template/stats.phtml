@@ -1,11 +1,14 @@
 <a href="javascript:window.history.go(-1)" class="button"><?php echo $this->__("Previous page"); ?></a>
 <div class="contentBox">
-<?php foreach($this->content['websites'] as $website): ?>
-<?php echo $website['name']; ?><br />
-<?php $width = 25 - ($this->content['websites'][0]['loads'] - $website['loads']) / 25; ?>
-<div style="margin-bottom: 10px; display: inline-block; overflow: hidden; background: #d3d3d3; width: <?php echo $width; ?>%;">
-<?php echo $website['loads']; ?>
-</div>
-<?php endforeach; ?>
+	<p class="contentSubTitle"><?php echo $this->__("Statistics"); ?></p>
+	<?php
+	$multiply = 95 / $this->content['websites'][0]['loads'];
+	foreach($this->content['websites'] as $website):
+	?>
+	<?php $width = $website['loads'] * $multiply; ?>
+	<div class="stats" style="width: <?php echo $width; ?>%;">
+	<?php echo $website['name']; ?>
+	</div>
+	<?php endforeach; ?>
 </div>
 <a href="javascript:window.history.go(-1)" class="button"><?php echo $this->__("Previous page"); ?></a>
