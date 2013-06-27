@@ -78,6 +78,7 @@ p.contentText {
 	border-radius: 5px;
 	display: table;
 	float: left;
+	clear: both;
 }
 
 .success {
