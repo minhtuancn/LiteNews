@@ -25,7 +25,7 @@ class Controller {
 	
 	protected function GetWebsite($name) {
 		foreach(Config::$websites as $website) {
-			if($name == $website['name'])
+			if(str_replace("+", " ", $name) == $website['name'])
 				return $website;
 		}
 		

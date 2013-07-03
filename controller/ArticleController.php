@@ -10,6 +10,9 @@ class ArticleController extends Controller {
 		
 		$this->template->setTemplate("article");
 		
+		if($this->href[0] != "/")
+			$this->href = "/".$this->href;
+		
 		$lastUpdate = $this->db->ArticleLastUpdate($website['id'], $this->href);
 		if($lastUpdate < Config::$articleRefreshFreq && $lastUpdate != -1)
 			$contentList = $this->db->LoadArticle($website['id'], $this->href);
@@ -30,6 +33,7 @@ class ArticleController extends Controller {
 		$content['title'] = $contentList['title'];
 		$content['subTitle'] = $contentList['subTitle'];
 		$content['bodyText'] = $contentList['bodyText'];
+		$content['timestamp'] = $contentList['timestamp'];
 		$content['url'] = $website['url'].htmlspecialchars($this->href);
 		$this->template->setContent($content);
 	}

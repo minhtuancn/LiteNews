@@ -1,7 +1,7 @@
 <?php foreach($this->content['websites'] as $website): ?>
-<a href="?page=<?php echo $website['name']; ?>" class="indexLink"><img src="logo/<?php echo $website['logo']; ?>" alt="<?php echo $website['name']; ?>" /></a>
+<a href="/<?php echo str_replace(" ", "+", $website['name']); ?>" class="indexLink"><img src="logo/<?php echo $website['logo']; ?>" alt="<?php echo $website['name']; ?>" /></a>
 <?php endforeach; ?>
 <?php if($this->content['userSettings']): ?>
 <a href="https://github.com/anck69/LiteNews" class="button" target="_blank">GitHub</a>
-<a href="?page=settings" class="button buttonRight"><?php echo $this->__("Settings"); ?></a>
+<a href="/settings" class="button buttonRight"><?php echo $this->__("Settings"); ?></a>
 <?php endif; ?>

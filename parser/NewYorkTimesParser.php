@@ -33,7 +33,8 @@ class NewYorkTimesParser extends Parser {
 		$content = array(
 			'title'=>NULL,
 			'subTitle'=>NULL,
-			'bodyText'=>array()
+			'bodyText'=>array(),
+			'timestamp'=>0
 		);
 		
 		$container = $this->dom->getElementById('article');

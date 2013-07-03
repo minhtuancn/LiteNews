@@ -23,7 +23,8 @@ class IltasanomatParser extends Parser {
 		$content = array(
 			'title'=>NULL,
 			'subTitle'=>NULL,
-			'bodyText'=>array()
+			'bodyText'=>array(),
+			'timestamp'=>0
 		);
 		
 		$title = $this->dom->getElementsByTagName('h1');
@@ -31,6 +32,15 @@ class IltasanomatParser extends Parser {
 		
 		if($title->length == 0 || $contentBox == NULL)
 			return $content;
+		
+		/*$dateContainer = $this->dom->getElementById('article-main')->getElementsByTagName('div')->item(0)->getElementsByTagName('div')->item(0);
+		if($dateContainer != NULL && strpos($dateContainer->getAttribute('class'), "date") !== false) {
+			$date = trim($dateContainer->nodeValue);
+			$date = substr($date, strpos($date, " ", strpos($date, " ") + 1) + 1);
+			file_put_contents("debug.txt", $date);
+			$timestamp = DateTime::createFromFormat("d.m.Y H:i", $date);
+			$content['timestamp'] = $timestamp->getTimestamp();
+		}*/
 		
 		$content['title'] = $title->item(0)->nodeValue;
 		$subTitle = $contentBox->getElementsByTagName('p');

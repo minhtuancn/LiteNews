@@ -26,7 +26,8 @@ class IltalehtiParser extends Parser {
 		$content = array(
 			'title'=>NULL,
 			'subTitle'=>NULL,
-			'bodyText'=>array()
+			'bodyText'=>array(),
+			'timestamp'=>0
 		);
 		
 		$title = $this->dom->getElementsByTagName('h1');
@@ -34,6 +35,22 @@ class IltalehtiParser extends Parser {
 		
 		if($title->length == 0 || $contentBox->length == 0)
 			return $content;
+		
+		$dateContainer = $title->item(0)->parentNode->getElementsByTagName('p');
+		foreach($dateContainer as $p) {
+			if(strpos($p->getAttribute('class'), "juttuaika") !== false) {
+				$datetime = substr($p->nodeValue, strpos($p->nodeValue, " ") + 2);
+				$date = substr($datetime, 0, strpos($datetime, " "));
+				$time = substr($datetime, strrpos($datetime, "klo") + 4, 5);
+				file_put_contents("debug.txt", $datetime."\n".$date." ".$time);
+				
+				$timestamp = DateTime::createFromFormat("d.m.Y H.i", $date." ".$time);
+				if($timestamp instanceof DateTime)
+					$content['timestamp'] = $timestamp->getTimestamp();
+				
+				break;
+			}
+		}
 		
 		$contentBox = $contentBox->item(0)->getElementsByTagName('p');
 		if($contentBox->length == 0)

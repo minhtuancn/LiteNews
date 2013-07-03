@@ -33,7 +33,10 @@ class ListController extends Controller {
 		
 		foreach($titles as $title) {
 			if(substr($title['url'], 0, 4) != "http") {
-				$title['url'] = "?page=".$website['name']."&amp;href=".$title['url'];
+				if($title['url'][0] != "/")
+					$title['url'] = "/".$title['url'];
+				
+				$title['url'] = "/".$website['name'].$title['url'];
 				$content[] = $title;
 			}
 		}

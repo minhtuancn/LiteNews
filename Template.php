@@ -23,6 +23,11 @@ class Template {
 	}
 	
 	
+	protected function getURL($path) {
+		return Config::$baseURL.$path;
+	}
+	
+	
 	public function setLocale($locale) {
 		$this->locale = new Locale($locale);
 	}

@@ -80,7 +80,7 @@ class Database {
 	public function LoadArticle($website, $url) {
 		$article = array();
 		
-		$query = $this->db->prepare("SELECT ID, Title, SubTitle FROM Article WHERE WebsiteID=? AND URL=?");
+		$query = $this->db->prepare("SELECT ID, Title, SubTitle, Timestamp FROM Article WHERE WebsiteID=? AND URL=?");
 		if(!$query->execute(array($website, $url)))
 			return $article;
 		
@@ -88,6 +88,7 @@ class Database {
 		$article['title'] = $query['Title'];
 		$article['subTitle'] = $query['SubTitle'];
 		$article['bodyText'] = array();
+		$article['timestamp'] = $query['Timestamp'];
 		
 		$paragraphs = $this->db->prepare("SELECT Paragraph FROM ArticleParagraph WHERE ArticleID=?");
 		if(!$paragraphs->execute(array($query['ID'])))
@@ -128,7 +129,7 @@ class Database {
 			return;
 		
 		$timestamp = new DateTime();
-		if(!$this->db->prepare("INSERT INTO Article (WebsiteID, URL, Title, SubTitle, LastUpdate) VALUES (?, ?, ?, ?, ?)")->execute(array($website, $url, $data['title'], $data['subTitle'], $timestamp->getTimestamp())))
+		if(!$this->db->prepare("INSERT INTO Article (WebsiteID, URL, Title, SubTitle, Timestamp, LastUpdate) VALUES (?, ?, ?, ?, ?, ?)")->execute(array($website, $url, $data['title'], $data['subTitle'], $data['timestamp'], $timestamp->getTimestamp())))
 			return;
 		
 		$newArticleID = $this->db->lastInsertId("ID");
@@ -143,17 +144,12 @@ class Database {
 	
 	public function GetLoads($websiteName) {
 		$query = $this->db->prepare("SELECT COUNT(*) FROM Log WHERE URL LIKE ?");
-		$query->execute(array("/%page=".str_replace(" ", "%20", $websiteName)."%"));
+		$query->execute(array("/".str_replace(" ", "+", $websiteName)."%"));
 		$loads = $query->fetch();
 		if($loads != false)
 			return $loads[0];
 		else
 			return NULL;
-	}
-	
-	
-	public function GetBrowserData() {
-		//$query = $this->db->prepare("")
 	}
 }
 ?>

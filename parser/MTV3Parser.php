@@ -23,7 +23,8 @@ class MTV3Parser extends Parser {
 		$content = array(
 			'title'=>NULL,
 			'subTitle'=>NULL,
-			'bodyText'=>array()
+			'bodyText'=>array(),
+			'timestamp'=>0
 		);
 		
 		$container = $this->dom->getElementById('article_section');
