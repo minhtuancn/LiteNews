@@ -8,6 +8,7 @@ class IndexController extends Controller {
 		if(Config::$websitesSortByPopularity)
 			$content['websites'] = $this->SortByPopularity($content['websites']);
 		
+		$content['feedback'] = Config::$enableFeedback;
 		$content['userSettings'] = Config::$allowUserSettings;
 		$this->template->setContent($content);
 	}

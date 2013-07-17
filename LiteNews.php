@@ -13,6 +13,8 @@ class LiteNews {
 		
 		if(is_null($this->page))
 			$this->controller = new IndexController;
+		elseif($this->page == "feedback")
+			$this->controller = new FeedbackController;
 		elseif($this->page == "settings")
 			$this->controller = new SettingsController;
 		elseif($this->page == "stats")

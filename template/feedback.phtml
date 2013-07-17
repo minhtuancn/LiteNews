@@ -1,0 +1,22 @@
+<form action="/feedback" method="post" name="feedbackForm">
+	<a href="javascript:window.history.go(-1)" class="button"><?php echo $this->__("Previous page"); ?></a>
+	<a href="javascript:document.feedbackForm.submit();" class="button buttonRight"><?php echo $this->__("Send"); ?></a>
+	<?php if(isset($this->content['sendSuccess'])): ?>
+	<div class="success"><?php echo $this->__("Feedback succesfully sent"); ?></div>
+	<?php elseif(isset($this->content['sendFail'])): ?>
+	<div class="error"><?php echo $this->__("Sending feedback failed"); ?></div>
+	<?php endif; ?>
+	<div class="contentBox">
+		<p class="contentSubTitle">
+			<label for="feedback"><?php echo $this->__("Send feedback"); ?></label>
+		</p>
+		<select name="feedbackType">
+			<option value="1" selected><?php echo $this->__("New website"); ?></option>
+			<option value="2"><?php echo $this->__("Report a bug"); ?></option>
+			<option value="3"><?php echo $this->__("Other"); ?></option>
+		</select>
+		<textarea name="feedback" id="feedback"></textarea>
+	</div>
+	<a href="javascript:window.history.go(-1)" class="button"><?php echo $this->__("Previous page"); ?></a>
+	<a href="javascript:document.feedbackForm.submit();" class="button buttonRight"><?php echo $this->__("Send"); ?></a>
+</form>

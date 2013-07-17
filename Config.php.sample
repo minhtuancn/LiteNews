@@ -28,6 +28,8 @@ class Config {
 	public static $listRefreshFreq = 3;
 	public static $articleRefreshFreq = 60;
 	
+	public static $enableFeedback = true;
+	
 	public static $allowUserSettings = true;
 	public static $userSettingsCookie = "settings";
 	public static $settingsCookieExpire = 525600; // In minutes. 525600 is an one year.

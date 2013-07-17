@@ -105,6 +105,11 @@ p.contentText {
 	background: #d3d3d3;
 }
 
+textarea {
+	width: 99%;
+	height: 100px;
+}
+
 /* All below should be overwritten by theme files */
 
 body {

@@ -151,5 +151,11 @@ class Database {
 		else
 			return NULL;
 	}
+	
+	
+	public function AddFeedback($type, $content) {
+		$query = $this->db->prepare("INSERT INTO Feedback (Type, Content, IP) VALUES (?, ?, ?)");
+		return $query->execute(array($type, $content, $_SERVER['REMOTE_ADDR']));
+	}
 }
 ?>
