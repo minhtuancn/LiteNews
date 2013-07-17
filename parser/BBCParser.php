@@ -29,6 +29,17 @@ class BBCParser extends Parser {
 		if($container == NULL)
 			return $content;
 		
+		$dateContainer = $container->getElementsByTagName('span');
+		foreach($dateContainer as $span) {
+			if($span->getAttribute('class') == "story-date") {
+				$dateChilds = $span->getElementsByTagName('span');
+				$date = trim($dateChilds->item(0)->nodeValue);
+				$time = trim($dateChilds->item(2)->nodeValue);
+				$timestamp = DateTime::createFromFormat("d F Y H:i T", $date." ".$time."+3");
+				$content['timestamp'] = $timestamp->getTimestamp();
+			}
+		}
+		
 		$title = $container->getElementsByTagName('h1');
 		if($title->length == 0)
 			return $content;

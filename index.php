@@ -1,7 +1,4 @@
 <?php
-/*if($_SERVER['REMOTE_ADDR'] != '87.93.22.26')
-	die("Developing... (Actually adding timestamps to parsers)");*/
-
 ini_set("display_errors", "on");
 
 header('Content-Type: text/html; charset=utf-8');

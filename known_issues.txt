@@ -1,2 +1,4 @@
 Not displaying lists (<li>-tags) which doesn't have a paragraph tag (Noticed in Iltalehti.fi)
 Digitoday news not loading in It-viikko
+
+Error page displays incorrectly

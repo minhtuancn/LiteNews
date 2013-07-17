@@ -29,7 +29,22 @@ class KalevaParser extends Parser {
 			return $content;
 		
 		$content['title'] = $title->item(0)->nodeValue;
-		$content['subTitle'] = "";
+		
+		$dateContainer = $this->dom->getElementsByTagName('span');
+		foreach($dateContainer as $span) {
+			if($span->getAttribute('class') == "timestamp") {
+				$date = trim(substr($span->nodeValue, 0, strpos($span->nodeValue, '|')));
+				
+				if(strpos($date, ":") !== false)
+					$timestamp = DateTime::createFromFormat("H:i", $date);
+				else
+					$timestamp = DateTime::createFromFormat("d.m. H:i", $date." 00:00");
+				
+				$content['timestamp'] = $timestamp->getTimestamp();
+				break;
+			}
+		}
+		
 		$bodyText = $this->dom->getElementsByTagName('isense');
 		
 		if($bodyText->length == 0)

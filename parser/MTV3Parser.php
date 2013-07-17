@@ -31,6 +31,20 @@ class MTV3Parser extends Parser {
 		if($container == NULL)
 			return $content;
 		
+		$dateContainer = $container->getElementsByTagName('time');
+		foreach($dateContainer as $el) {
+			if($el->getAttribute('class') == "dateCreated") {
+				if($el->nextSibling->getAttribute('class') == 'dateModified')
+					$timestamp = DateTime::createFromFormat("YmdHi", $el->nextSibling->getAttribute('datetime'));
+				else
+					$timestamp = DateTime::createFromFormat("Y-m-d\TH:i:s.uT", $el->getAttribute('datetime'));
+				
+				$content['timestamp'] = $timestamp->getTimestamp();
+			}
+			
+			break;
+		}
+		
 		$title = $container->getElementsByTagName('h1');
 		if($title->length == 0)
 			return $content;

@@ -53,6 +53,12 @@ class HelsinginSanomatParser extends Parser {
 		if($title->length == 0)
 			return $content;
 		
+		$dateContainer = $container->getElementsByTagname('time');
+		if($dateContainer->length > 0) {
+			$timestamp = DateTime::createFromFormat("Y-m-d\TH:i:sT", $dateContainer->item(0)->getAttribute('datetime'));
+			$content['timestamp'] = $timestamp->getTimestamp();
+		}
+		
 		$bodyText = $this->dom->getElementByID('article-text-content');
 		if($bodyText == NULL)
 			return $content;

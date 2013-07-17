@@ -47,6 +47,17 @@ class NewYorkTimesParser extends Parser {
 		else
 			$content['title'] = $title->item(0)->nodeValue;
 		
+		$dateContainer = $container->getElementsByTagName('h6');
+		foreach($dateContainer as $el) {
+			if($el->getAttribute('class') == "dateline") {
+				$date = trim($el->nodeValue);
+				$date = substr($date, strpos($date, ":") + 2);
+				$timestamp = DateTime::createFromFormat("F d, Y H:i", $date." 00:00");
+				$content['timestamp'] = $timestamp->getTimestamp();
+				break;
+			}
+		}
+		
 		$bodyText = $container->getElementsByTagName('p');
 		
 		foreach($bodyText as $p) {

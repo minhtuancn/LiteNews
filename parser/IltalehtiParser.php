@@ -42,8 +42,6 @@ class IltalehtiParser extends Parser {
 				$datetime = substr($p->nodeValue, strpos($p->nodeValue, " ") + 2);
 				$date = substr($datetime, 0, strpos($datetime, " "));
 				$time = substr($datetime, strrpos($datetime, "klo") + 4, 5);
-				file_put_contents("debug.txt", $datetime."\n".$date." ".$time);
-				
 				$timestamp = DateTime::createFromFormat("d.m.Y H.i", $date." ".$time);
 				if($timestamp instanceof DateTime)
 					$content['timestamp'] = $timestamp->getTimestamp();

@@ -4,7 +4,7 @@ require_once("Database.php");
 require_once("Loader.php");
 require_once("Template.php");
 
-class Controller {
+abstract class Controller {
 	protected $db;
 	protected $layout;
 	protected $template;

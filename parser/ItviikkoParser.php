@@ -45,11 +45,18 @@ class ItviikkoParser extends Parser {
 		$content['title'] = $title->nodeValue;
 		$content['subTitle'] = "";
 		$subTitleContainer = $title->parentNode->getElementsByTagName('div');
-		
 		foreach($subTitleContainer as $div) {
 			if($div->getAttribute('class') == "storyCaption") {
 				$content['subTitle'] = $div->nodeValue;
 				break;
+			}
+		}
+		
+		$dateContainer = $container->getElementsByTagName('div');
+		foreach($dateContainer as $div) {
+			if($div->getAttribute('class') == "time") {
+				$timestamp = DateTime::createFromFormat("d.m.Y H:i", $div->nodeValue);
+				$content['timestamp'] = $timestamp->getTimestamp();
 			}
 		}
 		
