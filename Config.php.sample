@@ -11,7 +11,7 @@ class Config {
 	// Enable logging
 	public static $log = true;
 	
-	// Sort by popylarity based on logs. (So logging must be enabled)
+	// Sort by popularity based on logs. (So logging must be enabled)
 	public static $websitesSortByPopularity = true;
 	public static $websites = array(
 		array('id'=>1, 'name'=>"Iltalehti", 'url'=>"http://iltalehti.fi", 'listPath'=>"", 'logo'=>"iltalehti.png"),
