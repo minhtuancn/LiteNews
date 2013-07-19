@@ -1,3 +1,4 @@
+<a href="/collection" class="indexLink"><img src="logo/litenews.png" alt="<?php echo $this->__("Collection"); ?>" /></a>
 <?php foreach($this->content['websites'] as $website): ?>
 <a href="/<?php echo str_replace(" ", "+", $website['name']); ?>" class="indexLink"><img src="logo/<?php echo $website['logo']; ?>" alt="<?php echo $website['name']; ?>" /></a>
 <?php endforeach; ?>
