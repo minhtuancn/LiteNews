@@ -1,6 +1,11 @@
 <?php
 class FeedbackController extends Controller {
 	public function InitPage() {
+		if(!Config::$enableFeedback) {
+			$this->InitErrorPage();
+			return;
+		}
+		
 		$this->template->setTemplate("feedback");
 		$this->template->setTitle("Send feedback");
 		$content = array();
