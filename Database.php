@@ -26,7 +26,9 @@ class Database {
 	
 	
 	public function UpdateLog($url) {
-		$this->db->prepare("INSERT INTO Log (IP, URL) VALUES (?, ?)")->execute(array($_SERVER['REMOTE_ADDR'], $url));
+		return $this->db
+			->prepare("INSERT INTO Log (IP, URL) VALUES (?, ?)")
+			->execute(array($_SERVER['REMOTE_ADDR'], $url));
 	}
 	
 	
@@ -78,7 +80,12 @@ class Database {
 	
 	
 	public function LoadArticle($website, $url) {
-		$article = array();
+		$article = array(
+			'title'=>NULL,
+			'subTitle'=>NULL,
+			'bodyText'=>array(),
+			'timestamp'=>0
+		);
 		
 		$query = $this->db->prepare("SELECT ID, Title, SubTitle, Timestamp FROM Article WHERE WebsiteID=? AND URL=?");
 		if(!$query->execute(array($website, $url)))
@@ -87,7 +94,6 @@ class Database {
 		$query = $query->fetch(PDO::FETCH_ASSOC);
 		$article['title'] = $query['Title'];
 		$article['subTitle'] = $query['SubTitle'];
-		$article['bodyText'] = array();
 		$article['timestamp'] = $query['Timestamp'];
 		
 		$paragraphs = $this->db->prepare("SELECT Paragraph FROM ArticleParagraph WHERE ArticleID=?");
@@ -103,41 +109,40 @@ class Database {
 	
 	public function UpdateTitles($website, $data) {
 		if(!$this->db->prepare("DELETE FROM TitleList WHERE WebsiteID=?")->execute(array($website)))
-			return;
+			return false;
 	
 		foreach($data as $title) {
 			if(!$this->db->prepare("INSERT INTO TitleList (WebsiteID, Title, URL) VALUES (?, ?, ?)")->execute(array($website, $title['title'], $title['url'])))
-				return;
+				return false;
 		}
 		
-		$timestamp = new DateTime();
-		$this->db->prepare("UPDATE TitleListUpdate SET LastUpdate=? WHERE WebsiteID=?")->execute(array($timestamp->getTimestamp(), $website));
+		$updateQuery = $this->db->prepare("UPDATE TitleListUpdate SET LastUpdate=UNIX_TIMESTAMP() WHERE WebsiteID=?");
+		return $updateQuery->execute(array($website));
 	}
 	
 	
 	public function UpdateArticle($website, $url, $data) {
 		$articleID = $this->db->prepare("SELECT ID FROM Article WHERE URL=?");
 		if(!$articleID->execute(array($url)))
-			return;
-		else
-			$articleID = $articleID->fetchColumn();
+			return false;
+		
+		$articleID = $articleID->fetchColumn();
 		
 		if(!$this->db->prepare("DELETE FROM Article WHERE ID=?")->execute(array($articleID)))
-			return;
+			return false;
 		
 		if(!$this->db->prepare("DELETE FROM ArticleParagraph WHERE ArticleID=?")->execute(array($articleID)))
-			return;
+			return false;
 		
-		$timestamp = new DateTime();
-		if(!$this->db->prepare("INSERT INTO Article (WebsiteID, URL, Title, SubTitle, Timestamp, LastUpdate) VALUES (?, ?, ?, ?, ?, ?)")->execute(array($website, $url, $data['title'], $data['subTitle'], $data['timestamp'], $timestamp->getTimestamp())))
-			return;
+		if(!$this->db->prepare("INSERT INTO Article (WebsiteID, URL, Title, SubTitle, Timestamp, LastUpdate) VALUES (?, ?, ?, ?, ?, UNIX_TIMESTAMP())")->execute(array($website, $url, $data['title'], $data['subTitle'], $data['timestamp'])))
+			return false;
 		
 		$newArticleID = $this->db->lastInsertId("ID");
 		$articleParagraph = $this->db->prepare("INSERT INTO ArticleParagraph (ArticleID, Paragraph) VALUES (?, ?)");
 		
 		foreach($data['bodyText'] as $p) {
 			if(!$articleParagraph->execute(array($newArticleID, $p)))
-				return;
+				return false;
 		}
 	}
 	
@@ -146,7 +151,7 @@ class Database {
 		$query = $this->db->prepare("SELECT COUNT(*) FROM Log WHERE URL LIKE ?");
 		$query->execute(array("/".str_replace(" ", "+", $websiteName)."%"));
 		$loads = $query->fetch();
-		if($loads != false)
+		if(is_array($loads))
 			return $loads[0];
 		else
 			return NULL;

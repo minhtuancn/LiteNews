@@ -52,7 +52,14 @@ class NewYorkTimesParser extends Parser {
 			if($el->getAttribute('class') == "dateline") {
 				$date = trim($el->nodeValue);
 				$date = substr($date, strpos($date, ":") + 2);
-				$timestamp = DateTime::createFromFormat("F d, Y H:i", $date." 00:00");
+				
+				if(strpos($date, "at") === false)
+					$timestamp = DateTime::createFromFormat("F d, Y H:i", $date." 00:00");
+				else {
+					$date = substr($date, 0, -3);
+					$timestamp = DateTime::createFromFormat("F d, Y \at H:i A", $date);
+				}
+				
 				$content['timestamp'] = $timestamp->getTimestamp();
 				break;
 			}

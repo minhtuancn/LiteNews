@@ -36,7 +36,12 @@ class IltasanomatParser extends Parser {
 		$dateContainer = $this->dom->getElementById('article-main')->getElementsByTagName('div')->item(0)->getElementsByTagName('div')->item(0);
 		if($dateContainer != NULL && strpos($dateContainer->getAttribute('class'), "date") !== false) {
 			$date = trim($dateContainer->nodeValue);
-			$date = substr($date, strpos($date, ":") + 2);
+			
+			if(strpos($date, "päivitetty") === false)
+				$date = substr($date, strpos($date, ":") + 2);
+			else
+				$date = substr($date, strpos($date, "y:") + 3);
+			
 			$timestamp = DateTime::createFromFormat("d.m.Y H:i", $date);
 			$content['timestamp'] = $timestamp->getTimestamp();
 		}

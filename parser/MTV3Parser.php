@@ -34,7 +34,7 @@ class MTV3Parser extends Parser {
 		$dateContainer = $container->getElementsByTagName('time');
 		foreach($dateContainer as $el) {
 			if($el->getAttribute('class') == "dateCreated") {
-				if($el->nextSibling->getAttribute('class') == 'dateModified')
+				if($el->nextSibling != NULL && $el->nextSibling->getAttribute('class') == 'dateModified')
 					$timestamp = DateTime::createFromFormat("YmdHi", $el->nextSibling->getAttribute('datetime'));
 				else
 					$timestamp = DateTime::createFromFormat("Y-m-d\TH:i:s.uT", $el->getAttribute('datetime'));

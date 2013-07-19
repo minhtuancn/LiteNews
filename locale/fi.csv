@@ -8,6 +8,8 @@
 
 "Page not found", "Sivua ei löytynyt"
 
+"Collection", "Kokoelma"
+
 "Settings", "Asetukset"
 "Settings succesfully saved", "Asetukset tallennettu"
 "Saving settings failed", "Asetuksien tallennus epäonnistui"
@@ -33,6 +35,7 @@
 "Send feedback", "Lähetä palautetta"
 "Feedback succesfully sent", "Palautteesi on lähetetty"
 "Sending feedback failed", "Palautteen lähettäminen epäonnistui"
+"Choose feedback type", "Valitse palautteen tyyppi"
 "New website", "Ehdota uutta sivustoa"
 "Report a bug", "Ilmoita virheestä"
 "Other", "Muu"

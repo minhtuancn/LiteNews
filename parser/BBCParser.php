@@ -10,7 +10,9 @@ class BBCParser extends Parser {
 		foreach($container->getElementsByTagName('a') as $item) {
 			$url = $item->getAttribute('href');
 			$title = $item->nodeValue;
-			$titles[] = array('title'=>$title, 'url'=>$url);
+			
+			if(strpos($url, "/sport/0/") === false)
+				$titles[] = array('title'=>$title, 'url'=>$url);
 		}
 		
 		return $titles;

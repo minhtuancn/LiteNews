@@ -19,6 +19,8 @@ class LiteNews {
 			$this->controller = new SettingsController;
 		elseif($this->page == "stats")
 			$this->controller = new StatsController;
+		elseif($this->page == "collection")
+			$this->controller = new ListCollectionController;
 		elseif(is_null($this->href))
 			$this->controller = new ListController;
 		else

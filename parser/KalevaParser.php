@@ -40,7 +40,8 @@ class KalevaParser extends Parser {
 				else
 					$timestamp = DateTime::createFromFormat("d.m. H:i", $date." 00:00");
 				
-				$content['timestamp'] = $timestamp->getTimestamp();
+				if($timestamp instanceof DateTime)
+					$content['timestamp'] = $timestamp->getTimestamp();
 				break;
 			}
 		}

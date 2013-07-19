@@ -55,7 +55,15 @@ class ItviikkoParser extends Parser {
 		$dateContainer = $container->getElementsByTagName('div');
 		foreach($dateContainer as $div) {
 			if($div->getAttribute('class') == "time") {
-				$timestamp = DateTime::createFromFormat("d.m.Y H:i", $div->nodeValue);
+				$date = $div->nodeValue;
+				
+				if(strpos($date, "(") !== false) {
+					$date = substr($date, strrpos($date, " ") + 1, -1);
+					if(strlen($date > 5))
+						$date = date("d.m.Y")." ".$date;
+				}
+				
+				$timestamp = DateTime::createFromFormat("d.m.Y H:i", $date);
 				$content['timestamp'] = $timestamp->getTimestamp();
 			}
 		}
