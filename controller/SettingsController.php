@@ -11,6 +11,17 @@ class SettingsController extends Controller {
 		
 		$content = array();
 		
+		if(isset($_POST['collection'])) {
+			$collection = array();
+			
+			foreach(Config::$websites as $website) {
+				if(isset($_POST['collection_'.$website['id']]))
+					$collection[] = $website['id'];
+			}
+			
+			$_POST['collection'] = serialize($collection);
+		}
+		
 		foreach(Config::$defaultUserSettings as $settingName => $settingValue) {
 			if(isset($_POST[$settingName])) {
 				if(setcookie(Config::$userSettingsCookie."[".$settingName."]", $_POST[$settingName], time() + Config::$settingsCookieExpire * 60)) {

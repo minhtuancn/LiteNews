@@ -6,8 +6,13 @@ class ListCollectionController extends Controller {
 		$this->template->setTemplate("list");
 		$this->template->setTitle("Collection");
 		
+		$collectionWebsites = unserialize(Config::GetUserSetting("collection"));
 		$titleList = array();
+		
 		foreach(Config::$websites as $website) {
+			if(!in_array($website['id'], $collectionWebsites))
+				continue;
+			
 			$websiteTitles = $this->LoadTitles($website);
 			
 			foreach($websiteTitles as $websiteTitle) {
