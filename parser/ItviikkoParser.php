@@ -60,7 +60,7 @@ class ItviikkoParser extends Parser {
 				if(strpos($date, "(") !== false) {
 					$date = substr($date, strrpos($date, " ") + 1, -1);
 					if(strlen($date > 5))
-						$date = date("d.m.Y")." ".$date;
+						$date = substr($div->nodeValue, 0, strpos($div->nodeValue, " "))." ".$date;
 				}
 				
 				$timestamp = DateTime::createFromFormat("d.m.Y H:i", $date);
