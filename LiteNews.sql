@@ -9,7 +9,7 @@ CREATE TABLE `Article` (
   `Timestamp` int(11) NOT NULL,
   `LastUpdate` int(11) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=0;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -19,7 +19,7 @@ CREATE TABLE `ArticleParagraph` (
   `Paragraph` text NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `ArticleID` (`ArticleID`)
-) ENGINE=InnoDB AUTO_INCREMENT=0;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -28,15 +28,16 @@ CREATE TABLE `Feedback` (
   `Type` tinyint(4) NOT NULL,
   `Content` text NOT NULL,
   `IP` tinytext NOT NULL,
-  `Timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Timestamp` int(11) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=0;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Log` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `IP` tinytext NOT NULL,
+  `Timestamp` int(11) NOT NULL,
   `URL` text NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0;
@@ -49,7 +50,7 @@ CREATE TABLE `TitleList` (
   `Title` tinytext NOT NULL,
   `URL` text NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=0;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;

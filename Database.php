@@ -27,7 +27,7 @@ class Database {
 	
 	public function UpdateLog($url) {
 		return $this->db
-			->prepare("INSERT INTO Log (IP, URL) VALUES (?, ?)")
+			->prepare("INSERT INTO Log (IP, Timestamp, URL) VALUES (?, UNIX_TIMESTAMP(), ?)")
 			->execute(array($_SERVER['REMOTE_ADDR'], $url));
 	}
 	
@@ -159,7 +159,7 @@ class Database {
 	
 	
 	public function AddFeedback($type, $content) {
-		$query = $this->db->prepare("INSERT INTO Feedback (Type, Content, IP) VALUES (?, ?, ?)");
+		$query = $this->db->prepare("INSERT INTO Feedback (Type, Content, IP, Timestamp) VALUES (?, ?, ?, UNIX_TIMESTAMP())");
 		return $query->execute(array($type, $content, $_SERVER['REMOTE_ADDR']));
 	}
 }
