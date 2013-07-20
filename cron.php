@@ -7,7 +7,7 @@ foreach(Config::$websites as $website) {
 }
 
 $_COOKIE['settings']['collection'] = serialize($idList);
-$_SERVER['REQUEST_URI'] = "";
+$_SERVER['REQUEST_URI'] = "/cron.php";
 $_SERVER['REMOTE_ADDR'] = "127.0.0.1";
 
 $instance = new LiteNews("collection", NULL);
