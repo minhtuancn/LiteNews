@@ -2,7 +2,7 @@
 class StatsController extends IndexController {
 	public function InitPage() {
 		$this->template->setTemplate("stats");
-		$this->template->setTitle("Stats");
+		$this->template->setTitle("Statistics");
 		
 		$websites = $this->SortByPopularity(Config::$websites);
 		

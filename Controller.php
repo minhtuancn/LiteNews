@@ -41,7 +41,13 @@ abstract class Controller {
 	protected function InitErrorPage() {
 		$this->template->setTemplate("error");
 		$this->template->setTitle("Page not found");
-		$this->template->setContent(array('code'=>404, 'message'=>"Page not found"));
+		$this->template->setContent(
+			array(
+				'code'=>404,
+				'message'=>"Page not found",
+				'feedback'=>Config::$enableFeedback
+			)
+		);
 	}
 	
 	
