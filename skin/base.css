@@ -60,6 +60,7 @@ span.titleInfo {
 	border: 1px solid;
 	border-radius: 5px;
 	text-align: left;
+	word-wrap: break-word;
 	clear: both;
 }
 
