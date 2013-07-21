@@ -18,6 +18,7 @@ class ListCollectionController extends Controller {
 			foreach($websiteTitles as $websiteTitle) {
 				if(substr($websiteTitle['url'], 0, 4) != "http") {
 					$websiteTitle['timestamp'] = $this->GetTimestamp($website, $websiteTitle['url']);
+					$websiteTitle['websiteName'] = $website['name'];
 					$websiteTitle['url'] = "/".$website['name'].$websiteTitle['url'];
 					$titleList = array_merge($titleList, array($websiteTitle));
 				}
