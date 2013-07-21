@@ -28,7 +28,7 @@ class Config {
 	public static $collectionLimit = 75;
 	
 	// Frequencies in minutes
-	public static $listRefreshFreq = 3;
+	public static $listRefreshFreq = 5;
 	public static $articleRefreshFreq = 60;
 	
 	public static $enableFeedback = true;

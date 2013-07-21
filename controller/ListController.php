@@ -12,7 +12,7 @@ class ListController extends Controller {
 		$this->template->setTitle($website['name']);
 		
 		$lastUpdate = $this->db->ListLastUpdate($website['id']);
-		if($lastUpdate < Config::$listRefreshFreq && $lastUpdate != -1)
+		if($lastUpdate != -1 && $lastUpdate < Config::$listRefreshFreq)
 			$titles = $this->db->LoadTitles($website['id']);
 		else {
 			$parserName = str_replace(array(" ", "-"), "", $website['name'])."Parser";

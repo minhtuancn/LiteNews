@@ -14,7 +14,7 @@ class ArticleController extends Controller {
 			$this->href = "/".$this->href;
 		
 		$lastUpdate = $this->db->ArticleLastUpdate($website['id'], $this->href);
-		if($lastUpdate < Config::$articleRefreshFreq && $lastUpdate != -1)
+		if($lastUpdate != -1 && $lastUpdate < Config::$articleRefreshFreq)
 			$contentList = $this->db->LoadArticle($website['id'], $this->href);
 		else {
 			$parserName = str_replace(array(" ", "-"), "", $website['name'])."Parser";

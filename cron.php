@@ -1,12 +1,15 @@
 <?php
 require_once("LiteNews.php");
 
-$idList = array();
-foreach(Config::$websites as $website) {
-	$idList[] = $website['id'];
-}
+$db = new PDO('mysql:host='.Config::$mysqlHost.';dbname='.Config::$mysqlDB.';charset=utf8', Config::$mysqlUsername, Config::$mysqlPassword);
 
-$_COOKIE['settings']['collection'] = serialize($idList);
+$query = $db->prepare("SELECT WebsiteID FROM TitleListUpdate ORDER BY LastUpdate ASC LIMIT 1");
+if(!$query->execute())
+	exit;
+
+$websiteID = $query->fetchColumn();
+
+Config::$defaultUserSettings['collection'] = serialize(array($websiteID));
 $_SERVER['REQUEST_URI'] = "/cron.php";
 $_SERVER['REMOTE_ADDR'] = "127.0.0.1";
 
