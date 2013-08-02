@@ -11,26 +11,9 @@ class ListController extends Controller {
 		$this->template->setTemplate("list");
 		$this->template->setTitle($website['name']);
 		
-		$lastUpdate = $this->db->ListLastUpdate($website['id']);
-		if($lastUpdate != -1 && $lastUpdate < Config::$listRefreshFreq)
-			$titles = $this->db->LoadTitles($website['id']);
-		else {
-			$parserName = str_replace(array(" ", "-"), "", $website['name'])."Parser";
-			
-			$parser = new $parserName(
-				file_get_contents(str_replace(" ", "+", $website['url'].$website['listPath'])),
-				isset($website['rss'])
-			);
-			
-			$titles = $parser->GetTitles();
-			$this->db->UpdateTitles($website['id'], $titles);
-		}
-		
-		if(($limit = Config::GetUserSetting("limit")) > 0)
-			$titles = array_slice($titles, 0, $limit);
+		$titles = $this->db->LoadTitles($website['id'], Config::GetUserSetting("limit"));
 		
 		$content = array();
-		
 		foreach($titles as $title) {
 			if(substr($title['url'], 0, 4) != "http") {
 				if($title['url'][0] != "/")

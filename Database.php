@@ -10,70 +10,79 @@ class Database {
 	}
 	
 	
-	public function __destruct() {
-		$timestamp = new DateTime();
-		$timestamp->modify("-".Config::$articleRefreshFreq." minutes");
-		$query = $this->db->prepare("SELECT ID FROM Article WHERE LastUpdate<?");
-		
-		if(!$query->execute(array($timestamp->getTimestamp())))
-			return;
-		
-		foreach($query->fetchAll() as $article) {
-			$this->db->prepare("DELETE FROM ArticleParagraph WHERE ArticleID=?")->execute(array($article['ID']));
-			$this->db->prepare("DELETE FROM Article WHERE ID=?")->execute(array($article['ID']));
-		}
-	}
-	
-	
-	public function UpdateLog($url) {
+	public function AddLog() {
 		return $this->db
 			->prepare("INSERT INTO Log (IP, Timestamp, URL) VALUES (?, UNIX_TIMESTAMP(), ?)")
-			->execute(array($_SERVER['REMOTE_ADDR'], $url));
+			->execute(array($_SERVER['REMOTE_ADDR'], $_SERVER['REQUEST_URI']));
 	}
 	
 	
-	public function ListLastUpdate($website) {
-		$query = $this->db->prepare("SELECT LastUpdate FROM TitleListUpdate WHERE WebsiteID=?");
-		$lastUpdate = new DateTime();
+	public function EldestUpdate() {
+		$query = $this->db->prepare("SELECT WebsiteID, Timestamp FROM UpdateTime ORDER BY Timestamp ASC, WebsiteID ASC");
+		if(!$query->execute())
+			return NULL;
 		
-		if(!$query->execute(array($website)) || $query->rowCount() == 0) {
-			$this->db->prepare("INSERT INTO TitleListUpdate (WebsiteID, LastUpdate) VALUES (?, ?)")->execute(array($website, $lastUpdate->getTimestamp()));
-			return -1;
+		if($query->rowCount() < sizeof(Config::$websites)) {
+			$insert = $this->db->prepare("INSERT IGNORE INTO UpdateTime (WebsiteID, Timestamp) VALUES (?, 0)");
+			
+			foreach(Config::$websites as $website) {
+				$insert->execute(array($website['id']));
+			}
+			
+			return NULL;
+		}
+		
+		return $query->fetch();
+	}
+	
+	
+	public function RefreshUpdateTime($websiteID) {
+		$this->db->prepare("UPDATE UpdateTime SET Timestamp=UNIX_TIMESTAMP() WHERE WebsiteID=?")->execute(array($websiteID));
+	}
+	
+	
+	public function LoadCollection($limit, $websites) {
+		$websitesStr = "";
+		foreach($websites as $websiteKey => $website) {
+			$websitesStr .= $websiteKey != 0 ? "," : " ";
+			$websitesStr .= $this->db->quote($website, PDO::PARAM_INT);
+		}
+		
+		if($limit > 0) {
+			$query = $this->db->prepare("SELECT WebsiteID, ListTitle, URL, Timestamp FROM Article WHERE WebsiteID IN (".$websitesStr.") ORDER BY Timestamp DESC LIMIT :limit");
+			$query->bindParam(":limit", intval($limit), PDO::PARAM_INT);
 		}
 		else
-			$lastUpdate->setTimestamp($query->fetchColumn());
+			$query = $this->db->prepare("SELECT WebsiteID, ListTitle, URL, Timestamp FROM Article WHERE WebsiteID IN (".$websitesStr.") ORDER BY Timestamp DESC");
 		
-		$currentTime = new DateTime();
-		$difference = $lastUpdate->diff($currentTime);
-		return $difference->days*24*60 + $difference->h*60 + $difference->i;
+		$query->execute();
+		
+		$list = array();
+		foreach($query->fetchAll() as $article)
+			$list[] = array('website'=>$article['WebsiteID'], 'title'=>$article['ListTitle'], 'url'=>$article['URL'], 'timestamp'=>$article['Timestamp']);
+		
+		return $list;
 	}
 	
 	
-	public function ArticleLastUpdate($website, $url) {
-		$query = $this->db->prepare("SELECT LastUpdate FROM Article WHERE WebsiteID=? AND URL=?");
-		
-		if(!$query->execute(array($website, $url)) || $query->rowCount() == 0)
-			return -1;
-		
-		$currentTime = new DateTime();
-		$lastUpdate = new DateTime();
-		$lastUpdate->setTimestamp($query->fetchColumn());
-		$difference = $lastUpdate->diff($currentTime);
-		return $difference->days*24*60 + $difference->h*60 + $difference->i;
-	}
-	
-	
-	public function LoadTitles($website) {
+	public function LoadTitles($website, $limit) {
 		$titles = array();
 		
-		$query = $this->db->prepare("SELECT Title, URL FROM TitleList WHERE WebsiteID=? ORDER BY ID ASC");
-		if(!$query->execute(array($website)))
+		if($limit > 0) {
+			$query = $this->db->prepare("SELECT ListTitle, URL, Timestamp FROM Article WHERE WebsiteID=:WebsiteID ORDER BY Timestamp DESC LIMIT :limit");
+			$query->bindParam(":limit", intval($limit), PDO::PARAM_INT);
+		}
+		else
+			$query = $this->db->prepare("SELECT ListTitle, URL, Timestamp FROM Article WHERE WebsiteID = :WebsiteID ORDER BY Timestamp DESC");
+		
+		$query->bindParam(":WebsiteID", $website, PDO::PARAM_INT);
+		
+		if(!$query->execute())
 			return $titles;
 		
-		$rows = array_map("unserialize", array_unique(array_map("serialize", $query->fetchAll())));
 		
-		foreach($rows as $row)
-			$titles[] = array('title'=>$row['Title'], 'url'=>$row['URL']);
+		foreach($query->fetchAll() as $row)
+			$titles[] = array('title'=>$row['ListTitle'], 'url'=>$row['URL'], 'timestamp'=>$row['Timestamp']);
 		
 		return $titles;
 	}
@@ -87,12 +96,12 @@ class Database {
 			'timestamp'=>0
 		);
 		
-		$query = $this->db->prepare("SELECT ID, Title, SubTitle, Timestamp FROM Article WHERE WebsiteID=? AND URL=?");
+		$query = $this->db->prepare("SELECT ID, ArticleTitle, SubTitle, Timestamp FROM Article WHERE WebsiteID=? AND URL=?");
 		if(!$query->execute(array($website, $url)))
 			return $article;
 		
 		$query = $query->fetch(PDO::FETCH_ASSOC);
-		$article['title'] = $query['Title'];
+		$article['title'] = $query['ArticleTitle'];
 		$article['subTitle'] = $query['SubTitle'];
 		$article['timestamp'] = $query['Timestamp'];
 		
@@ -107,34 +116,9 @@ class Database {
 	}
 	
 	
-	public function UpdateTitles($website, $data) {
-		if(!$this->db->prepare("DELETE FROM TitleList WHERE WebsiteID=?")->execute(array($website)))
-			return false;
-	
-		foreach($data as $title) {
-			if(!$this->db->prepare("INSERT INTO TitleList (WebsiteID, Title, URL) VALUES (?, ?, ?)")->execute(array($website, $title['title'], $title['url'])))
-				return false;
-		}
-		
-		$updateQuery = $this->db->prepare("UPDATE TitleListUpdate SET LastUpdate=UNIX_TIMESTAMP() WHERE WebsiteID=?");
-		return $updateQuery->execute(array($website));
-	}
-	
-	
-	public function UpdateArticle($website, $url, $data) {
-		$articleID = $this->db->prepare("SELECT ID FROM Article WHERE URL=?");
-		if(!$articleID->execute(array($url)))
-			return false;
-		
-		$articleID = $articleID->fetchColumn();
-		
-		if(!$this->db->prepare("DELETE FROM Article WHERE ID=?")->execute(array($articleID)))
-			return false;
-		
-		if(!$this->db->prepare("DELETE FROM ArticleParagraph WHERE ArticleID=?")->execute(array($articleID)))
-			return false;
-		
-		if(!$this->db->prepare("INSERT INTO Article (WebsiteID, URL, Title, SubTitle, Timestamp, LastUpdate) VALUES (?, ?, ?, ?, ?, UNIX_TIMESTAMP())")->execute(array($website, $url, $data['title'], $data['subTitle'], $data['timestamp'])))
+	public function AddArticle($website, $url, $data) {
+		$insert = $this->db->prepare("INSERT IGNORE INTO Article (WebsiteID, URL, ListTitle, ArticleTitle, SubTitle, Timestamp) VALUES (?, ?, ?, ?, ?, ?)");
+		if(!$insert->execute(array($website, $url, trim($data['listTitle']), trim($data['title']), trim($data['subTitle']), trim($data['timestamp']))))
 			return false;
 		
 		$newArticleID = $this->db->lastInsertId("ID");
@@ -143,6 +127,21 @@ class Database {
 		foreach($data['bodyText'] as $p) {
 			if(!$articleParagraph->execute(array($newArticleID, $p)))
 				return false;
+		}
+	}
+	
+	
+	public function DeleteArticles($websiteID) {
+		$articles = $this->db->prepare("SELECT ID FROM Article WHERE WebsiteID=?");
+		if(!$articles->execute(array($websiteID)))
+			return false;
+		
+		$deleteArticle = $this->db->prepare("DELETE FROM Article WHERE ID=?");
+		$deleteParagraphs = $this->db->prepare("DELETE FROM ArticleParagraph WHERE ArticleID=?");
+		
+		while(($id = $articles->fetchColumn()) != false) {
+			$deleteArticle->execute(array($id));
+			$deleteParagraphs->execute(array($id));
 		}
 	}
 	
