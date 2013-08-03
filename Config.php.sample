@@ -21,7 +21,8 @@ class Config {
 		array('id'=>5, 'name'=>"It-viikko", 'url'=>"http://www.itviikko.fi", 'listPath'=>"/uutislista", 'logo'=>"itviikko.png"),
 		array('id'=>6, 'name'=>"MTV3", 'url'=>"http://mtv3.fi", 'listPath'=>"/rss/uutiset.rss", 'logo'=>"mtv3.png", 'rss'=>true),
 		array('id'=>7, 'name'=>"BBC", 'url'=>"http://m.bbc.co.uk", 'listPath'=>"/news", 'logo'=>"bbc.png"),
-		array('id'=>8, 'name'=>"New York Times", 'url'=>"http://www.nytimes.com", 'listPath'=>"/services/xml/rss/nyt/GlobalHome.xml", 'logo'=>"nyt.png", 'rss'=>true)
+		array('id'=>8, 'name'=>"New York Times", 'url'=>"http://www.nytimes.com", 'listPath'=>"/services/xml/rss/nyt/GlobalHome.xml", 'logo'=>"nyt.png", 'rss'=>true),
+		array('id'=>9, 'name'=>"YLE", 'url'=>"http://yle.fi", 'listPath'=>"/uutiset/rss/uutiset.rss", 'logo'=>"yle.png", 'rss'=>true)
 	);
 	
 	// How many titles will be displayed in collection page. Can be overwritten if user setting isn't 0. Set to 0 for no limit.
@@ -41,7 +42,7 @@ class Config {
 		"lang"=>"fi",
 		"theme"=>0,
 		"limit"=>0,
-		"collection"=>"a:6:{i:0;i:1;i:1;i:2;i:2;i:3;i:3;i:4;i:4;i:5;i:5;i:6;}"
+		"collection"=>"a:7:{i:0;i:1;i:1;i:2;i:2;i:3;i:3;i:4;i:4;i:5;i:5;i:6;i:6;i:9;}"
 	);
 	
 	public static $locales = array("en", "fi");
