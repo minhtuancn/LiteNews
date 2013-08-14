@@ -1,5 +1,5 @@
 <form action="/admin" method="post" name="adminLogin">
-	<a href="javascript:window.history.go(-1)" class="button"><?php echo $this->__("Previous page"); ?></a>
+	<a href="/" class="button"><?php echo $this->__("Previous page"); ?></a>
 	<a href="javascript:document.adminLogin.submit();" class="button buttonRight"><?php echo $this->__("Login"); ?></a>
 	<?php if(isset($this->content['logout'])): ?>
 	<div class="success"><?php echo $this->__("Logged out"); ?></div>
@@ -15,6 +15,6 @@
 		</p>
 		<input type="password" name="adminPassword" id="adminPassword" />
 	</div>
-	<a href="javascript:window.history.go(-1)" class="button"><?php echo $this->__("Previous page"); ?></a>
+	<a href="/" class="button"><?php echo $this->__("Previous page"); ?></a>
 	<a href="javascript:document.adminLogin.submit();" class="button buttonRight"><?php echo $this->__("Login"); ?></a>
 </form>
