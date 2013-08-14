@@ -33,6 +33,8 @@
 "No limit", "No limit"
 
 "Statistics", "Statistics"
+"Page loads", "Page loads"
+"Unique visitors", "Unique visitors"
 "Popularity by website", "Popularity by website"
 
 "Send feedback", "Send feedback"
@@ -43,3 +45,18 @@
 "Report a bug", "Report a bug"
 "Other", "Other"
 "Send", "Send"
+"Feedbacks", "Feedbacks"
+"feedbacks total", "feedbacks total"
+"Delete selected", "Delete selected"
+"unread feedbacks", "unread feedbacks"
+"feedbacks deleted", "feedbacks deleted"
+
+"Admin login", "Admin login"
+"Admin panel", "Admin panel"
+"Password", "Password"
+"Login", "Login"
+"Log out", "Log out"
+"Logged in successfully", "Logged in successfully"
+"Logged out", "Logged out"
+"Maximum limit of login attempts reached", "Maximum limit of login attempts reached"
+"Incorrect password", "Incorrect password"

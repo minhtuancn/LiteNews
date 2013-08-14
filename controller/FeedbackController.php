@@ -11,7 +11,10 @@ class FeedbackController extends Controller {
 		$content = array();
 		
 		if(isset($_POST['feedback'])) {
-			$feedbackType = is_numeric($_POST['feedbackType']) ? $_POST['feedbackType'] : 3;
+			if(!array_key_exists($_POST['feedbackType'], Config::$feedbackTypes))
+				$feedbackType = 1;
+			else
+				$feedbackType = $_POST['feedbackType'];
 			
 			if($this->db->AddFeedback($feedbackType, $_POST['feedback']))
 				$content['sendSuccess'] = true;

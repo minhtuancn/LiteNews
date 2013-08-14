@@ -1,0 +1,31 @@
+<a href="javascript:window.history.go(-1)" class="button"><?php echo $this->__("Previous page"); ?></a>
+<a href="/admin/logout" class="button buttonRight"><?php echo $this->__("Log out"); ?></a>
+<?php if(isset($this->content['loginSuccess'])): ?>
+<div class="success"><?php echo $this->__("Logged in successfully"); ?></div>
+<?php endif; ?>
+<?php if($this->content['unreadFeedbacks'] > 0): ?>
+<div class="success"><?php echo $this->content['unreadFeedbacks']." ".$this->__("unread feedbacks"); ?></div>
+<?php endif; ?>
+<div class="contentBox">
+	<p class="contentTitle"><?php echo $this->__("Admin panel"); ?></p>
+	<p class="contentText">
+		<a class="button" href="/admin/feedback"><?php echo $this->content['feedbacks']." ".$this->__("feedbacks total"); ?></a>
+	</p>
+</div>
+<div class="contentBox">
+	<p class="contentTitle"><?php echo $this->__("Statistics"); ?></p>
+	<p class="contentText"><?php echo $this->__("Page loads")." ".$this->content['loads']; ?></p>
+	<p class="contentText"><?php echo $this->__("Unique visitors")." ".$this->content['visitors']; ?></p>
+	<p class="contentSubTitle"><?php echo $this->__("Popularity by website"); ?></p>
+	<?php
+	$multiply = 95 / $this->content['stats'][0]['loads'];
+	foreach($this->content['stats'] as $website):
+	?>
+	<?php $width = $website['loads'] * $multiply; ?>
+	<div class="stats" style="width: <?php echo $width; ?>%;">
+	<?php echo $website['name']; ?>
+	</div>
+	<?php endforeach; ?>
+</div>
+<a href="javascript:window.history.go(-1)" class="button"><?php echo $this->__("Previous page"); ?></a>
+<a href="/admin/logout" class="button buttonRight"><?php echo $this->__("Log out"); ?></a>

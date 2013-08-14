@@ -1,0 +1,20 @@
+<form action="/admin" method="post" name="adminLogin">
+	<a href="javascript:window.history.go(-1)" class="button"><?php echo $this->__("Previous page"); ?></a>
+	<a href="javascript:document.adminLogin.submit();" class="button buttonRight"><?php echo $this->__("Login"); ?></a>
+	<?php if(isset($this->content['logout'])): ?>
+	<div class="success"><?php echo $this->__("Logged out"); ?></div>
+	<?php elseif(isset($this->content['maxLoginFails'])): ?>
+	<div class="error"><?php echo $this->__("Maximum limit of login attempts reached"); ?></div>
+	<?php elseif(isset($this->content['loginFail'])): ?>
+	<div class="error"><?php echo $this->__("Incorrect password"); ?></div>
+	<?php endif; ?>
+	<div class="contentBox">
+		<p class="contentTitle"><?php echo $this->__("Admin panel"); ?></p>
+		<p class="contentText">
+			<label for="adminPassword"><?php echo $this->__("Password"); ?></label>
+		</p>
+		<input type="password" name="adminPassword" id="adminPassword" />
+	</div>
+	<a href="javascript:window.history.go(-1)" class="button"><?php echo $this->__("Previous page"); ?></a>
+	<a href="javascript:document.adminLogin.submit();" class="button buttonRight"><?php echo $this->__("Login"); ?></a>
+</form>

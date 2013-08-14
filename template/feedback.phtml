@@ -12,9 +12,9 @@
 		</p>
 		<select name="feedbackType">
 			<option value="0" selected="selected"><?php echo $this->__("Choose feedback type"); ?></option>
-			<option value="1"><?php echo $this->__("New website"); ?></option>
-			<option value="2"><?php echo $this->__("Report a bug"); ?></option>
-			<option value="3"><?php echo $this->__("Other"); ?></option>
+			<?php foreach(Config::$feedbackTypes as $feedbackKey => $feedbackType): ?>
+			<option value="<?php echo $feedbackKey + 1; ?>"><?php echo $this->__($feedbackType); ?></option>
+			<?php endforeach; ?>
 		</select>
 		<textarea name="feedback" id="feedback"></textarea>
 	</div>

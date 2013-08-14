@@ -2,7 +2,6 @@
 require_once("Loader.php");
 
 abstract class Parser {
-	protected $name;
 	protected $dom;
 	
 	

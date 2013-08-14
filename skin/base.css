@@ -37,6 +37,7 @@ a.indexLink {
 }
 
 a.indexLink img {
+	border: 0px;
 	min-width: 200px;
 	width: 50%;
 	max-width: 400px;
@@ -108,8 +109,8 @@ p.contentText {
 .stats {
 	margin-bottom: 15px;
 	padding: 5px 0px 5px 10px;
-	display: block; 
-	overflow: hidden;
+	display: block;
+	white-space: nowrap;
 	background: #d3d3d3;
 }
 

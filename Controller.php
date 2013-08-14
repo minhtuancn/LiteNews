@@ -16,7 +16,7 @@ abstract class Controller {
 		$this->db = new Database(Config::$mysqlHost, Config::$mysqlUsername, Config::$mysqlPassword, Config::$mysqlDB);
 		
 		if(Config::$log)
-			$this->db->AddLog();
+			$this->db->AddLog($_SERVER['REQUEST_URI']);
 		
 		$this->layout = new Template(Config::GetUserSetting("lang"), "layout");
 		$this->template = new Template(Config::GetUserSetting("lang"));

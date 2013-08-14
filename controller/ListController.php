@@ -24,6 +24,9 @@ class ListController extends Controller {
 			}
 		}
 		
+		if(isset($website['reverseSort']) && $website['reverseSort'] == true)
+			$content = array_reverse($content);
+		
 		$this->template->setContent($content);
 	}
 }

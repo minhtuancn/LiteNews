@@ -33,6 +33,8 @@
 "No limit", "Ei rajoitusta"
 
 "Statistics", "Tilastot"
+"Page loads", "Latauksia"
+"Unique visitors", "Uniikkeja kävijöitä"
 "Popularity by website", "Sivujen latausmäärät"
 
 "Send feedback", "Lähetä palautetta"
@@ -43,3 +45,18 @@
 "Report a bug", "Ilmoita virheestä"
 "Other", "Muu"
 "Send", "Lähetä"
+"Feedbacks", "Palautteet"
+"feedbacks total", "palautetta yhteensä"
+"Delete selected", "Poista valitut"
+"unread feedbacks", "lukematonta palautetta"
+"feedbacks deleted", "palautetta poistettu"
+
+"Admin login", "Hallintaan kirjautuminen"
+"Admin panel", "Hallinta"
+"Password", "Salasana"
+"Login", "Kirjaudu"
+"Log out", "Kirjaudu ulos"
+"Logged in successfully", "Kirjautuminen onnistui"
+"Logged out", "Kirjauduit ulos"
+"Maximum limit of login attempts reached", "Olet yrittänyt kirjautua liian monta kertaa"
+"Incorrect password", "Virheellinen salasana"

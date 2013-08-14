@@ -1,0 +1,30 @@
+<form action="/admin/feedback" method="post" name="adminFeedback">
+	<a href="javascript:window.history.go(-1)" class="button"><?php echo $this->__("Previous page"); ?></a>
+	<a href="javascript:document.adminFeedback.submit();" class="button buttonRight"><?php echo $this->__("Delete selected"); ?></a>
+	<?php if(isset($this->content['feedbacksDeleted'])): ?>
+	<div class="success"><?php echo $this->content['feedbacksDeleted']." ".$this->__("feedbacks deleted"); ?></div>
+	<?php endif; ?>
+	<div class="contentBox">
+		<p class="contentTitle">Page</p>
+		<select name="feedbackPage">
+			<?php for($i = 1; $i <= $this->content['feedbackPages']; ++$i): ?>
+			<option value="<?php echo $i; ?>"<?php if($this->content['feedbackCurrentPage'] == $i) echo " selected"; ?>><?php echo $i; ?></option>
+			<?php endfor; ?>
+		</select>
+	</div>
+	<?php foreach($this->content['feedback'] as $feedback): ?>
+	<div class="contentBox">
+		<p class="contentSubTitle">#<?php echo $feedback['ID']; ?></p>
+		<p class="contentDate">
+			<input type="checkbox" name="feedback_<?php echo $feedback['ID']; ?>" id="feedback_<?php echo $feedback['ID']; ?>" />
+			<label for="feedback_<?php echo $feedback['ID']; ?>">
+				"<?php echo $this->__(Config::$feedbackTypes[$feedback['Type'] - 1]); ?>" - 
+				<?php echo date("d.m.Y H:i:s", $feedback['Timestamp']); ?>
+			</label>
+		</p>
+		<p class="contentText"><?php echo $feedback['Content']; ?></p>
+	</div>
+	<?php endforeach; ?>
+	<a href="javascript:window.history.go(-1)" class="button"><?php echo $this->__("Previous page"); ?></a>
+	<a href="javascript:document.adminFeedback.submit();" class="button buttonRight"><?php echo $this->__("Delete selected"); ?></a>
+</form>
