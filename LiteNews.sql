@@ -61,6 +61,7 @@ CREATE TABLE `Feedback` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Type` tinyint(4) NOT NULL,
   `Content` text NOT NULL,
+  `Viewed` tinyint(1) NOT NULL DEFAULT '0',
   `IP` tinytext NOT NULL,
   `Timestamp` int(11) NOT NULL,
   PRIMARY KEY (`ID`)
@@ -106,4 +107,4 @@ CREATE TABLE `UpdateTime` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-08-02  4:11:50
+-- Dump completed on 2013-08-14 23:04:47
