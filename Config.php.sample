@@ -8,8 +8,12 @@ class Config {
 	public static $mysqlUsername = "";
 	public static $mysqlPassword = "";
 	
+	public static $adminPassword = "password";
+	public static $adminMaxLoginAttempts = 5; // In one hour
+	
 	// Enable logging
 	public static $log = true;
+	public static $logExpire = 2592000; // How long logs will be kept in minutes. 0 is for no expire. Default value, 2592000, is an one month.
 	
 	// Sort by popularity based on logs. (So logging must be enabled)
 	public static $websitesSortByPopularity = true;
@@ -22,7 +26,8 @@ class Config {
 		array('id'=>6, 'name'=>"MTV3", 'url'=>"http://mtv3.fi", 'listPath'=>"/rss/uutiset.rss", 'logo'=>"mtv3.png", 'rss'=>true),
 		array('id'=>7, 'name'=>"BBC", 'url'=>"http://m.bbc.co.uk", 'listPath'=>"/news", 'logo'=>"bbc.png"),
 		array('id'=>8, 'name'=>"New York Times", 'url'=>"http://www.nytimes.com", 'listPath'=>"/services/xml/rss/nyt/GlobalHome.xml", 'logo'=>"nyt.png", 'rss'=>true),
-		array('id'=>9, 'name'=>"YLE", 'url'=>"http://yle.fi", 'listPath'=>"/uutiset/rss/uutiset.rss", 'logo'=>"yle.png", 'rss'=>true)
+		array('id'=>9, 'name'=>"YLE", 'url'=>"http://yle.fi", 'listPath'=>"/uutiset/rss/uutiset.rss", 'logo'=>"yle.png", 'rss'=>true),
+		array('id'=>10, 'name'=>"Sodexo", 'url'=>"http://m.sodexo.fi/m/412", 'listPath'=>"", 'logo'=>"sodexo.png", 'reverseSort'=>true)
 	);
 	
 	// How many titles will be displayed in collection page. Can be overwritten if user setting isn't 0. Set to 0 for no limit.
@@ -33,6 +38,8 @@ class Config {
 	public static $articleRefreshFreq = 60;
 	
 	public static $enableFeedback = true;
+	public static $feedbackTypes = array("New website", "Report a bug", "Other");
+	public static $maxFeedbacksPerHour = 5; // By IP address
 	
 	public static $allowUserSettings = true;
 	public static $userSettingsCookie = "settings";
