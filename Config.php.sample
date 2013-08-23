@@ -1,6 +1,6 @@
 <?php
 class Config {
-	public static $baseURL = "";
+	public static $baseURL = "localhost/";
 	
 	// MySQL connection settings
 	public static $mysqlHost = "";
@@ -33,10 +33,6 @@ class Config {
 	// How many titles will be displayed in collection page. Can be overwritten if user setting isn't 0. Set to 0 for no limit.
 	public static $collectionLimit = 75;
 	
-	// Frequencies in minutes
-	public static $listRefreshFreq = 5;
-	public static $articleRefreshFreq = 60;
-	
 	public static $enableFeedback = true;
 	public static $feedbackTypes = array("New website", "Report a bug", "Other");
 	public static $maxFeedbacksPerHour = 5; // By IP address
@@ -68,4 +64,3 @@ class Config {
 		return false;
 	}
 }
-?>
