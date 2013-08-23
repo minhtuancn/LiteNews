@@ -20,7 +20,7 @@ class LiteNews {
 		elseif($this->page == "settings")
 			$this->controller = new SettingsController;
 		elseif($this->page == "collection")
-			$this->controller = new ListCollectionController;
+			$this->controller = new CollectionController;
 		elseif($this->page == "admin")
 			$this->controller = new AdminController;
 		elseif(is_null($this->href))
