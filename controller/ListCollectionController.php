@@ -2,6 +2,11 @@
 require_once("Parser.php");
 
 class ListCollectionController extends Controller {
+	protected function InitDB() {
+		$this->db = new ListSQL;
+	}
+	
+	
 	public function InitPage() {
 		$this->template->setTemplate("list");
 		$this->template->setTitle("Collection");

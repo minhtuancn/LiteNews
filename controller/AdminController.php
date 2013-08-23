@@ -1,6 +1,8 @@
 <?php
-class AdminController extends IndexController {
+class AdminController extends Controller {
 	public function InitPage() {
+		$this->db = new AdminSQL;
+		
 		$content = array();
 		$login = $this->CheckLogin($content);
 		
@@ -62,7 +64,16 @@ class AdminController extends IndexController {
 			$content['unreadFeedbacks'] = $this->db->GetFeedbacksNum(true);
 			$content['loads'] = $this->db->GetLoads("");
 			$content['visitors'] = $this->db->GetVisitors();
-			$content['stats'] = $this->SortByPopularity(Config::$websites);
+			
+			$content['stats'] = $this->db->AddLoads(Config::$websites);
+			usort(
+				$content['stats'],
+				function($a, $b) {
+					if($a['loads'] == $b['loads'])
+						return $a['id'] > $b['id'];
+					return $a['loads'] < $b['loads'];
+				}
+			);
 			
 			$this->template->setContent($content);
 	}
@@ -89,7 +100,7 @@ class AdminController extends IndexController {
 			}
 		}
 		
-		if($feedbacksDeleted) {
+		if($feedbacksDeleted > 0) {
 			$feedbacks = $this->db->GetFeedbacks(10, $page * 10);
 			$content['feedbacksDeleted'] = $feedbacksDeleted;
 		}

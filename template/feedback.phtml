@@ -1,5 +1,5 @@
 <form action="/feedback" method="post" name="feedbackForm">
-	<a href="javascript:window.history.go(-1)" class="button"><?php echo $this->__("Previous page"); ?></a>
+	<a href="/" class="button"><?php echo $this->__("Previous page"); ?></a>
 	<a href="javascript:document.feedbackForm.submit();" class="button buttonRight"><?php echo $this->__("Send"); ?></a>
 	<?php if(isset($this->content['sendSuccess'])): ?>
 	<div class="success"><?php echo $this->__("Feedback succesfully sent"); ?></div>
@@ -18,6 +18,6 @@
 		</select>
 		<textarea name="feedback" id="feedback"></textarea>
 	</div>
-	<a href="javascript:window.history.go(-1)" class="button"><?php echo $this->__("Previous page"); ?></a>
+	<a href="/" class="button"><?php echo $this->__("Previous page"); ?></a>
 	<a href="javascript:document.feedbackForm.submit();" class="button buttonRight"><?php echo $this->__("Send"); ?></a>
 </form>

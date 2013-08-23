@@ -3,6 +3,7 @@ RewriteEngine On
 RewriteRule ^anck/(.*)$ anck/$1 [NC,L]
 RewriteRule ^logo/(.*)$ logo/$1 [NC,L]
 RewriteRule ^skin/(.*)$ skin/$1 [NC,L]
+RewriteRule ^debug/(.*)$ debug/$1 [NC,L]
 
 RewriteRule ^([A-Za-z0-9-+]+)/(.*)?$ index.php?page=$1&href=$2 [NC,L]
 RewriteRule ^([A-Za-z0-9-+]+)/?$ index.php?page=$1 [NC,L]

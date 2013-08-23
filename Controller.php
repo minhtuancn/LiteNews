@@ -13,13 +13,15 @@ abstract class Controller {
 	
 	
 	public function __construct() {
-		$this->db = new Database(Config::$mysqlHost, Config::$mysqlUsername, Config::$mysqlPassword, Config::$mysqlDB);
-		
-		if(Config::$log)
-			$this->db->AddLog($_SERVER['REQUEST_URI']);
-		
+		$this->InitDB();
 		$this->layout = new Template(Config::GetUserSetting("lang"), "layout");
 		$this->template = new Template(Config::GetUserSetting("lang"));
+	}
+	
+	
+	protected function InitDB() {
+		$dbClass = str_replace("Controller", "SQL", get_class($this));
+		$this->db = new $dbClass;
 	}
 	
 	

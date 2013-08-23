@@ -3,17 +3,24 @@ body {
 }
 
 a.button {
-	background: #f0f0f0;
-	border-color: #aaa;
+	background: #333;
+	border-color: #222;
+	color: #fff;
 }
 
 a.button:active, a.button:focus {
-	background: #ddd;
+	background: #555;
 }
 
-a.indexLink, a.titleLink {
+a.indexLink {
 	background: #fff;
 	border-color: #aaa;
+}
+
+a.titleLink {
+	background: #222;
+	border-color: #111;
+	color: #fff;
 }
 
 a.indexLink:active, a.indexLink:focus {
@@ -21,10 +28,15 @@ a.indexLink:active, a.indexLink:focus {
 }
 
 a.titleLink:active, a.titleLink:focus {
-	opacity: 0.70;
+	background: #555;
 }
 
 .contentBox {
-	background: #fff;
-	border-color: #aaa;
+	background: #222;
+	border-color: #111;
+	color: #fff;
+}
+
+.stats {
+	color: #000;
 }

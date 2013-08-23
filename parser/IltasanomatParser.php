@@ -12,7 +12,18 @@ class IltasanomatParser extends Parser {
 			
 			$link = $links->item(0);
 			$titleURL = $link->getAttribute('href');
-			$titles[] = array('title'=>$link->nodeValue, 'url'=>$titleURL);
+			$newTitle = array('title'=>$link->nodeValue, 'url'=>$titleURL);
+			
+			$duplicate = false;
+			foreach($titles as $title) {
+				if($title['url'] == $newTitle['url']) {
+					$duplicate = true;
+					break;
+				}
+			}
+			
+			if(!$duplicate)
+				$titles[] = $newTitle;
 		}
 		
 		return $titles;

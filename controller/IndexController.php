@@ -15,10 +15,7 @@ class IndexController extends Controller {
 	
 	
 	protected function SortByPopularity($websites) {
-		foreach($websites as &$website) {
-			$loads = $this->db->GetLoads($website['name']);
-			$website['loads'] = $loads;
-		}
+		$websites = $this->db->AddLoads($websites);
 		
 		usort(
 			$websites,
