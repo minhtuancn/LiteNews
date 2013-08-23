@@ -1,5 +1,10 @@
 <?php
 class SettingsController extends Controller {
+	public function InitDB() {
+		$this->db = NULL;
+	}
+	
+	
 	public function InitPage() {
 		if(!Config::$allowUserSettings) {
 			$this->InitErrorPage();
