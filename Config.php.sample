@@ -1,5 +1,6 @@
 <?php
 class Config {
+	// Base url for media links. Must end with slash.
 	public static $baseURL = "localhost/";
 	
 	// MySQL connection settings
@@ -8,6 +9,7 @@ class Config {
 	public static $mysqlUsername = "";
 	public static $mysqlPassword = "";
 	
+	// Password for admin panel. Admin panel can be accessed at /admin
 	public static $adminPassword = "password";
 	public static $adminMaxLoginAttempts = 5; // In one hour
 	
@@ -15,8 +17,9 @@ class Config {
 	public static $log = true;
 	public static $logExpire = 2592000; // How long logs will be kept in minutes. 0 is for no expire. Default value, 2592000, is an one month.
 	
-	// Sort by popularity based on logs. (So logging must be enabled)
+	// Sort by popularity based on logs. (If true, logging must be enabled)
 	public static $websitesSortByPopularity = true;
+	
 	public static $websites = array(
 		array('id'=>1, 'name'=>"Iltalehti", 'url'=>"http://iltalehti.fi", 'listPath'=>"/etusivu/", 'logo'=>"iltalehti.png"),
 		array('id'=>2, 'name'=>"Iltasanomat", 'url'=>"http://iltasanomat.fi", 'listPath'=>"", 'logo'=>"iltasanomat.png"),
@@ -37,19 +40,29 @@ class Config {
 	public static $feedbackTypes = array("New website", "Report a bug", "Other");
 	public static $maxFeedbacksPerHour = 5; // By IP address
 	
+	// If set to false, $defaultUserSettings values will be used.
 	public static $allowUserSettings = true;
 	public static $userSettingsCookie = "settings";
 	public static $settingsCookieExpire = 525600; // In minutes. 525600 is an one year.
 	
 	public static $defaultUserSettings = array(
+		// Value that must be in $locales
 		"lang"=>"fi",
+		
+		// Array index to $themes
 		"theme"=>0,
+		
+		// How many titles will be displayed. 0 is for no limit.
 		"limit"=>0,
+		
+		// Serialized array which includes only the website ID's defined in $websites
 		"collection"=>"a:7:{i:0;i:1;i:1;i:2;i:2;i:3;i:3;i:4;i:4;i:5;i:5;i:6;i:6;i:9;}"
 	);
 	
+	// Locale files defined in $locales must exist in locale directory.
 	public static $locales = array("en", "fi");
 	
+	// CSS files must exist in skin directory. File names must be lowercase theme names without spaces.
 	public static $themes = array("Gray", "Pink", "Black", "Yellow", "Dark blue", "Light blue");
 	
 	
