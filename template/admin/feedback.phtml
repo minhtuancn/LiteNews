@@ -1,16 +1,24 @@
 <form action="/admin/feedback" method="post" name="adminFeedback">
 	<a href="/admin" class="button"><?php echo $this->__("Previous page"); ?></a>
-	<a href="javascript:document.adminFeedback.submit();" class="button buttonRight"><?php echo $this->__("Delete selected"); ?></a>
+	<a href="javascript:document.adminFeedback.submit();" class="button buttonRight"><?php echo $this->__("Delete"); ?></a>
 	<?php if(isset($this->content['feedbacksDeleted'])): ?>
 	<div class="success"><?php echo $this->content['feedbacksDeleted']." ".$this->__("feedbacks deleted"); ?></div>
 	<?php endif; ?>
 	<div class="contentBox">
-		<p class="contentTitle">
-			Page&nbsp;
+		<p class="contentText">
+			<?php echo $this->__("Page"); ?>&nbsp;
 			<select name="feedbackPage">
 				<?php for($i = 1; $i <= $this->content['feedbackPages']; ++$i): ?>
 				<option value="<?php echo $i; ?>"<?php if($this->content['feedbackCurrentPage'] == $i) echo " selected"; ?>><?php echo $i; ?></option>
 				<?php endfor; ?>
+			</select>
+		</p>
+		<p class="contentText">
+			<?php echo $this->__("Delete feedbacks"); ?>&nbsp;
+			<select name="feedbackDeleteMode">
+				<option value="1"><?php echo $this->__("Delete selected"); ?></option>
+				<option value="2"><?php echo $this->__("Delete current page"); ?></option>
+				<option value="3"><?php echo $this->__("Delete all"); ?></option>
 			</select>
 		</p>
 	</div>
@@ -30,5 +38,5 @@
 	</label>
 	<?php endforeach; ?>
 	<a href="/admin" class="button"><?php echo $this->__("Previous page"); ?></a>
-	<a href="javascript:document.adminFeedback.submit();" class="button buttonRight"><?php echo $this->__("Delete selected"); ?></a>
+	<a href="javascript:document.adminFeedback.submit();" class="button buttonRight"><?php echo $this->__("Delete"); ?></a>
 </form>

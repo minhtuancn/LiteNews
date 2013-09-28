@@ -63,6 +63,13 @@ class AdminSQL extends Database {
 	}
 	
 	
+	public function DeleteAllFeedbacks() {
+		$query = $this->db->prepare("DELETE FROM Feedback");
+		$query->execute();
+		return $query->rowCount();
+	}
+	
+	
 	public function GetAdminLoginFails() {
 		$timestamp = time() - 3600;
 		$query = $this->db->prepare("SELECT COUNT(*) FROM Log WHERE URL='/admin/loginfail' AND Timestamp>?");

@@ -92,17 +92,36 @@ class AdminController extends Controller {
 		$content['feedbackPages'] = ceil($this->db->GetFeedbacksNum(false) / 10);
 		$feedbacks = $this->db->GetFeedbacks(10, $page * 10);
 		
-		$feedbacksDeleted = 0;
-		foreach($feedbacks as $feedback) {
-			if(isset($_POST['feedback_'.$feedback['ID']])) {
-				$this->db->DeleteFeedback($feedback['ID']);
-				++$feedbacksDeleted;
+		if(isset($_POST['feedbackDeleteMode'])) {
+			$deleteMode = $_POST['feedbackDeleteMode'];
+			$feedbacksDeleted = 0;
+			
+			switch($deleteMode) {
+				case 1:
+					foreach($feedbacks as $feedback) {
+						if(isset($_POST['feedback_'.$feedback['ID']])) {
+							$this->db->DeleteFeedback($feedback['ID']);
+							++$feedbacksDeleted;
+						}
+					}
+					break;
+				
+				case 2:
+					foreach($feedbacks as $feedback) {
+						$this->db->DeleteFeedback($feedback['ID']);
+						++$feedbacksDeleted;
+					}
+					break;
+				
+				case 3:
+					$feedbacksDeleted = $this->db->DeleteAllFeedbacks();
+					break;
 			}
-		}
-		
-		if($feedbacksDeleted > 0) {
-			$feedbacks = $this->db->GetFeedbacks(10, $page * 10);
-			$content['feedbacksDeleted'] = $feedbacksDeleted;
+			
+			if($feedbacksDeleted > 0) {
+				$feedbacks = $this->db->GetFeedbacks(10, $page * 10);
+				$content['feedbacksDeleted'] = $feedbacksDeleted;
+			}
 		}
 		
 		$content['feedback'] = $feedbacks;
