@@ -88,6 +88,12 @@ class AdminController extends Controller {
 		else
 			$page = 0;
 		
+		
+		if(isset($_POST['feedbackPage']) && is_numeric($_POST['feedbackPage']) && $_POST['feedbackPage'] > 0 && $_POST['feedbackPage'] != $page + 1) {
+			header("Location: feedback/".$_POST['feedbackPage']);
+			return;
+		}
+		
 		$content['feedbackCurrentPage'] = $page + 1;
 		$content['feedbackPages'] = ceil($this->db->GetFeedbacksNum(false) / 10);
 		$feedbacks = $this->db->GetFeedbacks(10, $page * 10);

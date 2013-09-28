@@ -7,7 +7,7 @@
 	<div class="contentBox">
 		<p class="contentText">
 			<?php echo $this->__("Page"); ?>&nbsp;
-			<select name="feedbackPage">
+			<select name="feedbackPage" onchange="document.adminFeedback.submit()">
 				<?php for($i = 1; $i <= $this->content['feedbackPages']; ++$i): ?>
 				<option value="<?php echo $i; ?>"<?php if($this->content['feedbackCurrentPage'] == $i) echo " selected"; ?>><?php echo $i; ?></option>
 				<?php endfor; ?>
