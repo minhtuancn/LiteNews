@@ -15,6 +15,8 @@ class LiteNews {
 			$this->controller = new IndexController;
 		elseif($this->page == "cron")
 			$this->controller = new CronController;
+		elseif($this->page == "info")
+			$this->controller = new InfoController;
 		elseif($this->page == "feedback")
 			$this->controller = new FeedbackController;
 		elseif($this->page == "settings")

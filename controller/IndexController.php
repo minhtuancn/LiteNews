@@ -4,6 +4,13 @@ class IndexController extends Controller {
 		$this->template->setTemplate("main");
 		$this->template->setTitle("Choose website");
 		
+		if(!isset($_COOKIE['visited'])) {
+			$content['showInfo'] = true;
+			setcookie("visited", 1, time() + Config::$settingsCookieExpire * 60);
+		}
+		else
+			$content['showInfo'] = false;
+		
 		$content['websites'] = Config::$websites;
 		if(Config::$websitesSortByPopularity)
 			$content['websites'] = $this->SortByPopularity($content['websites']);
