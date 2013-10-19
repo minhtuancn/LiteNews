@@ -23,7 +23,7 @@
 	?>
 	<?php $width = $website['loads'] * $multiply; ?>
 	<div class="stats" style="width: <?php echo $width; ?>%;">
-	<?php echo $website['name']; ?>
+		<a href="/<?php echo $website['name']; ?>"><?php echo $website['name']; ?></a>
 	</div>
 	<?php endforeach; ?>
 </div>
