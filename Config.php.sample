@@ -22,7 +22,7 @@ class Config {
 	
 	public static $websites = array(
 		array('id'=>1, 'name'=>"Iltalehti", 'url'=>"http://iltalehti.fi", 'listPath'=>"/etusivu/", 'logo'=>"iltalehti.png"),
-		array('id'=>2, 'name'=>"Iltasanomat", 'url'=>"http://iltasanomat.fi", 'listPath'=>"", 'logo'=>"iltasanomat.png"),
+		array('id'=>2, 'name'=>"Ilta-Sanomat", 'url'=>"http://iltasanomat.fi", 'listPath'=>"", 'logo'=>"iltasanomat.png"),
 		array('id'=>3, 'name'=>"Kaleva", 'url'=>"http://www.kaleva.fi", 'listPath'=>"/uutiset", 'logo'=>"kaleva.png"),
 		array('id'=>4, 'name'=>"Helsingin Sanomat", 'url'=>"http://www.hs.fi", 'listPath'=>"/uutiset", 'logo'=>"hs.png"),
 		array('id'=>5, 'name'=>"It-viikko", 'url'=>"http://www.itviikko.fi", 'listPath'=>"/uutislista", 'logo'=>"itviikko.png"),
@@ -65,16 +65,4 @@ class Config {
 	
 	// CSS files must exist in skin directory. File names must be lowercase theme names without spaces.
 	public static $themes = array("Gray", "Pink", "Black", "Yellow", "Dark blue", "Light blue");
-	
-	
-	public static function GetUserSetting($name) {
-		if(isset(self::$defaultUserSettings[$name])) {
-			if(self::$allowUserSettings && isset($_COOKIE[self::$userSettingsCookie][$name]))
-				return htmlspecialchars($_COOKIE[self::$userSettingsCookie][$name]);
-			
-			return self::$defaultUserSettings[$name];
-		}
-		
-		return false;
-	}
 }
