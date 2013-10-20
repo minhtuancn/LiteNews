@@ -1,5 +1,5 @@
 <?php
-class IltasanomatParser extends Parser {
+class IltaSanomatParser extends Parser {
 	public function GetTitles() {
 		$titles = array();
 		
