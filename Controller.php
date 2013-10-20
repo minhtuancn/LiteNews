@@ -14,8 +14,20 @@ abstract class Controller {
 	
 	public function __construct() {
 		$this->InitDB();
-		$this->layout = new Template(Config::GetUserSetting("lang"), "layout");
-		$this->template = new Template(Config::GetUserSetting("lang"));
+		$this->layout = new Template(self::GetUserSetting("lang"), "layout");
+		$this->template = new Template(self::GetUserSetting("lang"));
+	}
+	
+	
+	public static function GetUserSetting($name) {
+		if(isset(Config::$defaultUserSettings[$name])) {
+			if(Config::$allowUserSettings && isset($_COOKIE[Config::$userSettingsCookie][$name]))
+				return htmlspecialchars($_COOKIE[Config::$userSettingsCookie][$name]);
+			
+			return Config::$defaultUserSettings[$name];
+		}
+		
+		return false;
 	}
 	
 	

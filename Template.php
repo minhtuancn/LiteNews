@@ -1,5 +1,6 @@
 <?php
 require_once("Config.php");
+require_once("Controller.php");
 require_once("Locale.php");
 
 class Template {

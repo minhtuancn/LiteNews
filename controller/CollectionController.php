@@ -6,11 +6,11 @@ class CollectionController extends Controller {
 		$this->template->setTemplate("list");
 		$this->template->setTitle("Collection");
 		
-		$limit = Config::GetUserSetting("limit");
+		$limit = self::GetUserSetting("limit");
 		if($limit < 1 || $limit > 50)
 			$limit = Config::$collectionLimit;
 		
-		$collectionWebsites = unserialize(Config::GetUserSetting("collection"));
+		$collectionWebsites = unserialize(self::GetUserSetting("collection"));
 		
 		$titles = $this->db->LoadCollection($limit, $collectionWebsites);
 		foreach($titles as &$title) {
