@@ -11,9 +11,14 @@ a.button:active, a.button:focus {
 	background: #ddd;
 }
 
+span.indexDescription {
+	background: #fff;
+	color: #999;
+}
+
 a.indexLink, a.titleLink {
 	background: #fff;
-	border-color: #aaa;
+	border-color: #cc0;
 }
 
 a.indexLink:active, a.indexLink:focus {

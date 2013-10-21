@@ -22,6 +22,16 @@ a.buttonRight {
 	float: right;
 }
 
+span.indexDescription {
+	margin-left: 5%;
+	padding: 5px;
+	background: #fff;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	font-size: 0.8em;
+	white-space: nowrap;
+}
+
 a.indexLink, a.titleLink {
 	margin: 5px auto;
 	border: 1px solid;
@@ -135,6 +145,11 @@ a.button {
 
 a.button:active, a.button:focus {
 	background: #ddd;
+}
+
+span.indexDescription {
+	background: #aaa;
+	color: #fff;
 }
 
 a.indexLink, a.titleLink {

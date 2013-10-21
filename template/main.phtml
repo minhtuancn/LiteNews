@@ -1,7 +1,9 @@
 <?php if($this->content['showInfo']): ?>
 <a href="/info" class="titleLink"><?php echo $this->__("It seems that you're using LiteNews first time. Click here to view a guide for customizing the service for your purposes."); ?></a>
 <?php endif; ?>
+<span class="indexDescription"><?php echo $this->__("All news mixed"); ?></span>
 <a href="/collection" class="indexLink"><img src="logo/litenews.png" alt="<?php echo $this->__("Collection"); ?>" /></a>
+<span class="indexDescription"><?php echo $this->__("News by website"); ?></span>
 <?php foreach($this->content['websites'] as $website): ?>
 <a href="/<?php echo str_replace(" ", "+", $website['name']); ?>" class="indexLink"><img src="logo/<?php echo $website['logo']; ?>" alt="<?php echo $website['name']; ?>" /></a>
 <?php endforeach; ?>
