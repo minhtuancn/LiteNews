@@ -1,5 +1,5 @@
 <?php
-require_once("Loader.php");
+require_once("app/Loader.php");
 
 abstract class Parser {
 	protected $dom;

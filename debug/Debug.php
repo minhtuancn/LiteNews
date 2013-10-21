@@ -5,8 +5,8 @@ error_reporting(E_ALL);
 chdir("..");
 
 require_once("Config.php");
-require_once("Database.php");
-require_once("Loader.php");
+require_once("app/sql/Abstract.php");
+require_once("app/Loader.php");
 
 class Debug {
 	public $db;

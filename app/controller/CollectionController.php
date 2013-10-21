@@ -1,5 +1,5 @@
 <?php
-require_once("Parser.php");
+require_once("app/parser/Abstract.php");
 
 class CollectionController extends Controller {
 	public function InitPage() {

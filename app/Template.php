@@ -1,7 +1,7 @@
 <?php
 require_once("Config.php");
-require_once("Controller.php");
-require_once("Locale.php");
+require_once("app/controller/Abstract.php");
+require_once("app/Locale.php");
 
 class Template {
 	protected $locale;
@@ -67,8 +67,8 @@ class Template {
 	public function getHTML() {
 		ob_start();
 		
-		if(file_exists("template/".$this->template.".phtml"))
-			include("template/".$this->template.".phtml");
+		if(file_exists("design/template/".$this->template.".phtml"))
+			include("design/template/".$this->template.".phtml");
 		
 		return str_replace(array("\n", "\r", "\t"), "", ob_get_clean());
 	}

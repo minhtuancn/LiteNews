@@ -1,6 +1,6 @@
 <?php
 require_once("Config.php");
-require_once("Loader.php");
+require_once("app/Loader.php");
 
 abstract class Database {
 	protected $db;

@@ -1,8 +1,8 @@
 <?php
 require_once("Config.php");
-require_once("Database.php");
-require_once("Loader.php");
-require_once("Template.php");
+require_once("app/sql/Abstract.php");
+require_once("app/Loader.php");
+require_once("app/Template.php");
 
 abstract class Controller {
 	protected $db;

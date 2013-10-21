@@ -1,5 +1,5 @@
 <?php
-require_once("Controller.php");
+require_once("app/controller/Abstract.php");
 
 class LiteNews {
 	protected $controller;
