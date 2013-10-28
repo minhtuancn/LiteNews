@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+
+<config>
+	<website>
+		<id>1</id>
+		<name>Iltalehti</name>
+		<url>http://iltalehti.fi</url>
+		<listPath>/etusivu/</listPath>
+		<logo>iltalehti.png</logo>
+	</website>
+	
+	<website>
+		<id>2</id>
+		<name>Ilta-Sanomat</name>
+		<url>http://iltasanomat.fi</url>
+		<listPath></listPath>
+		<logo>iltasanomat.png</logo>
+	</website>
+	
+	<website>
+		<id>3</id>
+		<name>Kaleva</name>
+		<url>http://www.kaleva.fi</url>
+		<listPath>/uutiset</listPath>
+		<logo>kaleva.png</logo>
+	</website>
+	
+	<website>
+		<id>4</id>
+		<name>Helsingin Sanomat</name>
+		<url>http://www.hs.fi</url>
+		<listPath>/uutiset</listPath>
+		<logo>hs.png</logo>
+	</website>
+	
+	<website>
+		<id>5</id>
+		<name>It-viikko</name>
+		<url>http://www.itviikko.fi</url>
+		<listPath>/uutislista</listPath>
+		<logo>itviikko.png</logo>
+	</website>
+	
+	<website>
+		<id>6</id>
+		<name>MTV3</name>
+		<url>http://mtv3.fi</url>
+		<listPath>/rss/uutiset.rss</listPath>
+		<logo>mtv3.png</logo>
+		<rss>1</rss>
+	</website>
+	
+	<website>
+		<id>7</id>
+		<name>BBC</name>
+		<url>http://m.bbc.co.uk</url>
+		<listPath>/news</listPath>
+		<logo>bbc.png</logo>
+	</website>
+	
+	<website>
+		<id>8</id>
+		<name>New York Times</name>
+		<url>http://www.nytimes.com</url>
+		<listPath>/services/xml/rss/nyt/GlobalHome.xml</listPath>
+		<logo>nyt.png</logo>
+		<rss>1</rss>
+	</website>
+	
+	<website>
+		<id>9</id>
+		<name>YLE</name>
+		<url>http://yle.fi</url>
+		<listPath>/uutiset/rss/uutiset.rss</listPath>
+		<logo>yle.png</logo>
+		<rss>1</rss>
+	</website>
+	
+	<website>
+		<id>10</id>
+		<name>Sodexo</name>
+		<url>http://m.sodexo.fi/m/412</url>
+		<listPath></listPath>
+		<logo>sodexo.png</logo>
+	</website>
+	
+	<website>
+		<id>11</id>
+		<name>Muropaketti</name>
+		<url>http://muropaketti.com</url>
+		<listPath>/feed</listPath>
+		<logo>muropaketti.png</logo>
+		<rss>1</rss>
+	</website>
+</config>

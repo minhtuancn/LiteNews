@@ -20,7 +20,7 @@ class CronController extends Controller {
 		// Refresh timestamp before the actual update because running script can take several minutes
 		$this->db->RefreshUpdateTime($websiteID);
 		
-		foreach(Config::$websites as $website) {
+		foreach(Config::GetPath("website/website", true) as $website) {
 			if($websiteID == $website['id'])
 				break;
 		}

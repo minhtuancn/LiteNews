@@ -1,5 +1,5 @@
 <?php
-require_once("Config.php");
+require_once("config/Config.php");
 require_once("app/Loader.php");
 
 abstract class Database {
@@ -7,19 +7,22 @@ abstract class Database {
 	
 	
 	public function __construct($logData=NULL) {
-		$this->db = new PDO('mysql:host='.Config::$mysqlHost.';dbname='.Config::$mysqlDB.';charset=utf8', Config::$mysqlUsername, Config::$mysqlPassword);
+		$account = Config::GetDBConfig();
+		$this->db = new PDO('mysql:host='.$account['host'].';dbname='.$account['db'].';charset=utf8', $account['username'], $account['password']);
 		
 		if(is_null($logData))
 			$this->AddLog($_SERVER['REQUEST_URI']);
-		elseif($logData != "cron")
+		elseif($logData != "config" && $logData != "cron")
 			$this->AddLog($logData);
 	}
 	
 	
 	public function __destruct() {
-		if(Config::$logExpire > 0) {
+		$logExpire = Config::GetPath("local/logExpire");
+		
+		if($logExpire > 0) {
 			$query = $this->db->prepare("DELETE FROM Log WHERE Timestamp<?");
-			$query->execute(array(time() - 60 * Config::$logExpire));
+			$query->execute(array(time() - 60 * $logExpire));
 		}
 	}
 	

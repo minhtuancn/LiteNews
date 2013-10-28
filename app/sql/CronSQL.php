@@ -5,10 +5,10 @@ class CronSQL extends Database {
 		if(!$query->execute())
 			return NULL;
 		
-		if($query->rowCount() < sizeof(Config::$websites)) {
+		if($query->rowCount() < sizeof(Config::GetPath("website/website", true))) {
 			$insert = $this->db->prepare("INSERT IGNORE INTO UpdateTime (WebsiteID, Timestamp) VALUES (?, 0)");
 			
-			foreach(Config::$websites as $website) {
+			foreach(Config::GetPath("website/website", true) as $website) {
 				$insert->execute(array($website['id']));
 			}
 			

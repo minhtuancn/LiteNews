@@ -12,6 +12,8 @@ class AdminController extends Controller {
 			$this->InitLogin($content);
 		elseif($action[0] == NULL)
 			$this->InitMain($content);
+		elseif($action[0] == "configUpdate")
+			$this->InitConfigUpdate($content);
 		elseif($action[0] == "feedback")
 			$this->InitFeedback($action, $content);
 		else
@@ -23,20 +25,20 @@ class AdminController extends Controller {
 		$login = false;
 		
 		if($this->href == "logout") {
-			if(isset($_COOKIE['admin']) && $_COOKIE['admin'] == crypt(Config::$adminPassword, "$2a$")) {
+			if(isset($_COOKIE['admin']) && $_COOKIE['admin'] == crypt(Config::GetPath("local/admin/password"), "$2a$")) {
 				setcookie("admin", "logout", time() - 3600, "/");
 				$content['logout'] = true;
 			}
 		}
-		elseif(isset($_COOKIE['admin']) && $_COOKIE['admin'] == crypt(Config::$adminPassword, "$2a$")) {
+		elseif(isset($_COOKIE['admin']) && $_COOKIE['admin'] == crypt(Config::GetPath("local/admin/password"), "$2a$")) {
 			$login = true;
 		}
 		elseif(isset($_POST['adminPassword'])) {
 			$failAttempts = $this->db->GetAdminLoginFails();
 			
-			if($failAttempts > Config::$adminMaxLoginAttempts)
+			if($failAttempts > Config::GetPath("local/admin/maxLoginAttempts"))
 				$content['maxLoginFails'] = true;
-			elseif($_POST['adminPassword'] == Config::$adminPassword) {
+			elseif($_POST['adminPassword'] == Config::GetPath("local/admin/password")) {
 				setcookie("admin", crypt($_POST['adminPassword'], "$2a$"), time() + 3600, "/");
 				$content['loginSuccess'] = true;
 				$login = true;
@@ -65,7 +67,7 @@ class AdminController extends Controller {
 			$content['loads'] = $this->db->GetLoads("");
 			$content['visitors'] = $this->db->GetVisitors();
 			
-			$content['stats'] = $this->db->AddLoads(Config::$websites);
+			$content['stats'] = $this->db->AddLoads(Config::GetPath("website/website", true));
 			usort(
 				$content['stats'],
 				function($a, $b) {
@@ -76,6 +78,13 @@ class AdminController extends Controller {
 			);
 			
 			$this->template->setContent($content);
+	}
+	
+	
+	protected function InitConfigUpdate($content) {
+		Config::UpdateConfig();
+		$content['configUpdate'] = true;
+		$this->InitMain($content);
 	}
 	
 	
@@ -131,6 +140,7 @@ class AdminController extends Controller {
 		}
 		
 		$content['feedback'] = $feedbacks;
+		$content['feedbackTypes'] = Config::GetPath("local/feedback/feedbackTypes/type", true);
 		$this->template->setContent($content);
 	}
 }

@@ -46,6 +46,9 @@
 "Limit number of titles", "Limit number of titles"
 "No limit", "No limit"
 
+"Update XML configuration", "Update XML configuration"
+"XML configuration updated successfully", "XML configuration updated successfully"
+
 "Statistics", "Statistics"
 "Page loads", "Page loads"
 "Unique visitors", "Unique visitors"

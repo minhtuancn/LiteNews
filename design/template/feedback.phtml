@@ -1,5 +1,5 @@
-<form action="/feedback" method="post" name="feedbackForm">
-	<a href="/" class="button"><?php echo $this->__("Previous page"); ?></a>
+<form action="<?php echo $this->getURL("feedback"); ?>" method="post" name="feedbackForm">
+	<a href="<?php echo $this->getURL(); ?>" class="button"><?php echo $this->__("Previous page"); ?></a>
 	<a href="javascript:document.feedbackForm.submit();" class="button buttonRight"><?php echo $this->__("Send"); ?></a>
 	<?php if(isset($this->content['sendSuccess'])): ?>
 	<div class="success"><?php echo $this->__("Feedback succesfully sent"); ?></div>
@@ -12,12 +12,12 @@
 		</p>
 		<select name="feedbackType">
 			<option value="0" selected="selected"><?php echo $this->__("Choose feedback type"); ?></option>
-			<?php foreach(Config::$feedbackTypes as $feedbackKey => $feedbackType): ?>
+			<?php foreach(Config::GetPath("local/feedback/feedbackTypes/type", true) as $feedbackKey => $feedbackType): ?>
 			<option value="<?php echo $feedbackKey + 1; ?>"><?php echo $this->__($feedbackType); ?></option>
 			<?php endforeach; ?>
 		</select>
 		<textarea name="feedback" id="feedback"></textarea>
 	</div>
-	<a href="/" class="button"><?php echo $this->__("Previous page"); ?></a>
+	<a href="<?php echo $this->getURL(); ?>" class="button"><?php echo $this->__("Previous page"); ?></a>
 	<a href="javascript:document.feedbackForm.submit();" class="button buttonRight"><?php echo $this->__("Send"); ?></a>
 </form>

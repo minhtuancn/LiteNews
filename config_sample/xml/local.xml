@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+
+<config>
+	<!-- Must end with slash -->
+	<baseURL>localhost/</baseURL>
+	
+	<!-- Admin panel can be accessed at /admin -->
+	<admin>
+		<password>password</password>
+		<maxLoginAttempts>5</maxLoginAttempts>
+	</admin>
+	
+	<!-- Log expiration in minutes  -->
+	<logExpire>2592000</logExpire>
+	
+	<!-- Sort websites by popularity in main page -->
+	<sortByPopularity>true</sortByPopularity>
+	
+	<!-- Title limit for collection page -->
+	<collectionLimit>75</collectionLimit>
+	
+	<feedback>
+		<enable>true</enable>
+		<maxFeedbackPerHour>5</maxFeedbackPerHour>
+		<feedbackTypes>
+			<type>New website</type>
+			<type>Report a bug</type>
+			<type>Other</type>
+		</feedbackTypes>
+	</feedback>
+	
+	<userSettings>
+		<enable>true</enable>
+		<cookie>settings</cookie>
+		
+		<!-- Cookie expiration in minutes -->
+		<cookieExpire>525600</cookieExpire>
+		
+		<!-- Default values for user settings -->
+		<default>
+			<!-- Language must be in locale directory -->
+			<lang>fi</lang>
+			
+			<!-- Theme ID -->
+			<theme>4</theme>
+			
+			<!-- Limit for titles, 0 is for no limit -->
+			<limit>0</limit>
+			
+			<!-- Serialized array of website ID's -->
+			<collection>a:7:{i:0;i:1;i:1;i:2;i:2;i:3;i:3;i:4;i:4;i:5;i:5;i:6;i:6;i:9;}</collection>
+		</default>
+	</userSettings>
+	
+	<locales>
+		<locale>en</locale>
+		<locale>fi</locale>
+	</locales>
+	
+	<themes>
+		<theme>Gray</theme>
+		<theme>Pink</theme>
+		<theme>Black</theme>
+		<theme>Yellow</theme>
+		<theme>Dark blue</theme>
+		<theme>Light blue</theme>
+	</themes>
+</config>

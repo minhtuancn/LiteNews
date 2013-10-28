@@ -1,7 +1,7 @@
 <?php
-require_once("Config.php");
+require_once("config/Config.php");
 require_once("app/controller/Abstract.php");
-require_once("app/Locale.php");
+require_once("app/Language.php");
 
 class Template {
 	protected $locale;
@@ -11,7 +11,7 @@ class Template {
 	
 	
 	public function __construct($locale="en", $template=NULL, $title=NULL, $content=NULL) {
-		$this->locale = new Locale($locale);
+		$this->locale = new Language($locale);
 		
 		$this->template = $template;
 		$this->title = $title;
@@ -24,13 +24,13 @@ class Template {
 	}
 	
 	
-	protected function getURL($path) {
-		return Config::$baseURL.$path;
+	protected function getURL($path=NULL) {
+		return Config::GetPath("local/baseURL").$path;
 	}
 	
 	
 	public function setLocale($locale) {
-		$this->locale = new Locale($locale);
+		$this->locale = new Language($locale);
 	}
 	
 	

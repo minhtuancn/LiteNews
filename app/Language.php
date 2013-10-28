@@ -1,5 +1,5 @@
 <?php
-class Locale {
+class Language {
 	protected $translations;
 	
 	

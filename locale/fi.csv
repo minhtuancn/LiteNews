@@ -46,6 +46,9 @@
 "Limit number of titles", "Rajoita uutisotsikoiden määrää"
 "No limit", "Ei rajoitusta"
 
+"Update XML configuration", "Päivitä XML-asetukset"
+"XML configuration updated successfully", "XML-asetukset päivitetty"
+
 "Statistics", "Tilastot"
 "Page loads", "Latauksia"
 "Unique visitors", "Uniikkeja kävijöitä"

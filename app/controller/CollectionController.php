@@ -7,14 +7,14 @@ class CollectionController extends Controller {
 		$this->template->setTitle("Collection");
 		
 		$limit = self::GetUserSetting("limit");
-		if($limit < 1 || $limit > 50)
-			$limit = Config::$collectionLimit;
+		if($limit == 0)
+			$limit = Config::GetPath("local/collectionLimit");
 		
-		$collectionWebsites = unserialize(self::GetUserSetting("collection"));
+		$collectionWebsites = self::GetUserSetting("collection", true);
 		
 		$titles = $this->db->LoadCollection($limit, $collectionWebsites);
 		foreach($titles as &$title) {
-			foreach(Config::$websites as $website) {
+			foreach(Config::GetPath("website/website", true) as $website) {
 				if($title['website'] == $website['id']) {
 					$title['website'] = $website['name'];
 					

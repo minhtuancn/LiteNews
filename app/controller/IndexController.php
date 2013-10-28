@@ -6,17 +6,17 @@ class IndexController extends Controller {
 		
 		if(!isset($_COOKIE['visited'])) {
 			$content['showInfo'] = true;
-			setcookie("visited", 1, time() + Config::$settingsCookieExpire * 60);
+			setcookie("visited", 1, time() + Config::GetPath("local/userSettings/cookieExpire") * 60);
 		}
 		else
 			$content['showInfo'] = false;
 		
-		$content['websites'] = Config::$websites;
-		if(Config::$websitesSortByPopularity)
+		$content['websites'] = Config::GetPath("website/website", true);
+		if(Config::GetPath("local/sortByPopularity"))
 			$content['websites'] = $this->SortByPopularity($content['websites']);
 		
-		$content['feedback'] = Config::$enableFeedback;
-		$content['userSettings'] = Config::$allowUserSettings;
+		$content['feedback'] = Config::GetPath("local/feedback/enable");
+		$content['userSettings'] = Config::GetPath("local/userSettings/enable");
 		$this->template->setContent($content);
 	}
 	

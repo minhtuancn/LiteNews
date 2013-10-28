@@ -1,7 +1,10 @@
-<a href="/" class="button"><?php echo $this->__("Previous page"); ?></a>
-<a href="/admin/logout" class="button buttonRight"><?php echo $this->__("Log out"); ?></a>
+<a href="<?php echo $this->getURL(); ?>" class="button"><?php echo $this->__("Previous page"); ?></a>
+<a href="<?php echo $this->getURL("admin/logout"); ?>" class="button buttonRight"><?php echo $this->__("Log out"); ?></a>
 <?php if(isset($this->content['loginSuccess'])): ?>
 <div class="success"><?php echo $this->__("Logged in successfully"); ?></div>
+<?php endif; ?>
+<?php if(isset($this->content['configUpdate'])): ?>
+<div class="success"><?php echo $this->__("XML configuration updated successfully"); ?></div>
 <?php endif; ?>
 <?php if($this->content['unreadFeedbacks'] > 0): ?>
 <div class="success"><?php echo $this->content['unreadFeedbacks']." ".$this->__("unread feedbacks"); ?></div>
@@ -9,7 +12,8 @@
 <div class="contentBox">
 	<p class="contentTitle"><?php echo $this->__("Admin panel"); ?></p>
 	<p class="contentText">
-		<a class="button" href="/admin/feedback"><?php echo $this->content['feedbacks']." ".$this->__("feedbacks total"); ?></a>
+		<a class="button" href="<?php echo $this->getURL("admin/feedback"); ?>"><?php echo $this->content['feedbacks']." ".$this->__("feedbacks total"); ?></a>
+		<a class="button" href="<?php echo $this->getURL("admin/configUpdate"); ?>"><?php echo $this->__("Update XML configuration"); ?></a>
 	</p>
 </div>
 <div class="contentBox">
@@ -23,9 +27,9 @@
 	?>
 	<?php $width = $website['loads'] * $multiply; ?>
 	<div class="stats" style="width: <?php echo $width; ?>%;">
-		<a href="/<?php echo $website['name']; ?>"><?php echo $website['name']; ?></a>
+		<a href="<?php echo $this->getURL($website['name']); ?>"><?php echo $website['name']; ?></a>
 	</div>
 	<?php endforeach; ?>
 </div>
-<a href="/" class="button"><?php echo $this->__("Previous page"); ?></a>
-<a href="/admin/logout" class="button buttonRight"><?php echo $this->__("Log out"); ?></a>
+<a href="<?php echo $this->getURL(); ?>" class="button"><?php echo $this->__("Previous page"); ?></a>
+<a href="<?php echo $this->getURL("admin/logout"); ?>" class="button buttonRight"><?php echo $this->__("Log out"); ?></a>

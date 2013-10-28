@@ -1,5 +1,5 @@
 <?php
-require_once("Config.php");
+require_once("config/Config.php");
 require_once("app/sql/Abstract.php");
 require_once("app/Loader.php");
 require_once("app/Template.php");
@@ -19,15 +19,53 @@ abstract class Controller {
 	}
 	
 	
-	public static function GetUserSetting($name) {
-		if(isset(Config::$defaultUserSettings[$name])) {
-			if(Config::$allowUserSettings && isset($_COOKIE[Config::$userSettingsCookie][$name]))
-				return htmlspecialchars($_COOKIE[Config::$userSettingsCookie][$name]);
+	public static function GetUserSetting($name, $array=false) {
+		$defaultSettings = Config::GetPath("local/userSettings/default", true);
+		
+		if(isset($defaultSettings[$name])) {
+			if(Config::GetPath("local/userSettings/enable") && isset($_COOKIE[Config::GetPath("local/userSettings/cookie")][$name]) && self::CheckUserSetting($name, $_COOKIE[Config::GetPath("local/userSettings/cookie")][$name])) {
+				if(!$array)
+					return htmlspecialchars($_COOKIE[Config::GetPath("local/userSettings/cookie")][$name]);
+				else {
+					$unserializedArray = @unserialize($_COOKIE[Config::GetPath("local/userSettings/cookie")][$name]);
+					if($unserializedArray == false)
+						return unserialize($defaultSettings[$name]);
+					
+					foreach($unserializedArray as &$unserializedColumn)
+						$unserializedColumn = htmlspecialchars($unserializedColumn);
+					
+					return $unserializedArray;
+				}
+			}
 			
-			return Config::$defaultUserSettings[$name];
+			return $defaultSettings[$name];
 		}
 		
 		return false;
+	}
+	
+	
+	public static function CheckUserSetting($name, $value) {
+		$valid = true;
+		
+		switch($name) {
+			case "lang":
+				$locales = Config::GetPath("local/locales/locale", true);
+				$valid = in_array($value, $locales);
+				break;
+			
+			case "theme":
+				$themes = Config::GetPath("local/themes/theme", true);
+				$valid = array_key_exists($value, $themes);
+				break;
+			
+			case "limit":
+				if(!is_numeric($value) || $value < 0 || $value > 50)
+					$valid = false;
+				break;
+		}
+		
+		return $valid;
 	}
 	
 	
@@ -38,7 +76,7 @@ abstract class Controller {
 	
 	
 	protected function GetWebsite($name) {
-		foreach(Config::$websites as $website) {
+		foreach(Config::GetPath("website/website", true) as $website) {
 			if(str_replace("+", " ", $name) == $website['name'])
 				return $website;
 		}
@@ -59,7 +97,7 @@ abstract class Controller {
 			array(
 				'code'=>404,
 				'message'=>"Page not found",
-				'feedback'=>Config::$enableFeedback
+				'feedback'=>Config::GetPath("local/feedback/enable")
 			)
 		);
 	}

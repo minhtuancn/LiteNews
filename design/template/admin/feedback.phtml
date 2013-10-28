@@ -1,5 +1,5 @@
-<form action="/admin/feedback" method="post" name="adminFeedback">
-	<a href="/admin" class="button"><?php echo $this->__("Previous page"); ?></a>
+<form action="<?php echo $this->getURL("admin/feedback"); ?>" method="post" name="adminFeedback">
+	<a href="<?php echo $this->getURL("admin"); ?>" class="button"><?php echo $this->__("Previous page"); ?></a>
 	<a href="javascript:document.adminFeedback.submit();" class="button buttonRight"><?php echo $this->__("Delete"); ?></a>
 	<?php if(isset($this->content['feedbacksDeleted'])): ?>
 	<div class="success"><?php echo $this->content['feedbacksDeleted']." ".$this->__("feedbacks deleted"); ?></div>
@@ -30,13 +30,13 @@
 			#<?php echo $feedback['ID']; ?>
 		</p>
 		<p class="contentDate">
-			"<?php echo $this->__(Config::$feedbackTypes[$feedback['Type'] - 1]); ?>" - 
+			"<?php echo $this->__($this->content['feedbackTypes'][$feedback['Type'] - 1]); ?>" - 
 			<?php echo date("d.m.Y H:i:s", $feedback['Timestamp']); ?>
 		</p>
-		<p class="contentText"><?php echo $feedback['Content']; ?></p>
+		<p class="contentText"><?php echo htmlspecialchars($feedback['Content']); ?></p>
 	</div>
 	</label>
 	<?php endforeach; ?>
-	<a href="/admin" class="button"><?php echo $this->__("Previous page"); ?></a>
+	<a href="<?php echo $this->getURL("admin"); ?>" class="button"><?php echo $this->__("Previous page"); ?></a>
 	<a href="javascript:document.adminFeedback.submit();" class="button buttonRight"><?php echo $this->__("Delete"); ?></a>
 </form>
