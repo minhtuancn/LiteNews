@@ -6,13 +6,18 @@ class Config extends ConfigParser {
 	public static $db;
 	
 	
-	public static function GetDBConfig() {
-		return self::Parse("database.xml", 1);
+	public static function GetLocalConfig($name) {
+		return self::Parse($name.".xml");
 	}
 	
 	
 	public static function Get($name, $parentID=0) {
-		return self::$db->Get($name, $parentID);
+		$value = self::$db->Get($name, $parentID);
+		
+		if(is_numeric($value))
+			return intval($value);
+		
+		return $value;
 	}
 	
 	

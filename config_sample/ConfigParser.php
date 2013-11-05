@@ -21,7 +21,7 @@ class ConfigParser {
 	}
 	
 	
-	private static function RecursiveParse($nodes) {
+	protected static function RecursiveParse($nodes) {
 		$content = array();
 		
 		foreach($nodes as $node) {

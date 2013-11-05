@@ -7,7 +7,7 @@ abstract class Database {
 	
 	
 	public function __construct($logData=NULL) {
-		$account = Config::GetDBConfig();
+		$account = Config::GetLocalConfig("database");
 		$this->db = new PDO('mysql:host='.$account['host'].';dbname='.$account['db'].';charset=utf8', $account['username'], $account['password']);
 		
 		if(is_null($logData))

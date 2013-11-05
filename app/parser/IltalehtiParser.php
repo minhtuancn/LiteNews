@@ -15,7 +15,8 @@ class IltalehtiParser extends Parser {
 			foreach($header->getElementsByTagName('span') as $titlePart)
 				$title .= $titlePart->nodeValue." ";
 			
-			$titles[] = array('title'=>$title, 'url'=>$titleURL);
+			if(!$this->CheckDuplicate($titles, $titleURL))
+				$titles[] = array('title'=>$title, 'url'=>$titleURL);
 		}
 		
 		return $titles;

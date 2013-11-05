@@ -82,6 +82,7 @@
 		<url>http://m.sodexo.fi/m/412</url>
 		<listPath></listPath>
 		<logo>sodexo.png</logo>
+		<reverseSort>true</reverseSort>
 	</website>
 	
 	<website>

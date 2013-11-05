@@ -21,7 +21,9 @@ class NewYorkTimesParser extends Parser {
 			
 			if(substr($url, 0, 22) == "http://www.nytimes.com") {
 				$url = substr($url, 22, strpos($url, "?") - 22);
-				$titles[] = array('title'=>$title->item(0)->nodeValue, 'url'=>$url);
+				
+				if(!$this->CheckDuplicate($titles, $url))
+					$titles[] = array('title'=>$title->item(0)->nodeValue, 'url'=>$url);
 			}
 		}
 		

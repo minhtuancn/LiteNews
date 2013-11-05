@@ -5,7 +5,7 @@
 <a href="<?php echo $this->getURL("collection"); ?>" class="indexLink"><img src="design/logo/litenews.png" alt="<?php echo $this->__("Collection"); ?>" /></a>
 <span class="indexDescription"><?php echo $this->__("News by website"); ?></span>
 <?php foreach($this->content['websites'] as $website): ?>
-<a href="<?php echo $this->getURL(str_replace(" ", "+", $website['name'])); ?>" class="indexLink"><img src="design/logo/<?php echo $website['logo']; ?>" alt="<?php echo $website['name']; ?>" /></a>
+<a href="<?php echo $this->getURL($website['name']); ?>" class="indexLink"><img src="design/logo/<?php echo $website['logo']; ?>" alt="<?php echo $website['name']; ?>" /></a>
 <?php endforeach; ?>
 <?php if($this->content['feedback']): ?>
 <a href="<?php echo $this->getURL("feedback"); ?>" class="button"><?php echo $this->__("Send feedback"); ?></a>

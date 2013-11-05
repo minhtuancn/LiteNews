@@ -15,5 +15,15 @@ abstract class Parser {
 		else
 			@$this->dom->loadHTML($content);
 	}
+	
+	
+	protected function CheckDuplicate($list, $url) {
+		foreach($list as $item) {
+			if($item['url'] == $url)
+				return true;
+		}
+		
+		return false;
+	}
 }
 ?>

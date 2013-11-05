@@ -14,7 +14,7 @@ class Debug {
 	
 	public function __construct($dbClass=NULL) {
 		if(is_null($dbClass)) {
-			$account = Config::GetDBConfig();
+			$account = Config::GetLocalConfig("database");
 			$this->db = new PDO('mysql:host='.$account['host'].';dbname='.$account['db'].';charset=utf8', $account['username'], $account['password']);
 		}
 		else {

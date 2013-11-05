@@ -7,9 +7,10 @@ class CollectionSQL extends Database {
 			$websitesStr .= $this->db->quote($website, PDO::PARAM_INT);
 		}
 		
+		$limit = intval($limit);
 		if($limit > 0) {
 			$query = $this->db->prepare("SELECT WebsiteID, ListTitle, URL, Timestamp FROM Article WHERE WebsiteID IN (".$websitesStr.") ORDER BY Timestamp DESC LIMIT :limit");
-			$query->bindParam(":limit", intval($limit), PDO::PARAM_INT);
+			$query->bindParam(":limit", $limit, PDO::PARAM_INT);
 		}
 		else
 			$query = $this->db->prepare("SELECT WebsiteID, ListTitle, URL, Timestamp FROM Article WHERE WebsiteID IN (".$websitesStr.") ORDER BY Timestamp DESC");

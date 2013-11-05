@@ -14,15 +14,7 @@ class IltaSanomatParser extends Parser {
 			$titleURL = $link->getAttribute('href');
 			$newTitle = array('title'=>$link->nodeValue, 'url'=>$titleURL);
 			
-			$duplicate = false;
-			foreach($titles as $title) {
-				if($title['url'] == $newTitle['url']) {
-					$duplicate = true;
-					break;
-				}
-			}
-			
-			if(!$duplicate)
+			if(!$this->CheckDuplicate($titles, $newTitle['url']))
 				$titles[] = $newTitle;
 		}
 		

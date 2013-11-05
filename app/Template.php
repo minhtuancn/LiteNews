@@ -25,7 +25,7 @@ class Template {
 	
 	
 	protected function getURL($path=NULL) {
-		return Config::GetPath("local/baseURL").$path;
+		return Config::GetPath("local/baseURL").str_replace(" ", "+", $path);
 	}
 	
 	

@@ -11,7 +11,7 @@ class BBCParser extends Parser {
 			$url = $item->getAttribute('href');
 			$title = $item->nodeValue;
 			
-			if(strpos($url, "/sport/0/") === false)
+			if(strpos($url, "/sport/0/") === false && !$this->CheckDuplicate($titles, $url))
 				$titles[] = array('title'=>$title, 'url'=>$url);
 		}
 		

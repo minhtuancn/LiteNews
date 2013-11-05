@@ -26,9 +26,10 @@ class CronController extends Controller {
 		}
 		
 		$parserName = str_replace(array(" ", "-"), "", $website['name'])."Parser";
+		$listHTML = @file_get_contents(str_replace(" ", "+", $website['url'].$website['listPath']));
 		
 		$parser = new $parserName(
-			file_get_contents(str_replace(" ", "+", $website['url'].$website['listPath'])),
+			$listHTML,
 			isset($website['rss'])
 		);
 		

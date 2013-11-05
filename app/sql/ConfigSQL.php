@@ -11,8 +11,12 @@ class ConfigSQL extends Database {
 			foreach($query->fetchAll() as $row)
 				$result[] = $row;
 		}
-		else
+		else {
 			$result = $query->fetchColumn();
+			
+			if(is_numeric($result))
+				$result = intval($result);
+		}
 		
 		return $result;
 	}
@@ -37,7 +41,7 @@ class ConfigSQL extends Database {
 				}
 			}
 			else
-				$rowResult = $row['Value'];
+				$rowResult = is_numeric($row['Value']) ? intval($row['Value']) : $row['Value'];
 			
 			$result = array_merge($result, array($row['Name']=>$rowResult));
 		}
@@ -54,7 +58,7 @@ class ConfigSQL extends Database {
 	
 	
 	public function TruncateConfig() {
-		$query = $this->db->prepare("TRUNCATE Config");
+		$query = $this->db->prepare("TRUNCATE Config; TRUNCATE UpdateTime");
 		$query->execute();
 	}
 	
