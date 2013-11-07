@@ -11,9 +11,13 @@ class IndexController extends Controller {
 		else
 			$content['showInfo'] = false;
 		
-		$content['websites'] = Config::GetPath("website/website", true);
+		$websites = Config::GetPath("website/website", true);
 		if(Config::GetPath("local/sortByPopularity"))
-			$content['websites'] = $this->SortByPopularity($content['websites']);
+			$websites = $this->SortByPopularity($websites);
+		
+		foreach($websites as $website) {
+			$content['websites'][$website['language']][] = $website;
+		}
 		
 		$content['feedback'] = Config::GetPath("local/feedback/enable");
 		$content['userSettings'] = Config::GetPath("local/userSettings/enable");
