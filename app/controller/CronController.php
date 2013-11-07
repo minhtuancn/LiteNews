@@ -2,6 +2,7 @@
 require_once("app/parser/Abstract.php");
 
 class CronController extends Controller {
+	// Overwriting this method will prevent loading unnecessary layout HTML
 	public function GetPage($page, $href) {
 		$this->UpdateData();
 	}
