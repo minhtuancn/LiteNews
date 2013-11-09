@@ -7,6 +7,7 @@
 		<url>http://iltalehti.fi</url>
 		<listPath>/etusivu/</listPath>
 		<logo>iltalehti.png</logo>
+		<language>fi</language>
 	</website>
 	
 	<website>
@@ -15,6 +16,7 @@
 		<url>http://iltasanomat.fi</url>
 		<listPath></listPath>
 		<logo>iltasanomat.png</logo>
+		<language>fi</language>
 	</website>
 	
 	<website>
@@ -23,6 +25,7 @@
 		<url>http://www.kaleva.fi</url>
 		<listPath>/uutiset</listPath>
 		<logo>kaleva.png</logo>
+		<language>fi</language>
 	</website>
 	
 	<website>
@@ -31,6 +34,7 @@
 		<url>http://www.hs.fi</url>
 		<listPath>/uutiset</listPath>
 		<logo>hs.png</logo>
+		<language>fi</language>
 	</website>
 	
 	<website>
@@ -39,6 +43,7 @@
 		<url>http://www.itviikko.fi</url>
 		<listPath>/uutislista</listPath>
 		<logo>itviikko.png</logo>
+		<language>fi</language>
 	</website>
 	
 	<website>
@@ -47,6 +52,7 @@
 		<url>http://mtv3.fi</url>
 		<listPath>/rss/uutiset.rss</listPath>
 		<logo>mtv3.png</logo>
+		<language>fi</language>
 		<rss>1</rss>
 	</website>
 	
@@ -56,6 +62,7 @@
 		<url>http://m.bbc.co.uk</url>
 		<listPath>/news</listPath>
 		<logo>bbc.png</logo>
+		<language>en</language>
 	</website>
 	
 	<website>
@@ -64,6 +71,7 @@
 		<url>http://www.nytimes.com</url>
 		<listPath>/services/xml/rss/nyt/GlobalHome.xml</listPath>
 		<logo>nyt.png</logo>
+		<language>en</language>
 		<rss>1</rss>
 	</website>
 	
@@ -73,6 +81,7 @@
 		<url>http://yle.fi</url>
 		<listPath>/uutiset/rss/uutiset.rss</listPath>
 		<logo>yle.png</logo>
+		<language>fi</language>
 		<rss>1</rss>
 	</website>
 	
@@ -82,6 +91,7 @@
 		<url>http://m.sodexo.fi/m/412</url>
 		<listPath></listPath>
 		<logo>sodexo.png</logo>
+		<language>fi</language>
 		<reverseSort>true</reverseSort>
 	</website>
 	
@@ -91,6 +101,7 @@
 		<url>http://muropaketti.com</url>
 		<listPath>/feed</listPath>
 		<logo>muropaketti.png</logo>
+		<language>fi</language>
 		<rss>1</rss>
 	</website>
 </config>

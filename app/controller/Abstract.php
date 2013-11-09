@@ -1,5 +1,5 @@
 <?php
-require_once("config/Config.php");
+require_once("app/Config.php");
 require_once("app/sql/Abstract.php");
 require_once("app/Loader.php");
 require_once("app/Template.php");

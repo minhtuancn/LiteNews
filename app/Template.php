@@ -1,5 +1,5 @@
 <?php
-require_once("config/Config.php");
+require_once("app/Config.php");
 require_once("app/controller/Abstract.php");
 require_once("app/Language.php");
 

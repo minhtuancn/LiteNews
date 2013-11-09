@@ -1,5 +1,5 @@
 <?php
-require_once("config/ConfigParser.php");
+require_once("app/ConfigParser.php");
 require_once("app/sql/ConfigSQL.php");
 
 class Config extends ConfigParser {
@@ -12,12 +12,7 @@ class Config extends ConfigParser {
 	
 	
 	public static function Get($name, $parentID=0) {
-		$value = self::$db->Get($name, $parentID);
-		
-		if(is_numeric($value))
-			return intval($value);
-		
-		return $value;
+		return self::$db->Get($name, $parentID);
 	}
 	
 	
@@ -48,7 +43,7 @@ class Config extends ConfigParser {
 	
 	
 	public static function UpdateConfig() {
-		$path = "config/xml/";
+		$path = "config/";
 		
 		self::$db->TruncateConfig();
 		

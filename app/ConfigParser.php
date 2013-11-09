@@ -1,7 +1,7 @@
 <?php
 class ConfigParser {
 	public static function Parse($file) {
-		$file = "config/xml/".$file;
+		$file = "config/".$file;
 		
 		if(!file_exists($file))
 			return NULL;
