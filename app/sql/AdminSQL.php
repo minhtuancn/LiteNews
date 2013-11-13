@@ -42,9 +42,11 @@ class AdminSQL extends Database {
 	
 	
 	public function GetFeedbacks($limit, $offset) {
+		$limit = intval($limit);
+		$offset = intval($offset);
 		$query = $this->db->prepare("SELECT * FROM Feedback ORDER BY Timestamp DESC, ID DESC LIMIT :offset, :limit");
-		$query->bindParam(":offset", intval($offset), PDO::PARAM_INT);
-		$query->bindParam(":limit", intval($limit), PDO::PARAM_INT);
+		$query->bindParam(":offset", $offset, PDO::PARAM_INT);
+		$query->bindParam(":limit", $limit, PDO::PARAM_INT);
 		$query->execute();
 		$feedbacks = $query->fetchAll();
 		

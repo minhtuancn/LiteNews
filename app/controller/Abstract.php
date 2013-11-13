@@ -38,7 +38,10 @@ abstract class Controller {
 				}
 			}
 			
-			return $defaultSettings[$name];
+			if(!$array)
+				return $defaultSettings[$name];
+			else
+				return unserialize($defaultSettings[$name]);
 		}
 		
 		return false;

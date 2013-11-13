@@ -49,20 +49,12 @@ class NewYorkTimesParser extends Parser {
 		else
 			$content['title'] = $title->item(0)->nodeValue;
 		
-		$dateContainer = $container->getElementsByTagName('h6');
-		foreach($dateContainer as $el) {
-			if($el->getAttribute('class') == "dateline") {
-				$date = trim($el->nodeValue);
-				$date = substr($date, strpos($date, ":") + 2);
-				
-				if(strpos($date, "at") === false)
-					$timestamp = DateTime::createFromFormat("F d, Y H:i", $date." 00:00");
-				else {
-					$date = substr($date, 0, -3);
-					$timestamp = DateTime::createFromFormat("F d, Y \at H:i A", $date);
-				}
-				
+		$dateContainer = $this->dom->getElementsByTagName('meta');
+		foreach($dateContainer as $tag) {
+			if($tag->getAttribute('name') == "utime") {
+				$timestamp = new DateTime($tag->getAttribute('content'));
 				$content['timestamp'] = $timestamp->getTimestamp();
+				
 				break;
 			}
 		}
