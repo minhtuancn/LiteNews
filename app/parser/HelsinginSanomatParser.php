@@ -18,7 +18,6 @@ class HelsinginSanomatParser extends Parser {
 				continue;
 			
 			$titleURL = substr($link->getAttribute('href'), 16);
-			
 			$titleURL = str_replace("%C3%A4", "ä", $titleURL);
 			$titleURL = str_replace("%C3%B6", "ö", $titleURL);
 			

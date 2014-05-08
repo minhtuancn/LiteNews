@@ -2,5 +2,5 @@
 
 <config>
 	<timeout>60</timeout>
-	<errorLog>log/error.log</errorLog>
+	<errorLog>log/cron.log</errorLog>
 </config>

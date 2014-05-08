@@ -6,7 +6,7 @@ class IndexController extends Controller {
 		
 		if(!isset($_COOKIE['visited'])) {
 			$content['showInfo'] = true;
-			setcookie("visited", 1, time() + Config::GetPath("local/userSettings/cookieExpire") * 60);
+			setcookie("visited", 1, time() + Config::GetPath("local/userSettings/cookieExpire") * 60, "/");
 		}
 		else
 			$content['showInfo'] = false;

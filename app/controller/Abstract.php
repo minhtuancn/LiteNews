@@ -19,6 +19,22 @@ abstract class Controller {
 	}
 	
 	
+	public static function LogError($str) {
+		$file = substr($_SERVER['PHP_SELF'], 0, strrpos($_SERVER['PHP_SELF'], "."));
+		$file = substr($file, 0, 1) == "/" ? substr($file, 1) : $file;
+		$file = "log/".$file.".log";
+		
+		if(is_writable($file))
+			file_put_contents($file, "\n[".date("d-m-Y H:i:s")."] ".$str, FILE_APPEND);
+	}
+	
+	
+	public static function LogPHPError($errno, $str) {
+		if($errno != 2)
+		self::LogError($errno." ".$str);
+	}
+	
+	
 	public static function GetUserSetting($name, $array=false) {
 		$defaultSettings = Config::GetPath("local/userSettings/default", true);
 		

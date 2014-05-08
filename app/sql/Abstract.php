@@ -22,7 +22,7 @@ abstract class Database {
 		
 		if($logExpire > 0) {
 			$query = $this->db->prepare("DELETE FROM Log WHERE Timestamp<?");
-			$query->execute(array(time() - 60 * $logExpire));
+			$query->execute(array(time() - 60 * 60 * 24 * $logExpire));
 		}
 	}
 	

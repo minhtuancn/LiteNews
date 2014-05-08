@@ -1,5 +1,10 @@
 <?php
+ini_set("display_errors", "on");
+ini_set("display_startup_errors", "on");
+ini_set("error_reporting", E_ALL | E_STRICT);
+
 require_once("app/controller/Abstract.php");
+set_error_handler(array("Controller", "LogPHPError"));
 
 class LiteNews {
 	protected $controller;

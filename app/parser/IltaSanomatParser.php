@@ -12,6 +12,13 @@ class IltaSanomatParser extends Parser {
 			
 			$link = $links->item(0);
 			$titleURL = $link->getAttribute('href');
+			
+			if(substr($titleURL, 0, 4) == "http")
+				continue;
+			
+			if(strpos($titleURL, "?") !== false)
+				$titleURL = substr($titleURL, 0, strpos($titleURL, "?"));
+			
 			$newTitle = array('title'=>$link->nodeValue, 'url'=>$titleURL);
 			
 			if(!$this->CheckDuplicate($titles, $newTitle['url']))

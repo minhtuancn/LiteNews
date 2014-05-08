@@ -1,4 +1,8 @@
 <?php
+ini_set("display_errors", "on");
+ini_set("display_startup_errors", "on");
+error_reporting(E_ALL | E_STRICT);
+
 class AdminController extends Controller {
 	public function InitPage() {
 		$this->db = new AdminSQL;
@@ -8,16 +12,32 @@ class AdminController extends Controller {
 		
 		$action = explode("/", $this->href);
 		
-		if(!$login)
+		if(!$login) {
 			$this->InitLogin($content);
-		elseif($action[0] == NULL)
-			$this->InitMain($content);
-		elseif($action[0] == "configUpdate")
-			$this->InitConfigUpdate($content);
-		elseif($action[0] == "feedback")
-			$this->InitFeedback($action, $content);
-		else
-			$this->InitErrorPage();
+			return;
+		}
+		
+		switch($action[0]) {
+			case NULL:
+				$this->InitMain($content);
+				break;
+			
+			case "configUpdate":
+				$this->InitConfigUpdate($content);
+				break;
+			
+			case "feedback":
+				$this->InitFeedback($action, $content);
+				break;
+			
+			case "cron":
+				$this->InitCron($content);
+				break;
+			
+			default:
+				$this->InitErrorPage();
+				break;
+		}
 	}
 	
 	
@@ -141,6 +161,42 @@ class AdminController extends Controller {
 		
 		$content['feedback'] = $feedbacks;
 		$content['feedbackTypes'] = Config::GetPath("local/feedback/feedbackTypes/type", true);
+		$this->template->setContent($content);
+	}
+	
+	
+	public function InitCron($content) {
+		$this->template->setTemplate("admin/cron");
+		$this->template->setTitle("Manage cronjobs");
+		
+		if(isset($_POST['cronUser']) && isset($_POST['cronUserPassword']) && isset($_POST['cronCommand'])) {
+			file_put_contents("temp/cron.txt", $_POST['cronCommand'].PHP_EOL);
+			ob_start();
+			
+			// Managing cronjobs temporaly disabled due security issues
+			if(false && system("echo ".$_POST['cronUserPassword']."\n | sudo -u ".$_POST['cronUser']." -S crontab -u ".$_POST['cronUser']." ".Config::GetPath("cron/filePath")."temp/cron.txt"))
+				$content['cronSuccess'] = true;
+			else
+				$content['cronFailure'] = true;
+			
+			ob_end_clean();
+			unlink("temp/cron.txt");
+		}
+		
+		$content['cronUser'] = Config::GetPath("cron/user");
+		$content['cronFilePath'] = Config::GetPath("cron/filePath");
+		$content['cronCommand'] = Config::GetPath("cron/command");
+		$content['errorLog'] = explode("\n", file_get_contents(Config::GetPath("cron/errorLog")));
+		
+		foreach($content['errorLog'] as $errorKey=>$errorValue) {
+			if(empty($errorValue))
+				unset($content['errorLog'][$errorKey]);
+		}
+		
+		$maxLogSize = Config::GetPath("cron/showErrors");
+		if(!empty($maxLogSize) && sizeof($content['errorLog']) > $maxLogSize)
+			$content['errorLog'] = array_slice($content['errorLog'], 0, $maxLogSize);
+		
 		$this->template->setContent($content);
 	}
 }

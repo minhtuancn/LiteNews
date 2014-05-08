@@ -26,6 +26,7 @@
 "Collection", "Collection"
 
 "Settings", "Settings"
+"Settings reseted succesfully", "Settings reseted succesfully"
 "Settings succesfully saved", "Settings succesfully saved"
 "Saving settings failed", "Saving settings failed"
 "Save", "Save"
@@ -47,6 +48,9 @@
 "Limit number of titles", "Limit number of titles"
 "No limit", "No limit"
 
+"Reset settings to default", "Reset settings to default"
+"Reset", "Reset"
+
 "Update XML configuration", "Update XML configuration"
 "XML configuration updated successfully", "XML configuration updated successfully"
 
@@ -62,6 +66,8 @@
 "New website", "New website"
 "Report a bug", "Report a bug"
 "Other", "Other"
+"Email", "Email"
+"Feedback", "Feedback"
 "Send", "Send"
 "Feedbacks", "Feedbacks"
 "feedbacks total", "feedbacks total"

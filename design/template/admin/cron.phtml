@@ -1,0 +1,40 @@
+<form action="<?php echo $this->getURL("admin/cron"); ?>" method="post" name="adminCron">
+	<a href="<?php echo $this->getURL("admin"); ?>" class="button"><?php echo $this->__("Previous page"); ?></a>
+	<a href="javascript:document.adminCron.submit();" class="button buttonRight"><?php echo $this->__("Update"); ?></a>
+	<?php if(isset($this->content['cronSuccess'])): ?>
+	<div class="success"><?php echo $this->__("Cronjob updated successfully"); ?></div>
+	<?php elseif(isset($this->content['cronFailure'])): ?>
+	<div class="error"><?php echo $this->__("Failed to update cronjob"); ?></div>
+	<?php endif; ?>
+	<div class="contentBox">
+		<p class="contentTitle"><?php echo $this->__("Manage cronjobs"); ?></p>
+		<p class="contentText">
+			<label for="cronUser"><?php echo $this->__("Cron user"); ?></label>
+			<input type="text" name="cronUser" id="cronUser" value="<?php echo $this->content['cronUser']; ?>" />
+		</p>
+		<p class="contentText">
+			<label for="cronUserPassword"><?php echo $this->__("Cron user password"); ?></label>
+			<input type="password" name="cronUserPassword" id="cronUserPassword" />
+		</p>
+		<p class="contentText">
+			<label for="cronFilePath"><?php echo $this->__("Temporary cron file path"); ?></label>
+			<input type="text" name="cronFilePath" id="cronFilePath" value="<?php echo $this->content['cronFilePath']; ?>" />
+		</p>
+		<p class="contentText">
+			<label for="cronCommand"><?php echo $this->__("Command"); ?></label>
+			<input type="text" name="cronCommand" id="cronCommand" value="<?php echo $this->content['cronCommand']; ?>" />
+		</p>
+	</div>
+	<div class="contentBox">
+		<p class="contentTitle"><?php echo $this->__("Cron error log"); ?></p>
+		<?php if(empty($this->content['errorLog'])): ?>
+		<p class="contentText"><?php echo $this->__("No errors"); ?></p>
+		<?php else: ?>
+		<?php foreach($this->content['errorLog'] as $errorLine): ?>
+		<p class="contentText"><?php echo $errorLine; ?></p>
+		<?php endforeach; ?>
+		<?php endif; ?>
+	</div>
+	<a href="<?php echo $this->getURL("admin"); ?>" class="button"><?php echo $this->__("Previous page"); ?></a>
+	<a href="javascript:document.adminCron.submit();" class="button buttonRight"><?php echo $this->__("Update"); ?></a>
+</form>

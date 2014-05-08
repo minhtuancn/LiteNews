@@ -16,6 +16,19 @@ class SettingsController extends Controller {
 		
 		$content = array();
 		
+		$action = explode("/", $this->href);
+		if($action[0] == "reset") {
+			$cookie = Config::GetPath("local/userSettings/cookie");
+			$settings = Config::GetPath("local/userSettings/default", 1);
+			
+			foreach(array_keys($settings) as $setting) {
+				setcookie($cookie."[".$setting."]", "", 0, "/");
+				unset($_COOKIE[$cookie][$setting]);
+			}
+			
+			$content['resetSuccess'] = true;
+		}
+		
 		if(isset($_POST['collection'])) {
 			$collection = array();
 			
@@ -29,7 +42,7 @@ class SettingsController extends Controller {
 		
 		foreach(Config::GetPath("local/userSettings/default", true) as $settingName => $settingValue) {
 			if(isset($_POST[$settingName])) {
-				if(setcookie(Config::GetPath("local/userSettings/cookie")."[".$settingName."]", $_POST[$settingName], time() + Config::GetPath("local/userSettings/cookieExpire") * 60)) {
+				if(setcookie(Config::GetPath("local/userSettings/cookie")."[".$settingName."]", $_POST[$settingName], time() + Config::GetPath("local/userSettings/cookieExpire") * 60, "/")) {
 					$content['saveSuccess'] = true;
 					$content['saveNotice'] = "Settings succesfully saved";
 					$_COOKIE[Config::GetPath("local/userSettings/cookie")][$settingName] = $_POST[$settingName];

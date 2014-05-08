@@ -1,5 +1,5 @@
 config/
 debug/
 install/
-log/
+log/*
 trash/

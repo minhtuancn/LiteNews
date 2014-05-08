@@ -16,7 +16,7 @@ class FeedbackController extends Controller {
 			else
 				$feedbackType = $_POST['feedbackType'];
 			
-			if(!empty($_POST['feedback']) && $this->db->FeedbackCount($_SERVER['REMOTE_ADDR']) < Config::GetPath("local/feedback/maxFeedbackPerHour") && $this->db->AddFeedback($feedbackType, $_POST['feedback']))
+			if(!empty($_POST['feedback']) && $this->db->FeedbackCount($_SERVER['REMOTE_ADDR']) < Config::GetPath("local/feedback/maxFeedbackPerHour") && $this->db->AddFeedback($feedbackType, $_POST['feedbackEmail'], $_POST['feedback']))
 				$content['sendSuccess'] = true;
 			else
 				$content['sendFail'] = true;

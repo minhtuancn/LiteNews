@@ -26,6 +26,7 @@
 "Collection", "Kokoelma"
 
 "Settings", "Asetukset"
+"Settings reseted succesfully", "Asetukset nollattu"
 "Settings succesfully saved", "Asetukset tallennettu"
 "Saving settings failed", "Asetuksien tallennus epäonnistui"
 "Save", "Tallenna"
@@ -47,6 +48,9 @@
 "Limit number of titles", "Rajoita uutisotsikoiden määrää"
 "No limit", "Ei rajoitusta"
 
+"Reset settings to default", "Nollaa asetukset"
+"Reset", "Nollaa"
+
 "Update XML configuration", "Päivitä XML-asetukset"
 "XML configuration updated successfully", "XML-asetukset päivitetty"
 
@@ -62,6 +66,8 @@
 "New website", "Ehdota uutta sivustoa"
 "Report a bug", "Ilmoita virheestä"
 "Other", "Muu"
+"Email", "Sähköposti"
+"Feedback", "Palaute"
 "Send", "Lähetä"
 "Feedbacks", "Palautteet"
 "feedbacks total", "palautetta yhteensä"

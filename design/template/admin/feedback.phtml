@@ -33,7 +33,7 @@
 			"<?php echo $this->__($this->content['feedbackTypes'][$feedback['Type'] - 1]); ?>" - 
 			<?php echo date("d.m.Y H:i:s", $feedback['Timestamp']); ?>
 		</p>
-		<p class="contentText"><?php echo htmlspecialchars($feedback['Content']); ?></p>
+		<p class="contentText"><?php echo nl2br(htmlspecialchars($feedback['Content'])); ?></p>
 	</div>
 	</label>
 	<?php endforeach; ?>

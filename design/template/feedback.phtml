@@ -8,14 +8,19 @@
 	<?php endif; ?>
 	<div class="contentBox">
 		<p class="contentSubTitle">
-			<label for="feedback"><?php echo $this->__("Send feedback"); ?></label>
+			<?php echo $this->__("Send feedback"); ?>
 		</p>
-		<select name="feedbackType">
+		<select name="feedbackType" id="feedbackType">
 			<option value="0" selected="selected"><?php echo $this->__("Choose feedback type"); ?></option>
 			<?php foreach(Config::GetPath("local/feedback/feedbackTypes/type", true) as $feedbackKey => $feedbackType): ?>
 			<option value="<?php echo $feedbackKey + 1; ?>"><?php echo $this->__($feedbackType); ?></option>
 			<?php endforeach; ?>
 		</select>
+		<br /><br />
+		<label for="feedbackEmail"><?php echo $this->__("Email"); ?></label>
+		<input type="text" name="feedbackEmail" id="feedbackEmail" />
+		<br /><br />
+		<label for="feedback"><?php echo $this->__("Feedback"); ?></label>
 		<textarea name="feedback" id="feedback"></textarea>
 	</div>
 	<a href="<?php echo $this->getURL(); ?>" class="button"><?php echo $this->__("Previous page"); ?></a>

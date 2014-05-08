@@ -9,7 +9,7 @@ class NewYorkTimesParser extends Parser {
 			if($title->length == 0)
 				continue;
 			
-			$url = $item->getElementsByTagName('link');
+			$url = $item->getElementsByTagNameNS('*', '*');
 			if($url->length == 0)
 					continue;
 			
@@ -54,7 +54,6 @@ class NewYorkTimesParser extends Parser {
 			if($tag->getAttribute('name') == "utime") {
 				$timestamp = new DateTime($tag->getAttribute('content'));
 				$content['timestamp'] = $timestamp->getTimestamp();
-				
 				break;
 			}
 		}

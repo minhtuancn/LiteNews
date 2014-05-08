@@ -2,7 +2,7 @@ body {
 	font-family: Arial, Helvetica, Verdana;
 	font-weight: bold;
 	font-size: 1.2em;
-	margin: 10px 10px 20px;
+	margin: 10px 10px 30px;
 	clear: both;
 }
 
@@ -124,12 +124,43 @@ p.contentText {
 	background: #d3d3d3;
 }
 
-textarea {
+input {
 	width: 100%;
-	height: 100px;
+	border-radius: 7px;
+	padding: 4px 10px;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
+}
+
+input.checkbox {
+	width: auto;
+}
+
+textarea {
+	font-family: Arial, Helvetica, Verdana;
+	width: 100%;
+	height: 100px;
+	padding: 4px 10px;
+	border-radius: 7px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	resize: vertical;
+}
+
+select {
+	border-radius: 7px;
+	padding: 3px 5px;
+}
+
+select:focus {
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+
+#feedbackType {
+	width: 100%;
 }
 
 /* All below should be overwritten by theme files */
@@ -168,4 +199,25 @@ a.titleLink:active, a.titleLink:focus {
 .contentBox {
 	background: #fff;
 	border-color: #aaa;
+}
+
+.themeSwitch {
+	text-align: center;
+}
+
+.themeSwitch a {
+	display: inline-block;
+	width: 32px;
+	height: 32px;
+	border: 1px solid #fff;
+	margin: 0px 5px;
+	border-radius: 5px;
+}
+
+.themeSwitch a:first-child {
+	margin-left: 0px;
+}
+
+.themeSwitch a:last-child {
+	margin-right: 0px;
 }

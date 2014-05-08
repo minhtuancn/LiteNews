@@ -11,7 +11,7 @@ class MTV3Parser extends Parser {
 			if($title->length == 0 || $url->length == 0)
 				continue;
 			
-			$titleURL = substr($url->item(0)->nodeValue, 18);
+			$titleURL = substr($url->item(0)->nodeValue, 17);
 			$titles[] = array('title'=>$title->item(0)->nodeValue, 'url'=>$titleURL);
 		}
 		
@@ -27,7 +27,7 @@ class MTV3Parser extends Parser {
 			'timestamp'=>0
 		);
 		
-		$container = $this->dom->getElementById('article_section');
+		$container = $this->dom->getElementById('top');
 		if($container == NULL)
 			return $content;
 		
@@ -35,28 +35,32 @@ class MTV3Parser extends Parser {
 		foreach($dateContainer as $el) {
 			if($el->getAttribute('class') == "dateCreated") {
 				if($el->nextSibling != NULL && $el->nextSibling->getAttribute('class') == 'dateModified')
-					$timestamp = DateTime::createFromFormat("YmdHi", $el->nextSibling->getAttribute('datetime'));
+					$timestamp = DateTime::createFromFormat("Y-m-d\TH:i:s.uT", $el->nextSibling->getAttribute('datetime'));
 				else
 					$timestamp = DateTime::createFromFormat("Y-m-d\TH:i:s.uT", $el->getAttribute('datetime'));
 				
 				$content['timestamp'] = $timestamp->getTimestamp();
+				break;
 			}
-			
-			break;
 		}
-		
+
 		$title = $container->getElementsByTagName('h1');
 		if($title->length == 0)
 			return $content;
-		
-		$bodyText = $this->dom->getElementById('entry-body');
-		if($bodyText == NULL)
+
+		$bodyTextContainer = $this->dom->getElementsByTagName('div');
+		if($bodyTextContainer->length == 0)
 			return $content;
-		
-		$bodyText = $bodyText->getElementsByTagName('p');
-		if($bodyText->length == 0)
-			return $content;
-		
+
+		foreach($bodyTextContainer as $div) {
+			if($div->getAttribute('class') == "article-66") {
+				$bodyText = $div->getElementsByTagName('p');
+				
+				if($bodyText->length == 0)
+					return $content;
+			}
+		}
+
 		$subTitle = $bodyText->item(0);
 		$bodyText->item(0)->parentNode->removeChild($subTitle);
 		
