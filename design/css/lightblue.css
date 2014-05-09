@@ -11,9 +11,9 @@ a.button:active, a.button:focus {
 	background: #ddd;
 }
 
-span.indexDescription {
-	background: #aaa;
-	color: #fff;
+.indexDescription span {
+	background: #fff;
+	color: #000;
 }
 
 a.indexLink, a.titleLink {

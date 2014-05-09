@@ -13,6 +13,12 @@ abstract class Controller {
 	
 	
 	public function __construct() {
+		foreach(Config::GetPath("local/userSettings/default", true) as $settingName => $settingValue) {
+			if(isset($_POST[$settingName])) {
+				$this->SetUserSetting($settingName, $_POST[$settingName]);
+			}
+		}
+		
 		$this->InitDB();
 		$this->layout = new Template(self::GetUserSetting("lang"), "layout");
 		$this->template = new Template(self::GetUserSetting("lang"));
@@ -85,6 +91,19 @@ abstract class Controller {
 		}
 		
 		return $valid;
+	}
+	
+	
+	protected function SetUserSetting($name, $value) {
+		if(!self::CheckUserSetting($name, $value))
+			return false;
+		
+		if(setcookie(Config::GetPath("local/userSettings/cookie")."[".$name."]", $_POST[$name], time() + Config::GetPath("local/userSettings/cookieExpire") * 60, "/")) {
+			$_COOKIE[Config::GetPath("local/userSettings/cookie")][$name] = $_POST[$name];
+			return true;
+		}
+		
+		return false;
 	}
 	
 	

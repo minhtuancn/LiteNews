@@ -1,17 +1,25 @@
+<div class="langSwitch">
+<?php foreach(Config::GetPath("local/locales/locale", true) as $locale): ?>
+<a href="" id="lang-<?php echo $locale; ?>"><img src="<?php echo $this->getURL("design/flag/".$locale.".svg"); ?>" alt="<?php echo $this->__($locale); ?>" /></a>
+<?php endforeach; ?>
+<form action="" method="post" id="langSwitchForm"><input type="hidden" name="lang" /></form>
+</div>
 <?php if($this->content['showInfo']): ?>
 <a href="<?php echo $this->getURL("info"); ?>" class="titleLink"><?php echo $this->__("It seems that you're using LiteNews first time. Click here to view a guide for customizing the service for your purposes."); ?></a>
 <?php endif; ?>
-<span class="indexDescription"><?php echo $this->__("All news mixed"); ?></span>
+<div class="indexDescription">
+	<span><?php echo $this->__("All news mixed"); ?></span>
+</div>
 <a href="<?php echo $this->getURL("collection"); ?>" class="indexLink"><img src="design/logo/litenews.png" alt="<?php echo $this->__("Collection"); ?>" /></a>
 <?php foreach($this->content['websites'] as $websiteByLang): ?>
-<span class="indexDescription"><?php echo $this->__("news_".$websiteByLang[0]['language']); ?></span>
+<div class="indexDescription">
+	<span><?php echo $this->__("news_".$websiteByLang[0]['language']); ?></span>
+</div>
 <?php foreach($websiteByLang as $website): ?>
 <a href="<?php echo $this->getURL($website['name']); ?>" class="indexLink"><img src="design/logo/<?php echo $website['logo']; ?>" alt="<?php echo $website['name']; ?>" /></a>
 <?php endforeach; ?>
 <?php endforeach; ?>
 <?php if($this->content['feedback']): ?>
-<a href="<?php echo $this->getURL("feedback"); ?>" class="button"><?php echo $this->__("Send feedback"); ?></a>
+<a href="<?php echo $this->getURL("feedback"); ?>" class="button"><i class="fa fa-pencil"></i><?php echo $this->__("Send feedback"); ?></a>
 <?php endif; ?>
-<?php if($this->content['userSettings']): ?>
-<a href="<?php echo $this->getURL("settings"); ?>" class="button buttonRight"><?php echo $this->__("Settings"); ?></a>
-<?php endif; ?>
+<a href="https://github.com/anck69/LiteNews" target="_blank" class="button buttonRight"><i class="fa fa-external-link"></i>GitHub</a>

@@ -12,7 +12,7 @@ a.button:active, a.button:focus {
 	background: #555;
 }
 
-span.indexDescription {
+.indexDescription span {
 	background: #222;
 	color: #fff;
 }
