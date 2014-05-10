@@ -16,8 +16,7 @@
 	<!-- Sort websites by popularity in main page -->
 	<sortByPopularity>true</sortByPopularity>
 	
-	<!-- Title limit for collection page -->
-	<collectionLimit>75</collectionLimit>
+	<listLimit>75</listLimit>
 	
 	<feedback>
 		<enable>true</enable>
