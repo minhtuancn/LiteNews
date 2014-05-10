@@ -56,16 +56,16 @@
 		<rss>1</rss>
 	</website>
 	
-	<website>
+	<!--<website>
 		<id>7</id>
 		<name>BBC</name>
 		<url>http://m.bbc.co.uk</url>
 		<listPath>/news</listPath>
 		<logo>bbc.png</logo>
 		<language>en</language>
-	</website>
+	</website>-->
 	
-	<website>
+	<!--<website>
 		<id>8</id>
 		<name>New York Times</name>
 		<url>http://www.nytimes.com</url>
@@ -73,7 +73,7 @@
 		<logo>nyt.png</logo>
 		<language>en</language>
 		<rss>1</rss>
-	</website>
+	</website>-->
 	
 	<website>
 		<id>9</id>
@@ -85,7 +85,7 @@
 		<rss>1</rss>
 	</website>
 	
-	<website>
+	<!--<website>
 		<id>10</id>
 		<name>Sodexo</name>
 		<url>http://m.sodexo.fi/m/412</url>
@@ -93,7 +93,8 @@
 		<logo>sodexo.png</logo>
 		<language>fi</language>
 		<reverseSort>true</reverseSort>
-	</website>
+		<hideFromCollection>1</hideFromCollection>
+	</website>-->
 	
 	<website>
 		<id>11</id>
@@ -102,6 +103,29 @@
 		<listPath>/feed</listPath>
 		<logo>muropaketti.png</logo>
 		<language>fi</language>
+		<rss>1</rss>
+		<hideFromCollection>1</hideFromCollection>
+	</website>
+	
+	<website>
+		<id>12</id>
+		<name>Digitoday</name>
+		<url>http://www.digitoday.fi</url>
+		<listPath>/feeds/DigitodayText.xml</listPath>
+		<logo>digitoday.png</logo>
+		<language>fi</language>
+		<rss>1</rss>
+	</website>
+	
+	<website>
+		<id>13</id>
+		<name>The Wall Street Journal</name>
+		<url>http://online.wsj.com</url>
+		<listPath>/xml/rss/3_7041.xml</listPath>
+		<listPath>/xml/rss/3_7455.xml</listPath>
+		<listPath>/xml/rss/3_7201.xml</listPath>
+		<logo>wsj.png</logo>
+		<language>en</language>
 		<rss>1</rss>
 	</website>
 </config>

@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
 
 <config>
-	<timeout>60</timeout>
-	<errorLog>log/cron.log</errorLog>
+	<timeout>120</timeout>
+	<user>root</user>
+	<filePath>public_html/</filePath>
+	<command>* * * * * cd public_html; php cron.php</command>
+	<showErrors>20</showErrors>
 </config>

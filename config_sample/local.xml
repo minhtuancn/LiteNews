@@ -10,8 +10,8 @@
 		<maxLoginAttempts>5</maxLoginAttempts>
 	</admin>
 	
-	<!-- Log expiration in minutes  -->
-	<logExpire>2592000</logExpire>
+	<!-- Log expiration in days  -->
+	<logExpire>30</logExpire>
 	
 	<!-- Sort websites by popularity in main page -->
 	<sortByPopularity>true</sortByPopularity>
@@ -42,13 +42,13 @@
 			<lang>fi</lang>
 			
 			<!-- Theme ID -->
-			<theme>4</theme>
+			<theme>2</theme>
 			
 			<!-- Limit for titles, 0 is for no limit -->
 			<limit>0</limit>
 			
 			<!-- Serialized array of website ID's -->
-			<collection>a:7:{i:0;i:1;i:1;i:2;i:2;i:3;i:3;i:4;i:4;i:5;i:5;i:6;i:6;i:9;}</collection>
+			<collection>a:8:{i:0;i:1;i:1;i:2;i:2;i:3;i:3;i:4;i:4;i:5;i:5;i:6;i:6;i:9;i:7;i:12;}</collection>
 		</default>
 	</userSettings>
 	
