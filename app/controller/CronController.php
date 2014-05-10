@@ -2,7 +2,7 @@
 require_once("app/parser/Abstract.php");
 
 class CronController extends Controller {
-	// Overwriting Controller::GetPage will prevent loading unnecessary layout HTML
+	// Overwriting Controller::GetPage will prevent from loading unnecessary layout HTML
 	public function GetPage($page, $href) {
 		$this->UpdateData();
 	}
@@ -18,7 +18,7 @@ class CronController extends Controller {
 		if($websiteID == NULL)
 			exit;
 		
-		// Refresh timestamp before the actual update because running script can take several minutes
+		// Refresh timestamp also before the actual update because running script can take several minutes
 		$this->db->RefreshUpdateTime($websiteID);
 		
 		foreach(Config::GetPath("website/website", true) as $website) {
@@ -52,7 +52,6 @@ class CronController extends Controller {
 		}
 		
 		$titles = array_map("unserialize", array_unique(array_map("serialize", $titles)));
-		$this->db->DeleteArticles($website['id']);
 		
 		foreach($titles as $title) {
 			$articleHTML = @file_get_contents(str_replace(" ", "+", $website['url'].$title['url']));
@@ -69,5 +68,7 @@ class CronController extends Controller {
 			if(!is_null($data['title']) && !empty($data['bodyText']))
 				$this->db->AddArticle($website['id'], $title['url'], $data);
 		}
+		
+		$this->db->RefreshUpdateTime($websiteID);
 	}
 }

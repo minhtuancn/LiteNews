@@ -1,15 +1,10 @@
 <?php
 class ListSQL extends Database {
-	public function LoadTitles($website, $limit) {
+	public function LoadTitles($website) {
 		$titles = array();
 		
-		if($limit > 0) {
-			$query = $this->db->prepare("SELECT ListTitle, URL, Timestamp FROM Article WHERE WebsiteID=:WebsiteID ORDER BY Timestamp DESC LIMIT :limit");
-			$query->bindParam(":limit", intval($limit), PDO::PARAM_INT);
-		}
-		else
-			$query = $this->db->prepare("SELECT ListTitle, URL, Timestamp FROM Article WHERE WebsiteID = :WebsiteID ORDER BY Timestamp DESC");
-		
+		$query = $this->db->prepare("SELECT ListTitle, URL, Timestamp FROM Article WHERE WebsiteID=:WebsiteID ORDER BY Timestamp DESC LIMIT :limit");
+		$query->bindParam(":limit", intval(Config::GetPath("local/listLimit")), PDO::PARAM_INT);
 		$query->bindParam(":WebsiteID", $website, PDO::PARAM_INT);
 		
 		if(!$query->execute())

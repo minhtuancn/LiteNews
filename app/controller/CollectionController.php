@@ -6,13 +6,9 @@ class CollectionController extends Controller {
 		$this->template->setTemplate("list");
 		$this->template->setTitle("Collection");
 		
-		$limit = self::GetUserSetting("limit");
-		if($limit == 0)
-			$limit = Config::GetPath("local/collectionLimit");
-		
 		$collectionWebsites = self::GetUserSetting("collection", true);
 		
-		$titles = $this->db->LoadCollection($limit, $collectionWebsites);
+		$titles = $this->db->LoadCollection($collectionWebsites);
 		foreach($titles as &$title) {
 			foreach(Config::GetPath("website/website", true) as $website) {
 				if($title['website'] == $website['id']) {

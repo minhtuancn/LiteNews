@@ -11,7 +11,7 @@ class ListController extends Controller {
 		$this->template->setTemplate("list");
 		$this->template->setTitle($website['name']);
 		
-		$titles = $this->db->LoadTitles($website['id'], self::GetUserSetting("limit"));
+		$titles = $this->db->LoadTitles($website['id']);
 		
 		$content = array();
 		foreach($titles as $title) {

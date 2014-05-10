@@ -20,7 +20,6 @@ class IndexController extends Controller {
 		}
 		
 		$content['feedback'] = Config::GetPath("local/feedback/enable");
-		$content['userSettings'] = Config::GetPath("local/userSettings/enable");
 		$this->template->setContent($content);
 	}
 	
