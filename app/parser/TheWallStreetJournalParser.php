@@ -14,6 +14,9 @@ class TheWallStreetJournalParser extends Parser {
 			$title = $title->item(0)->nodeValue;
 			$url = substr($url->item(0)->nodeValue, 21);
 			
+			if(substr($url, 0, 6) == "digits")
+				continue;
+			
 			if(strpos($url, "?") !== false)
 				$url = substr($url, 0, strpos($url, "?"));
 			
