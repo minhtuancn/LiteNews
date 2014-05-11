@@ -1,8 +1,2 @@
-Remove user limits
-Themes in bottom of every page
-Flags in index page
-Button max-width 49%
-Settings button for list page (slide down)
-Refresh timestamps after and before
 Edit parsers to use InitArticle
 Translate cron management page
