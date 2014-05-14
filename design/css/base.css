@@ -24,6 +24,17 @@ a.button {
 	border-radius: 5px;
 	display: inline-block;
 	font-size: 1.1em;
+	width: 49%;
+	text-align: center;
+}
+
+a.button p {
+	text-align: left;
+	margin: 0px;
+	display: inline-block;
+	max-width: 80%;
+	text-align: left;
+	vertical-align:middle;
 }
 
 a.buttonRight {
@@ -218,14 +229,6 @@ select:focus {
 
 #feedbackType {
 	width: 100%;
-}
-
-/* Responsive */
-
-@media all and (max-width: 365px) {
-	a.button {
-		max-width: 50%;
-	}
 }
 
 /* All below should be overwritten by theme files */

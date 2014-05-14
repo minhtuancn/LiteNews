@@ -1,6 +1,6 @@
 <form action="<?php echo $this->getURL("feedback"); ?>" method="post" name="feedbackForm">
-	<a href="<?php echo $this->getURL(); ?>" class="button"><i class="fa fa-angle-double-left"></i><?php echo $this->__("Previous page"); ?></a>
-	<a href="javascript:document.feedbackForm.submit();" class="button buttonRight"><i class="fa fa-envelope"></i><?php echo $this->__("Send"); ?></a>
+	<?php echo $this->getBlock("button", array('href'=>$this->getURL(), 'icon'=>"angle-double-left", 'label'=>"Previous page")); ?>
+	<?php echo $this->getBlock("button", array('href'=>"javascript:document.feedbackForm.submit();", 'icon'=>"envelope", 'label'=>"Send")); ?>
 	<?php if(isset($this->content['sendSuccess'])): ?>
 	<div class="success"><?php echo $this->__("Feedback succesfully sent"); ?></div>
 	<?php elseif(isset($this->content['sendFail'])): ?>
@@ -23,6 +23,6 @@
 		<label for="feedback"><?php echo $this->__("Feedback"); ?></label>
 		<textarea name="feedback" id="feedback"></textarea>
 	</div>
-	<a href="<?php echo $this->getURL(); ?>" class="button"><i class="fa fa-angle-double-left"></i><?php echo $this->__("Previous page"); ?></a>
-	<a href="javascript:document.feedbackForm.submit();" class="button buttonRight"><i class="fa fa-envelope"></i><?php echo $this->__("Send"); ?></a>
+	<?php echo $this->getBlock("button", array('href'=>$this->getURL(), 'icon'=>"angle-double-left", 'label'=>"Previous page")); ?>
+	<?php echo $this->getBlock("button", array('href'=>"javascript:document.feedbackForm.submit();", 'icon'=>"envelope", 'label'=>"Send")); ?>
 </form>

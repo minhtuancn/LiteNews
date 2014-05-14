@@ -20,6 +20,6 @@
 <?php endforeach; ?>
 <?php endforeach; ?>
 <?php if($this->content['feedback']): ?>
-<a href="<?php echo $this->getURL("feedback"); ?>" class="button"><i class="fa fa-pencil"></i><?php echo $this->__("Send feedback"); ?></a>
+<?php echo $this->getBlock("button", array('href'=>$this->getURL("feedback"), 'icon'=>"pencil", 'label'=>"Send feedback")); ?>
 <?php endif; ?>
-<a href="https://github.com/anck69/LiteNews" target="_blank" class="button buttonRight"><i class="fa fa-external-link"></i>GitHub</a>
+<?php echo $this->getBlock("button", array('href'=>"https://github.com/anck69/LiteNews", 'icon'=>"external-link", 'label'=>"GitHub", 'pullRight'=>true, 'external'=>true)); ?>

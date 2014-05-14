@@ -1,0 +1,6 @@
+<a href="<?php echo $this->block['href']; ?>" class="button<?php if(isset($this->block['pullRight'])) echo " buttonRight"; ?>"<?php if(isset($this->block['external'])) echo ' target="_blank"'; ?>>
+	<?php if(isset($this->block['icon'])): ?>
+	<i class="fa fa-<?php echo $this->block['icon']; ?>"></i>
+	<?php endif; ?>
+	<p><?php echo $this->__($this->block['label']); ?></p>
+</a>

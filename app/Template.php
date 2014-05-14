@@ -8,6 +8,7 @@ class Template {
 	protected $template;
 	protected $title;
 	protected $content;
+	protected $block;
 	
 	
 	public function __construct($locale="en", $template=NULL, $title=NULL, $content=NULL) {
@@ -16,6 +17,7 @@ class Template {
 		$this->template = $template;
 		$this->title = $title;
 		$this->content = $content;
+		$this->block = NULL;
 	}
 	
 	
@@ -63,12 +65,20 @@ class Template {
 		return $this->content;
 	}
 	
+	protected function getBlock($name, $data) {
+		$this->block = $data;
+		return $this->getHTML($name);
+	}
 	
-	public function getHTML() {
+	public function getHTML($blockName=NULL) {
+		$template = $this->template;
+		if($blockName != NULL)
+			$template = "block/".$blockName;
+		
 		ob_start();
 		
-		if(file_exists("design/template/".$this->template.".phtml"))
-			include("design/template/".$this->template.".phtml");
+		if(file_exists("design/template/".$template.".phtml"))
+			include("design/template/".$template.".phtml");
 		
 		return str_replace(array("\n", "\r", "\t"), "", ob_get_clean());
 	}
