@@ -24,8 +24,6 @@ class LiteNews {
 			$this->controller = new InfoController;
 		elseif($this->page == "feedback")
 			$this->controller = new FeedbackController;
-		elseif($this->page == "settings")
-			$this->controller = new SettingsController;
 		elseif($this->page == "collection")
 			$this->controller = new CollectionController;
 		elseif($this->page == "admin")
