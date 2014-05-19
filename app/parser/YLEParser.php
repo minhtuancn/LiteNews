@@ -22,12 +22,7 @@ class YLEParser extends Parser {
 	
 	
 	public function GetArticle() {
-		$content = array(
-			'title'=>NULL,
-			'subTitle'=>NULL,
-			'bodyText'=>array(),
-			'timestamp'=>0
-		);
+		$content = $this->InitArticle();
 		
 		$container = $this->dom->getElementsByTagName('article');
 		if($container->length == 0)

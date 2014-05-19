@@ -26,12 +26,7 @@ class ItviikkoParser extends Parser {
 	
 	
 	public function GetArticle() {
-		$content = array(
-			'title'=>NULL,
-			'subTitle'=>NULL,
-			'bodyText'=>array(),
-			'timestamp'=>0
-		);
+		$content = $this->InitArticle();
 		
 		$container = $this->dom->getElementById('col1A');
 		if($container == NULL)

@@ -20,12 +20,7 @@ class MTV3Parser extends Parser {
 	
 	
 	public function GetArticle() {
-		$content = array(
-			'title'=>NULL,
-			'subTitle'=>NULL,
-			'bodyText'=>array(),
-			'timestamp'=>0
-		);
+		$content = $this->InitArticle();
 		
 		$container = $this->dom->getElementById('top');
 		if($container == NULL)

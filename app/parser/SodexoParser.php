@@ -19,12 +19,7 @@ class SodexoParser extends Parser {
 	
 	
 	public function GetArticle() {
-		$content = array(
-			'title'=>NULL,
-			'subTitle'=>NULL,
-			'bodyText'=>array(),
-			'timestamp'=>0
-		);
+		$content = $this->InitArticle();
 		
 		$titleContainer = $this->dom->getElementsByTagName('body');
 		if($titleContainer->length == 0)
