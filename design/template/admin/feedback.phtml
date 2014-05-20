@@ -1,6 +1,6 @@
 <form action="<?php echo $this->getURL("admin/feedback"); ?>" method="post" name="adminFeedback">
-	<a href="<?php echo $this->getURL("admin"); ?>" class="button"><?php echo $this->__("Previous page"); ?></a>
-	<a href="javascript:document.adminFeedback.submit();" class="button buttonRight"><?php echo $this->__("Delete"); ?></a>
+	<?php echo $this->getBlock("button", array('href'=>$this->getURL("admin"), 'icon'=>"angle-double-left", 'label'=>"Previous page")); ?>
+	<?php echo $this->getBlock("button", array('href'=>"javascript:document.adminFeedback.submit();", 'icon'=>"eraser", 'label'=>"Delete", 'pullRight'=>true)); ?>
 	<?php if(isset($this->content['feedbacksDeleted'])): ?>
 	<div class="success"><?php echo $this->content['feedbacksDeleted']." ".$this->__("feedbacks deleted"); ?></div>
 	<?php endif; ?>
@@ -37,6 +37,6 @@
 	</div>
 	</label>
 	<?php endforeach; ?>
-	<a href="<?php echo $this->getURL("admin"); ?>" class="button"><?php echo $this->__("Previous page"); ?></a>
-	<a href="javascript:document.adminFeedback.submit();" class="button buttonRight"><?php echo $this->__("Delete"); ?></a>
+	<?php echo $this->getBlock("button", array('href'=>$this->getURL("admin"), 'icon'=>"angle-double-left", 'label'=>"Previous page")); ?>
+	<?php echo $this->getBlock("button", array('href'=>"javascript:document.adminFeedback.submit();", 'icon'=>"eraser", 'label'=>"Delete", 'pullRight'=>true)); ?>
 </form>

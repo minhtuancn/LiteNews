@@ -1,6 +1,6 @@
 <form action="<?php echo $this->getURL("admin/cron"); ?>" method="post" name="adminCron">
-	<a href="<?php echo $this->getURL("admin"); ?>" class="button"><?php echo $this->__("Previous page"); ?></a>
-	<a href="javascript:document.adminCron.submit();" class="button buttonRight"><?php echo $this->__("Update"); ?></a>
+	<?php echo $this->getBlock("button", array('href'=>$this->getURL("admin"), 'icon'=>"angle-double-left", 'label'=>"Previous page")); ?>
+	<?php echo $this->getBlock("button", array('href'=>"javascript:document.adminCron.submit();", 'icon'=>"refresh", 'label'=>"Update", 'pullRight'=>true)); ?>
 	<?php if(isset($this->content['cronSuccess'])): ?>
 	<div class="success"><?php echo $this->__("Cronjob updated successfully"); ?></div>
 	<?php elseif(isset($this->content['cronFailure'])): ?>
@@ -35,6 +35,6 @@
 		<?php endforeach; ?>
 		<?php endif; ?>
 	</div>
-	<a href="<?php echo $this->getURL("admin"); ?>" class="button"><?php echo $this->__("Previous page"); ?></a>
-	<a href="javascript:document.adminCron.submit();" class="button buttonRight"><?php echo $this->__("Update"); ?></a>
+	<?php echo $this->getBlock("button", array('href'=>$this->getURL("admin"), 'icon'=>"angle-double-left", 'label'=>"Previous page")); ?>
+	<?php echo $this->getBlock("button", array('href'=>"javascript:document.adminCron.submit();", 'icon'=>"refresh", 'label'=>"Update", 'pullRight'=>true)); ?>
 </form>

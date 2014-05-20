@@ -1,5 +1,5 @@
-<a href="<?php echo $this->getURL(); ?>" class="button"><?php echo $this->__("Previous page"); ?></a>
-<a href="<?php echo $this->getURL("admin/logout"); ?>" class="button buttonRight"><?php echo $this->__("Log out"); ?></a>
+<?php echo $this->getBlock("button", array('href'=>$this->getURL(), 'icon'=>"angle-double-left", 'label'=>"Previous page")); ?>
+<?php echo $this->getBlock("button", array('href'=>$this->getURL("admin/logout"), 'icon'=>"sign-out", 'label'=>"Log out", 'pullRight'=>true)); ?>
 <?php if(isset($this->content['loginSuccess'])): ?>
 <div class="success"><?php echo $this->__("Logged in successfully"); ?></div>
 <?php endif; ?>
@@ -31,5 +31,5 @@
 	</div>
 	<?php endforeach; ?>
 </div>
-<a href="<?php echo $this->getURL(); ?>" class="button"><?php echo $this->__("Previous page"); ?></a>
-<a href="<?php echo $this->getURL("admin/logout"); ?>" class="button buttonRight"><?php echo $this->__("Log out"); ?></a>
+<?php echo $this->getBlock("button", array('href'=>$this->getURL(), 'icon'=>"angle-double-left", 'label'=>"Previous page")); ?>
+<?php echo $this->getBlock("button", array('href'=>$this->getURL("admin/logout"), 'icon'=>"sign-out", 'label'=>"Log out", 'pullRight'=>true)); ?>

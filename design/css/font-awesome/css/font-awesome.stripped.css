@@ -29,3 +29,12 @@
 .fa-envelope:before {
   content: "\f0e0";
 }
+.fa-eraser:before {
+  content: "\f12d";
+}
+.fa-sign-in:before {
+  content: "\f090";
+}
+.fa-sign-out:before {
+  content: "\f08b";
+}
