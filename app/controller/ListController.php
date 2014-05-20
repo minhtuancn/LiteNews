@@ -27,6 +27,8 @@ class ListController extends Controller {
 		if(isset($website['reverseSort']) && $website['reverseSort'] == true)
 			$content = array_reverse($content);
 		
+		$this->content['tabIndex'] = 0;
+		
 		$this->template->setContent($content);
 	}
 }

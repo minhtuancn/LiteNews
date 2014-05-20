@@ -22,6 +22,8 @@ class IndexController extends Controller {
 		if(key($content['websites']) != $this->GetUserSetting("lang"))
 			$content['websites'] = array_reverse($content['websites']);
 		
+		$content['tabIndex'] = 0;
+		
 		$content['feedback'] = Config::GetPath("local/feedback/enable");
 		$this->template->setContent($content);
 	}
