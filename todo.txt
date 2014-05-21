@@ -1,3 +1,2 @@
 Create temp table for new articles
-Add button block in admin pages
 Translate cron management page
