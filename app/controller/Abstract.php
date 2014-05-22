@@ -37,7 +37,7 @@ abstract class Controller {
 	
 	public static function LogPHPError($errno, $str) {
 		if($errno != 2)
-		self::LogError($errno." ".$str);
+			self::LogError($errno." ".$str);
 	}
 	
 	

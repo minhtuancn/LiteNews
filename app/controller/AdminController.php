@@ -5,39 +5,15 @@ error_reporting(E_ALL | E_STRICT);
 
 class AdminController extends Controller {
 	public function InitPage() {
-		$this->db = new AdminSQL;
-		
 		$content = array();
 		$login = $this->CheckLogin($content);
 		
 		$action = explode("/", $this->href);
 		
-		if(!$login) {
+		if(!$login)
 			$this->InitLogin($content);
-			return;
-		}
-		
-		switch($action[0]) {
-			case NULL:
-				$this->InitMain($content);
-				break;
-			
-			case "configUpdate":
-				$this->InitConfigUpdate($content);
-				break;
-			
-			case "feedback":
-				$this->InitFeedback($action, $content);
-				break;
-			
-			case "cron":
-				$this->InitCron($content);
-				break;
-			
-			default:
-				$this->InitErrorPage();
-				break;
-		}
+		else
+			$this->InitAdminPage($content);
 	}
 	
 	
@@ -78,124 +54,24 @@ class AdminController extends Controller {
 	}
 	
 	
-	protected function InitMain($content) {
-			$this->template->setTemplate("admin/main");
-			$this->template->setTitle("Admin panel");
-			
-			$content['feedbacks'] = $this->db->GetFeedbacksNum(false);
-			$content['unreadFeedbacks'] = $this->db->GetFeedbacksNum(true);
-			$content['loads'] = $this->db->GetLoads("");
-			$content['visitors'] = $this->db->GetVisitors();
-			
-			$content['stats'] = $this->db->AddLoads(Config::GetPath("website/website", true));
-			usort(
-				$content['stats'],
-				function($a, $b) {
-					if($a['loads'] == $b['loads'])
-						return $a['id'] > $b['id'];
-					return $a['loads'] < $b['loads'];
-				}
-			);
-			
-			$this->template->setContent($content);
-	}
-	
-	
-	protected function InitConfigUpdate($content) {
-		Config::UpdateConfig();
-		$content['configUpdate'] = true;
-		$this->InitMain($content);
-	}
-	
-	
-	protected function InitFeedback($action, $content) {
-		$this->template->setTemplate("admin/feedback");
-		$this->template->setTitle("Feedbacks");
+	protected function InitAdminPage($content) {
+		$this->template->setTemplate("admin/main");
+		$this->template->setTitle("Admin panel");
 		
-		if(isset($action[1]) && is_numeric($action[1]) && $action[1] > 0)
-			$page = $action[1] - 1;
-		else
-			$page = 0;
+		$content['feedbacks'] = $this->db->GetFeedbacksNum(false);
+		$content['unreadFeedbacks'] = $this->db->GetFeedbacksNum(true);
+		$content['loads'] = $this->db->GetLoads("");
+		$content['visitors'] = $this->db->GetVisitors();
 		
-		
-		if(isset($_POST['feedbackPage']) && is_numeric($_POST['feedbackPage']) && $_POST['feedbackPage'] > 0 && $_POST['feedbackPage'] != $page + 1) {
-			header("Location: feedback/".$_POST['feedbackPage']);
-			return;
-		}
-		
-		$content['feedbackCurrentPage'] = $page + 1;
-		$content['feedbackPages'] = ceil($this->db->GetFeedbacksNum(false) / 10);
-		$feedbacks = $this->db->GetFeedbacks(10, $page * 10);
-		
-		if(isset($_POST['feedbackDeleteMode'])) {
-			$deleteMode = $_POST['feedbackDeleteMode'];
-			$feedbacksDeleted = 0;
-			
-			switch($deleteMode) {
-				case 1:
-					foreach($feedbacks as $feedback) {
-						if(isset($_POST['feedback_'.$feedback['ID']])) {
-							$this->db->DeleteFeedback($feedback['ID']);
-							++$feedbacksDeleted;
-						}
-					}
-					break;
-				
-				case 2:
-					foreach($feedbacks as $feedback) {
-						$this->db->DeleteFeedback($feedback['ID']);
-						++$feedbacksDeleted;
-					}
-					break;
-				
-				case 3:
-					$feedbacksDeleted = $this->db->DeleteAllFeedbacks();
-					break;
+		$content['stats'] = $this->db->AddLoads(Config::GetPath("website/website", true));
+		usort(
+			$content['stats'],
+			function($a, $b) {
+				if($a['loads'] == $b['loads'])
+					return $a['id'] > $b['id'];
+				return $a['loads'] < $b['loads'];
 			}
-			
-			if($feedbacksDeleted > 0) {
-				$feedbacks = $this->db->GetFeedbacks(10, $page * 10);
-				$content['feedbacksDeleted'] = $feedbacksDeleted;
-			}
-		}
-		
-		$content['feedback'] = $feedbacks;
-		$content['feedbackTypes'] = Config::GetPath("local/feedback/feedbackTypes/type", true);
-		$this->template->setContent($content);
-	}
-	
-	
-	public function InitCron($content) {
-		$this->template->setTemplate("admin/cron");
-		$this->template->setTitle("Manage cronjobs");
-		
-		if(isset($_POST['cronUser']) && isset($_POST['cronUserPassword']) && isset($_POST['cronCommand'])) {
-			file_put_contents("temp/cron.txt", $_POST['cronCommand'].PHP_EOL);
-			ob_start();
-			
-			// Managing cronjobs temporaly disabled due security issues
-			if(false && system("echo ".$_POST['cronUserPassword']."\n | sudo -u ".$_POST['cronUser']." -S crontab -u ".$_POST['cronUser']." ".Config::GetPath("cron/filePath")."temp/cron.txt"))
-				$content['cronSuccess'] = true;
-			else
-				$content['cronFailure'] = true;
-			
-			ob_end_clean();
-			unlink("temp/cron.txt");
-		}
-		
-		$content['cronUser'] = Config::GetPath("cron/user");
-		$content['cronFilePath'] = Config::GetPath("cron/filePath");
-		$content['cronCommand'] = Config::GetPath("cron/command");
-		$content['errorLog'] = explode("\n", file_get_contents(Config::GetPath("cron/errorLog")));
-		
-		foreach($content['errorLog'] as $errorKey=>$errorValue) {
-			if(empty($errorValue))
-				unset($content['errorLog'][$errorKey]);
-		}
-		
-		$maxLogSize = Config::GetPath("cron/showErrors");
-		if(!empty($maxLogSize) && sizeof($content['errorLog']) > $maxLogSize)
-			$content['errorLog'] = array_slice($content['errorLog'], 0, $maxLogSize);
+		);
 		
 		$this->template->setContent($content);
 	}

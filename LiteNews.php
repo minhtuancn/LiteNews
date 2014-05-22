@@ -26,8 +26,14 @@ class LiteNews {
 			$this->controller = new FeedbackController;
 		elseif($this->page == "collection")
 			$this->controller = new CollectionController;
-		elseif($this->page == "admin")
+		elseif($this->page == "admin" && $href == NULL)
 			$this->controller = new AdminController;
+		elseif($this->page == "admin" && $href == "feedback")
+			$this->controller = new AdminFeedbackController;
+		elseif($this->page == "admin" && $href == "configUpdate")
+			$this->controller = new AdminConfigUpdateController;
+		elseif($this->page == "admin" && $href == "cron")
+			$this->controller = new AdminCronController;
 		elseif(is_null($this->href))
 			$this->controller = new ListController;
 		else

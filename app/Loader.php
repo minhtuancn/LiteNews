@@ -1,10 +1,12 @@
 <?php
 function Loader($className) {
-	if(strpos($className, "Controller") != false && file_exists("app/controller/".$className.".php"))
+	if(strpos($className, "Admin") !== false && strpos($className, "Controller") !== false && file_exists("app/controller/admin/".$className.".php"))
+		require_once("app/controller/admin/".$className.".php");
+	elseif(strpos($className, "Controller") !== false && file_exists("app/controller/".$className.".php"))
 		require_once("app/controller/".$className.".php");
-	elseif(strpos($className, "SQL") != false && file_exists("app/sql/".$className.".php"))
+	elseif(strpos($className, "SQL") !== false && file_exists("app/sql/".$className.".php"))
 		require_once("app/sql/".$className.".php");
-	elseif(strpos($className, "Parser") != false && file_exists("app/parser/".$className.".php"))
+	elseif(strpos($className, "Parser") !== false && file_exists("app/parser/".$className.".php"))
 		require_once("app/parser/".$className.".php");
 }
 
