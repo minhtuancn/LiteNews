@@ -48,6 +48,7 @@ class DigitodayParser extends Parser {
 					return $content;
 				
 				$content['timestamp'] = $timestamp->getTimestamp();
+				$p->removeChild($date);
 				$content['subTitle'] = $p->nodeValue;
 			}
 			else {
