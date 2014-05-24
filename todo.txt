@@ -1,3 +1,0 @@
-Create temp table for new articles
-Translate cron management page
-Fix error page
