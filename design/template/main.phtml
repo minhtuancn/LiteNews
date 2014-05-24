@@ -2,7 +2,7 @@
 <?php foreach(Config::GetPath("local/locales/locale", true) as $locale): ?>
 <a href="" id="lang-<?php echo $locale; ?>"><img src="<?php echo $this->getURL("design/flag/".$locale.".svg"); ?>" alt="<?php echo $this->__($locale); ?>" /></a>
 <?php endforeach; ?>
-<form action="" method="post" id="langSwitchForm"><input type="hidden" name="lang" /></form>
+<form action="#" method="post" id="langSwitchForm"><input type="hidden" name="lang" /></form>
 </div>
 <?php if($this->content['showInfo']): ?>
 <a href="<?php echo $this->getURL("info"); ?>" class="titleLink"><?php echo $this->__("It seems that you're using LiteNews first time. Click here to view a guide for customizing the service for your purposes."); ?></a>

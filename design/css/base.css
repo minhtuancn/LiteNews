@@ -8,8 +8,12 @@ body {
 	font-family: Arial, Helvetica, Verdana;
 	font-weight: bold;
 	font-size: 1.2em;
-	margin: 10px 10px 30px;
-	clear: both;
+	margin: 10px 10px;
+}
+
+body > * {
+	border-radius: 5px;
+	margin: 0px 0px 10px;
 }
 
 a {
@@ -18,7 +22,6 @@ a {
 }
 
 a.button {
-	margin: 5px 0px;
 	padding: 5px 10px;
 	border: 1px solid;
 	border-radius: 5px;
@@ -53,7 +56,11 @@ a.buttonRight .fa {
 }
 
 .indexDescription {
-	margin-top: 13px;
+	margin: 13px 0px 0px;
+}
+
+.indexDescription:first-child {
+	margin-top: 15px !important;
 }
 
 .indexDescription span {
@@ -66,9 +73,7 @@ a.buttonRight .fa {
 }
 
 a.indexLink, a.titleLink {
-	margin: 5px auto;
 	border: 1px solid;
-	border-radius: 5px;
 	min-width: 200px;
 	display: block;
 }
@@ -100,9 +105,7 @@ span.titleInfo {
 
 .contentBox {
 	padding: 10px;
-	margin: 5px auto;
 	border: 1px solid;
-	border-radius: 5px;
 	text-align: left;
 	word-wrap: break-word;
 	clear: both;
@@ -131,7 +134,7 @@ p.contentText {
 
 .langSwitch {
 	float: right;
-	margin-top: -7px;
+	margin: -7px 0px 0px 0px;
 }
 
 .langSwitch a:not(:first-child) {
@@ -153,11 +156,9 @@ p.contentText {
 }
 
 .themeSwitch {
-	margin-top: 5px;
 	padding: 10px 0px;
 	text-align: center;
 	background: rgba(255, 255, 255, 0.2);
-	border-radius: 5px;
 }
 
 .themeSwitch a {
@@ -179,12 +180,7 @@ p.contentText {
 
 .success, .error {
 	padding: 5px;
-	margin: 5px auto;
 	border: 1px solid;
-	border-radius: 5px;
-	display: table;
-	float: left;
-	clear: both;
 }
 
 .success {
