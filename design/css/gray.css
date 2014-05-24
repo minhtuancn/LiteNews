@@ -1,35 +1,3 @@
-body {
-	background: #ccc;
-}
-
-a.button {
-	background: #f0f0f0;
-	border-color: #aaa;
-}
-
-a.button:active, a.button:focus {
-	background: #ddd;
-}
-
-.indexDescription span {
-	background: #aaa;
-	color: #fff;
-}
-
-a.indexLink, a.titleLink {
-	background: #fff;
-	border-color: #aaa;
-}
-
-a.indexLink:active, a.indexLink:focus {
-	opacity: 1.0;
-}
-
-a.titleLink:active, a.titleLink:focus {
-	opacity: 0.70;
-}
-
-.contentBox {
-	background: #fff;
-	border-color: #aaa;
-}
+/*
+ * Gray theme is used as fallback. Styles can be found at base.css
+ */

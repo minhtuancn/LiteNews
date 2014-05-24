@@ -1,29 +1,27 @@
 body {
 	background: #000;
+	color: #fff;
 }
 
 a.button {
-	background: #333;
+	background: rgba(255, 255, 255, 0.2);
 	border-color: #222;
-	color: #fff;
 }
 
 a.button:active, a.button:focus {
-	background: #555;
+	background: rgba(255, 255, 255, 0.3);
 }
 
 .indexDescription span {
-	background: #222;
-	color: #fff;
+	background: rgba(255, 255, 255, 0.2);
 }
 
 a.indexLink {
-	background: #fff;
 	border-color: #aaa;
 }
 
 a.titleLink {
-	background: #222;
+	background: rgba(255, 255, 255, 0.15);
 	border-color: #111;
 	color: #fff;
 }
@@ -37,11 +35,6 @@ a.titleLink:active, a.titleLink:focus {
 }
 
 .contentBox {
-	background: #222;
+	background: rgba(255, 255, 255, 0.15);
 	border-color: #111;
-	color: #fff;
-}
-
-.stats {
-	color: #000;
 }

@@ -8,16 +8,19 @@ body {
 	font-family: Arial, Helvetica, Verdana;
 	font-weight: bold;
 	font-size: 1.2em;
-	margin: 10px 10px;
+	margin: 10px 10px 20px;
 }
 
-body > * {
+body > *, body > form > * {
 	border-radius: 5px;
 	margin: 0px 0px 10px;
 }
 
+body > form {
+	margin-bottom: 0px;
+}
+
 a {
-	color: #000;
 	text-decoration: none;
 }
 
@@ -30,7 +33,6 @@ a.button {
 	width: 49%;
 	text-align: center;
 	vertical-align: middle;
-	background: rgba(255, 255, 255, 0.2);
 }
 
 a.button p {
@@ -56,7 +58,7 @@ a.buttonRight .fa {
 }
 
 .indexDescription {
-	margin: 13px 0px 5px;
+	margin: 13px 0px 3px;
 }
 
 .indexDescription:first-child {
@@ -158,14 +160,13 @@ p.contentText {
 .themeSwitch {
 	padding: 10px 0px;
 	text-align: center;
-	background: rgba(255, 255, 255, 0.2);
 }
 
 .themeSwitch a {
 	display: inline-block;
 	width: 32px;
 	height: 32px;
-	border: 1px solid #fff;
+	border: inherit;
 	margin: 0px 7px;
 	border-radius: 5px;
 }
@@ -176,6 +177,12 @@ p.contentText {
 
 .themeSwitch a:last-child {
 	margin-right: 0px;
+}
+
+.themeSwitch a:active, .themeSwitch a:focus {
+	box-shadow: 0px 0px 5px 2px #fff;
+	border: 0px;
+	padding: 1px;
 }
 
 .success, .error {
@@ -244,15 +251,20 @@ select:focus {
 
 body {
 	background: #ccc;
+	color: #000;
+}
+
+a {
+	color: inherit;
 }
 
 a.button {
-	background: #f0f0f0;
+	background: rgba(255, 255, 255, 0.8);
 	border-color: #aaa;
 }
 
 a.button:active, a.button:focus {
-	background: #ddd;
+	background: rgba(255, 255, 255, 0.5);
 }
 
 .indexDescription span {
@@ -274,6 +286,6 @@ a.titleLink:active, a.titleLink:focus {
 }
 
 .contentBox {
-	background: #fff;
+	background: rgba(255, 255, 255, 0.8);
 	border-color: #aaa;
 }
