@@ -9,6 +9,7 @@ abstract class Parser {
 		$this->dom = new DOMDocument;
 		
 		$content = str_replace(array("&nbsp;", "\r", "\n", "\t"), " ", $content);
+		$content = preg_replace("/<style\\b[^>]*>(.*?)<\\/style>/s", "", $content);
 		
 		libxml_use_internal_errors(true);
 		
