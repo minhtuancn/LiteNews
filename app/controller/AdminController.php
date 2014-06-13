@@ -27,6 +27,8 @@ class AdminController extends Controller {
 			}
 		}
 		elseif(isset($_COOKIE['admin']) && $_COOKIE['admin'] == crypt(Config::GetPath("local/admin/password"), "$2a$")) {
+			// Update expiration when loading page
+			setcookie("admin", $_COOKIE['admin'], time() + 3600, "/");
 			$login = true;
 		}
 		elseif(isset($_POST['adminPassword'])) {
