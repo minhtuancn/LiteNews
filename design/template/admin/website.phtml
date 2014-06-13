@@ -1,0 +1,17 @@
+<form action="<?php echo $this->getURL("admin/website"); ?>" method="post" name="adminWebsite">
+	<?php echo $this->getBlock("button", array('href'=>$this->getURL("admin"), 'icon'=>"angle-double-left", 'label'=>"Previous page")); ?>
+	<?php echo $this->getBlock("button", array('href'=>"javascript:document.adminWebsite.submit();", 'icon'=>"eraser", 'label'=>"Clear", 'pullRight'=>true)); ?>
+	<?php if($this->content['deleteSuccess']): ?>
+	<div class="success"><?php echo $this->__("Website(s) data successfully cleared"); ?></div>
+	<?php endif; ?>
+	<div class="contentBox">
+		<?php foreach(Config::GetPath("website/website", true) as $website): ?>
+		<p class="contentText">
+		<input type="checkbox" name="website_<?php echo $website['id']; ?>" id="website_<?php echo $website['id']; ?>" />
+		<label for="website_<?php echo $website['id']; ?>"><?php echo $website['name']; ?></label>
+		</p>
+		<?php endforeach; ?>
+	</div>
+	<?php echo $this->getBlock("button", array('href'=>$this->getURL("admin"), 'icon'=>"angle-double-left", 'label'=>"Previous page")); ?>
+	<?php echo $this->getBlock("button", array('href'=>"javascript:document.adminWebsite.submit();", 'icon'=>"eraser", 'label'=>"Clear", 'pullRight'=>true)); ?>
+</form>

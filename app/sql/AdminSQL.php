@@ -30,6 +30,24 @@ class AdminSQL extends Database {
 	}
 	
 	
+	public function ClearWebsiteData($id) {
+		$articles = $this->db->prepare("SELECT ID FROM Article WHERE WebsiteID=?");
+		$articles->execute(array($id));
+		$articles = $articles->fetchAll();
+		
+		$deleteParagraphs = $this->db->prepare("DELETE FROM Article WHERE ArticleID=?");
+		foreach($articles as $article) {
+			$deleteParagraphs->execute(array($article));
+		}
+		
+		$deleteArticles = $this->db->prepare("DELETE FROM Article WHERE WebsiteID=?");
+		$deleteArticles->execute(array($id));
+		
+		$updateTimestamp = $this->db->prepare("UPDATE UpdateTime SET Timestamp=0 WHERE WebsiteID=?");
+		$updateTimestamp->execute(array($id));
+	}
+	
+	
 	public function GetFeedbacksNum($unreadOnly) {
 		if($unreadOnly)
 			$query = $this->db->prepare("SELECT COUNT(*) FROM Feedback WHERE Viewed=0");
