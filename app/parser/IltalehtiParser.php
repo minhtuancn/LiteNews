@@ -38,7 +38,7 @@ class IltalehtiParser extends Parser {
 		$dateContainer = $title->item(0)->parentNode->getElementsByTagName('p');
 		foreach($dateContainer as $p) {
 			if(strpos($p->getAttribute('class'), "juttuaika") !== false) {
-				$datetime = substr($p->nodeValue, strpos($p->nodeValue, " ") + 2);
+				$datetime = substr($p->nodeValue, strpos($p->nodeValue, " ") + 1);
 				$date = substr($datetime, 0, strpos($datetime, " "));
 				$time = substr($datetime, strrpos($datetime, "klo") + 4, 5);
 				$timestamp = DateTime::createFromFormat("d.m.Y H.i", $date." ".$time);
