@@ -199,6 +199,7 @@ p.contentText {
 .error {
 	background: #f99;
 	border-color: #f00;
+	color: #000;
 }
 
 .stats {
@@ -207,6 +208,7 @@ p.contentText {
 	display: block;
 	white-space: nowrap;
 	background: #d3d3d3;
+	color: #000;
 }
 
 input {
