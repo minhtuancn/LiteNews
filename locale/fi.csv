@@ -89,3 +89,7 @@
 "Logged out", "Kirjauduit ulos"
 "Maximum limit of login attempts reached", "Olet yrittänyt kirjautua liian monta kertaa"
 "Incorrect password", "Virheellinen salasana"
+
+"Clear website data", "Poista artikkelit"
+"Website(s) data successfully cleared", "Sivusto(jen) artikkelit poistettu"
+"Clear", "Tyhjennä"
