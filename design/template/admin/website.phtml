@@ -5,9 +5,10 @@
 	<div class="success"><?php echo $this->__("Website(s) data successfully cleared"); ?></div>
 	<?php endif; ?>
 	<div class="contentBox">
+		<p class="contentTitle"><?php echo $this->__("Clear website data"); ?></p>
 		<?php foreach(Config::GetPath("website/website", true) as $website): ?>
 		<p class="contentText">
-		<input type="checkbox" name="website_<?php echo $website['id']; ?>" id="website_<?php echo $website['id']; ?>" />
+		<input type="checkbox" name="website_<?php echo $website['id']; ?>" id="website_<?php echo $website['id']; ?>" class="checkbox" />
 		<label for="website_<?php echo $website['id']; ?>"><?php echo $website['name']; ?></label>
 		</p>
 		<?php endforeach; ?>
