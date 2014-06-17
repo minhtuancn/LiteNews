@@ -24,6 +24,23 @@ a {
 	text-decoration: none;
 }
 
+#top-buttons {
+}
+
+.button-group-float {
+	position: fixed;
+	left: 0px;
+	bottom: 0px;
+	margin-bottom: 0px;
+	padding: 10px;
+	width: 100%;
+	border-radius: 0px;
+}
+
+.button-group-float > * {
+	opacity: 1.0;
+}
+
 a.button {
 	padding: 5px 10px;
 	border: 1px solid;
@@ -259,6 +276,10 @@ body {
 
 a {
 	color: inherit;
+}
+
+.button-group-float {
+	background: rgba(0, 0, 0, 0.8);
 }
 
 a.button {

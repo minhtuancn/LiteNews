@@ -35,7 +35,7 @@ $(document).ready(function() {
 	$(window).resize();
 });
 
-$(window).resize(function() {
+function onResize() {
 	var height = maxHeight('.button');
 	$('.button').each(function() {
 		if($(this).outerHeight() < height) {
@@ -44,4 +44,51 @@ $(window).resize(function() {
 			$(this).css("padding-bottom", padding);
 		}
 	});
+}
+
+var resizeTimeout;
+$(window).resize(function() {
+	resizeTimeOut = setTimeout(onResize, 200);
+});
+
+function onScroll() {
+	var body = $('body');
+	var topButtons = $('#top-buttons');
+	
+	if(topButtons.css('opacity') < 1.0) {
+		topButtons.animate({'opacity': 1.0}, 200);
+	}
+	
+	if($(window).scrollTop() >= topButtons.outerHeight()) {
+		if(topButtons.hasClass('button-group-float')) {
+			return;
+		}
+		
+		topButtons.toggle();
+		topButtons.addClass('button-group-float');
+		body.css('margin-top', topButtons.outerHeight());
+		body.css('margin-bottom', topButtons.outerHeight());
+		topButtons.fadeToggle();
+	}
+	else {
+		if(!topButtons.hasClass('button-group-float')) {
+			return;
+		}
+		
+		topButtons.toggle();
+		topButtons.removeClass('button-group-float');
+		body.removeAttr('style');
+		topButtons.fadeToggle();
+	}
+}
+
+var scrollTimeout;
+$(window).scroll(function() {
+	var topButtons = $('#top-buttons');
+	if($(window).scrollTop() >= topButtons.outerHeight() && topButtons.css('opacity') == 1.0) {
+		topButtons.animate({'opacity': 0.3}, 200);
+	}
+	
+	clearTimeout(scrollTimeout);
+	scrollTimeout = setTimeout(onScroll, 200);
 });
