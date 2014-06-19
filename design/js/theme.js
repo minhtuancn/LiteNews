@@ -33,6 +33,7 @@ $(document).ready(function() {
 	});
 	
 	$(window).resize();
+	$(window).scroll();
 });
 
 function onResize() {
@@ -56,7 +57,10 @@ function onScroll() {
 	var topButtons = $('#top-buttons');
 	
 	if(topButtons.css('opacity') < 1.0) {
-		topButtons.animate({'opacity': 1.0}, 200);
+		setTimeout(
+			function() { topButtons.animate({'opacity': 1.0}, 200); },
+			500
+		);
 	}
 	
 	if($(window).scrollTop() >= topButtons.outerHeight()) {
@@ -86,7 +90,7 @@ var scrollTimeout;
 $(window).scroll(function() {
 	var topButtons = $('#top-buttons');
 	if($(window).scrollTop() >= topButtons.outerHeight() && topButtons.css('opacity') == 1.0) {
-		topButtons.animate({'opacity': 0.3}, 200);
+		topButtons.animate({'opacity': 0.2}, 100);
 	}
 	
 	clearTimeout(scrollTimeout);
