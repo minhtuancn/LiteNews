@@ -3,7 +3,8 @@ class BBCParser extends Parser {
 	public function GetTitles() {
 		$titles = array();
 		
-		$container = $this->dom->getElementById('container-top-stories-with-splash');
+		$container = $this->dom->getElementById('top-stories');
+		
 		if($container == NULL)
 			return $titles;
 		
@@ -22,18 +23,15 @@ class BBCParser extends Parser {
 	public function GetArticle() {
 		$content = $this->InitArticle();
 		
-		$container = $this->dom->getElementById('blq-main');
+		$container = $this->dom->getElementById('page');
 		if($container == NULL)
 			return $content;
 		
-		$dateContainer = $container->getElementsByTagName('span');
-		foreach($dateContainer as $span) {
-			if($span->getAttribute('class') == "story-date") {
-				$dateChilds = $span->getElementsByTagName('span');
-				$date = trim($dateChilds->item(0)->nodeValue);
-				$time = trim($dateChilds->item(2)->nodeValue);
-				$timestamp = DateTime::createFromFormat("d F Y H:i T", $date." ".$time."+3");
-				$content['timestamp'] = $timestamp->getTimestamp();
+		$dateContainer = $container->getElementsByTagName('p');
+		foreach($dateContainer as $p) {
+			if($p->getAttribute('class') == "date date--v1") {
+				$content['timestamp'] = $p->getAttribute('data-seconds');
+				break;
 			}
 		}
 		
