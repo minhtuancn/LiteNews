@@ -80,7 +80,7 @@ abstract class Controller {
 				break;
 			
 			case "theme":
-				$themes = Config::GetPath("local/themes/theme", true);
+				$themes = Config::GetPath("layout/themes/theme", true);
 				$valid = array_key_exists($value, $themes);
 				break;
 			

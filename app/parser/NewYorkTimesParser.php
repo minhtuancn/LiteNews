@@ -34,11 +34,11 @@ class NewYorkTimesParser extends Parser {
 	public function GetArticle() {
 		$content = $this->InitArticle();
 		
-		$container = $this->dom->getElementById('article');
+		$container = $this->dom->getElementById('story');
 		if($container == NULL)
 			return $content;
 		
-		$title = $container->getElementsByTagName('nyt_headline');
+		$title = $container->getElementsByTagName('h1');
 		if($title->length == NULL)
 			return $content;
 		else

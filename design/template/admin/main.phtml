@@ -6,6 +6,9 @@
 <?php if(isset($this->content['configUpdate'])): ?>
 <div class="success"><?php echo $this->__("XML configuration updated successfully"); ?></div>
 <?php endif; ?>
+<?php if(isset($this->content['themeUpdate'])): ?>
+<div class="success"><?php echo $this->__("Theme cache updated successfully"); ?></div>
+<?php endif; ?>
 <?php if($this->content['unreadFeedbacks'] > 0): ?>
 <div class="success"><?php echo $this->content['unreadFeedbacks']." ".$this->__("unread feedbacks"); ?></div>
 <?php endif; ?>
@@ -13,8 +16,11 @@
 	<p class="contentTitle"><?php echo $this->__("Admin panel"); ?></p>
 	<p class="contentText">
 		<a class="button" href="<?php echo $this->getURL("admin/feedback"); ?>"><?php echo $this->content['feedbacks']." ".$this->__("feedbacks total"); ?></a>
-		<a class="button" href="<?php echo $this->getURL("admin/configUpdate"); ?>"><?php echo $this->__("Update XML configuration"); ?></a>
+		<a class="button buttonRight" href="<?php echo $this->getURL("admin/configUpdate"); ?>"><?php echo $this->__("Update XML configuration"); ?></a>
+	</p>
+	<p class="contentText">
 		<a class="button" href="<?php echo $this->getURL("admin/website"); ?>"><?php echo $this->__("Clear website data"); ?></a>
+		<a class="button buttonRight" href="<?php echo $this->getURL("admin/theme"); ?>"><?php echo $this->__("Update theme cache"); ?></a>
 	</p>
 </div>
 <div class="contentBox">

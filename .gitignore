@@ -1,8 +1,7 @@
+cache/*
 config/
 debug/
 design/css/font-awesome/css/font-awesome.css
 dev/
 install/
 log/*
-temp/*
-trash/

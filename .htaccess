@@ -1,9 +1,10 @@
 RewriteEngine On
 
-RewriteRule ^logo/(.*)$ logo/$1 [NC,L]
+RewriteRule ^cache/(.*)$ cache/$1 [NC,L]
 RewriteRule ^debug/(.*)$ debug/$1 [NC,L]
 RewriteRule ^design/(.*)$ design/$1 [NC,L]
 RewriteRule ^install/(.*)$ install/$1 [NC,L]
+RewriteRule ^logo/(.*)$ logo/$1 [NC,L]
 
 RewriteRule ^([A-Za-z0-9-+]+)/(.*)?$ index.php?page=$1&href=$2 [NC,L]
 RewriteRule ^([A-Za-z0-9-+]+)/?$ index.php?page=$1 [NC,L]

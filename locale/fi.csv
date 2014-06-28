@@ -92,4 +92,6 @@
 
 "Clear website data", "Poista artikkelit"
 "Website(s) data successfully cleared", "Sivusto(jen) artikkelit poistettu"
+"Update theme cache", "Päivitä teemojen välimuisti"
+"Theme cache updated successfully", "Teemojen välimuisti päivitetty"
 "Clear", "Tyhjennä"

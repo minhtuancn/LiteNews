@@ -34,6 +34,8 @@ class LiteNews {
 			$this->controller = new AdminConfigUpdateController;
 		elseif($this->page == "admin" && $href == "cron")
 			$this->controller = new AdminCronController;
+		elseif($this->page == "admin" && $href == "theme")
+			$this->controller = new AdminThemeController;
 		elseif($this->page == "admin" && $href == "website")
 			$this->controller = new AdminWebsiteController;
 		elseif(is_null($this->href))
