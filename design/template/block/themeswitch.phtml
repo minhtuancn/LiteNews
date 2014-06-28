@@ -1,0 +1,9 @@
+<div class="contentBox themeSwitch">
+	<?php for($i = 0; $i < sizeof($this->block['themes']); ++$i): ?>
+	<?php if($this->block['userTheme'] == $i) continue; ?>
+	<a href="" style="background-color: <?php echo $this->block['themes'][$i]; ?>;" id="theme-<?php echo $i; ?>">&nbsp;</a>
+	<?php endfor; ?>
+	<form action="#" method="post" id="themeSwitchForm">
+		<input type="hidden" name="theme" value="" />
+	</form>
+</div>
