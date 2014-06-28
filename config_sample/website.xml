@@ -56,20 +56,20 @@
 		<rss>1</rss>
 	</website>
 	
-	<!--<website>
+	<website>
 		<id>7</id>
 		<name>BBC</name>
 		<url>http://m.bbc.co.uk</url>
 		<listPath>/news</listPath>
 		<logo>bbc.png</logo>
 		<language>en</language>
-	</website>-->
+	</website>
 	
 	<!--<website>
 		<id>8</id>
 		<name>New York Times</name>
 		<url>http://www.nytimes.com</url>
-		<listPath>/services/xml/rss/nyt/GlobalHome.xml</listPath>
+		<listPath>/services/xml/rss/nyt/InternationalHome.xml</listPath>
 		<logo>nyt.png</logo>
 		<language>en</language>
 		<rss>1</rss>

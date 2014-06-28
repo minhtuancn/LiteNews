@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 
 <config>
-	<host></host>
-	<db></db>
-	<username></username>
+	<host>localhost</host>
+	<db>litenews</db>
+	<username>root</username>
 	<password></password>
 </config>

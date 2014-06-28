@@ -2,7 +2,7 @@
 
 <config>
 	<timeout>120</timeout>
-	<user>root</user>
+	<user></user>
 	<filePath>public_html/</filePath>
 	<command>* * * * * cd public_html; php cron.php</command>
 	<showErrors>20</showErrors>
