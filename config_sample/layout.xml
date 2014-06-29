@@ -6,6 +6,7 @@
 	<js>
 		<path>jquery-1.11.1.min.js</path>
 		<path>theme.js</path>
+		<path>ajaxload.js</path>
 	</js>
 	<themes>
 		<theme>Gray</theme>

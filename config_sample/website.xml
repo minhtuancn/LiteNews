@@ -6,7 +6,7 @@
 		<name>Iltalehti</name>
 		<url>http://iltalehti.fi</url>
 		<listPath>/etusivu/</listPath>
-		<logo>iltalehti.png</logo>
+		<logo>3</logo>
 		<language>fi</language>
 	</website>
 	
@@ -15,7 +15,7 @@
 		<name>Ilta-Sanomat</name>
 		<url>http://iltasanomat.fi</url>
 		<listPath></listPath>
-		<logo>iltasanomat.png</logo>
+		<logo>4</logo>
 		<language>fi</language>
 	</website>
 	
@@ -24,7 +24,7 @@
 		<name>Kaleva</name>
 		<url>http://www.kaleva.fi</url>
 		<listPath>/uutiset</listPath>
-		<logo>kaleva.png</logo>
+		<logo>6</logo>
 		<language>fi</language>
 	</website>
 	
@@ -33,7 +33,7 @@
 		<name>Helsingin Sanomat</name>
 		<url>http://www.hs.fi</url>
 		<listPath>/uutiset</listPath>
-		<logo>hs.png</logo>
+		<logo>2</logo>
 		<language>fi</language>
 	</website>
 	
@@ -42,7 +42,7 @@
 		<name>It-viikko</name>
 		<url>http://www.itviikko.fi</url>
 		<listPath>/uutislista</listPath>
-		<logo>itviikko.png</logo>
+		<logo>5</logo>
 		<language>fi</language>
 	</website>
 	
@@ -51,7 +51,7 @@
 		<name>MTV3</name>
 		<url>http://mtv3.fi</url>
 		<listPath>/rss/uutiset.rss</listPath>
-		<logo>mtv3.png</logo>
+		<logo>8</logo>
 		<language>fi</language>
 		<rss>1</rss>
 	</website>
@@ -61,7 +61,7 @@
 		<name>BBC</name>
 		<url>http://m.bbc.co.uk</url>
 		<listPath>/news</listPath>
-		<logo>bbc.png</logo>
+		<logo>0</logo>
 		<language>en</language>
 	</website>
 	
@@ -80,7 +80,7 @@
 		<name>YLE</name>
 		<url>http://yle.fi</url>
 		<listPath>/uutiset/rss/uutiset.rss</listPath>
-		<logo>yle.png</logo>
+		<logo>12</logo>
 		<language>fi</language>
 		<rss>1</rss>
 	</website>
@@ -101,7 +101,7 @@
 		<name>Muropaketti</name>
 		<url>http://muropaketti.com</url>
 		<listPath>/feed</listPath>
-		<logo>muropaketti.png</logo>
+		<logo>9</logo>
 		<language>fi</language>
 		<rss>1</rss>
 		<hideFromCollection>1</hideFromCollection>
@@ -112,7 +112,7 @@
 		<name>Digitoday</name>
 		<url>http://www.digitoday.fi</url>
 		<listPath>/feeds/DigitodayText.xml</listPath>
-		<logo>digitoday.png</logo>
+		<logo>1</logo>
 		<language>fi</language>
 		<rss>1</rss>
 	</website>
@@ -124,7 +124,7 @@
 		<listPath>/xml/rss/3_7041.xml</listPath>
 		<listPath>/xml/rss/3_7455.xml</listPath>
 		<listPath>/xml/rss/3_7201.xml</listPath>
-		<logo>wsj.png</logo>
+		<logo>11</logo>
 		<language>en</language>
 		<rss>1</rss>
 	</website>
