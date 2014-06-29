@@ -24,6 +24,8 @@ class LiteNews {
 			$this->controller = new FeedbackController;
 		elseif($this->page == "collection")
 			$this->controller = new CollectionController;
+		elseif($this->page == "ajaxload")
+			$this->controller = new AjaxController;
 		elseif($this->page == "admin" && $href == NULL)
 			$this->controller = new AdminController;
 		elseif($this->page == "admin" && $href == "feedback")

@@ -6,7 +6,7 @@ class CollectionController extends Controller {
 		$this->template->setTemplate("list");
 		$this->template->setTitle("Collection");
 		
-		$collectionWebsites = self::GetUserSetting("collection", true);
+		$collectionWebsites = unserialize(Config::GetPath("local/collection", true));
 		
 		$titles = $this->db->LoadCollection($collectionWebsites);
 		foreach($titles as &$title) {

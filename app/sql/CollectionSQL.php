@@ -1,13 +1,14 @@
 <?php
 class CollectionSQL extends Database {
-	public function LoadCollection($websites) {
+	public function LoadCollection($websites, $offset=0) {
 		$websitesStr = "";
 		foreach($websites as $websiteKey => $website) {
 			$websitesStr .= $websiteKey != 0 ? "," : " ";
 			$websitesStr .= $this->db->quote($website, PDO::PARAM_INT);
 		}
 		
-		$query = $this->db->prepare("SELECT WebsiteID, ListTitle, URL, Timestamp FROM Article WHERE WebsiteID IN (".$websitesStr.") ORDER BY Timestamp DESC LIMIT :limit");
+		$query = $this->db->prepare("SELECT WebsiteID, ListTitle, URL, Timestamp FROM Article WHERE WebsiteID IN (".$websitesStr.") ORDER BY Timestamp DESC LIMIT :offset, :limit");
+		$query->bindParam(":offset", intval($offset), PDO::PARAM_INT);
 		$query->bindParam(":limit", intval(Config::GetPath("local/listLimit")), PDO::PARAM_INT);
 		
 		$query->execute();

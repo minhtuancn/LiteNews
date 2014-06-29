@@ -65,7 +65,7 @@ class Template {
 		return $this->content;
 	}
 	
-	protected function getBlock($name, $data) {
+	public function getBlock($name, $data) {
 		$this->block = $data;
 		return $this->getHTML($name);
 	}
