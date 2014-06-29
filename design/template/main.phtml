@@ -17,7 +17,7 @@
 <?php foreach($websiteByLang as $website): ?>
 <a href="<?php echo $this->getURL($website['name']); ?>" class="indexLink" tabindex="<?php echo ++$this->content['tabIndex']; ?>">
 	<div class="spriteContainer">
-		<img src="design/logo.png" alt="<?php echo $website['name']; ?>" data-logo="<?php echo $website['logo']; ?>" />
+		<img src="design/img/logo.png" alt="<?php echo $website['name']; ?>" data-logo="<?php echo $website['logo']; ?>" />
 	</div>
 </a>
 <?php endforeach; ?>
