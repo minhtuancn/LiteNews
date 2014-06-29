@@ -1,0 +1,18 @@
+<config>
+	<css>
+		<path>font-awesome/css/font-awesome.stripped.css</path>
+		<path>base.css</path>
+	</css>
+	<js>
+		<path>jquery-1.11.1.min.js</path>
+		<path>theme.js</path>
+	</js>
+	<themes>
+		<theme>Gray</theme>
+		<theme>Pink</theme>
+		<theme>Black</theme>
+		<theme>Yellow</theme>
+		<theme>Dark blue</theme>
+		<theme>Light blue</theme>
+	</themes>
+</config>
