@@ -41,6 +41,8 @@ class AjaxController extends Controller {
 			return null;
 		
 		$html = "";
+		$titles = array_slice($titles, 0, -1);
+		
 		foreach($titles as $title) {
 			$html .= $this->layout->getBlock("titlelink", $title);
 		}
