@@ -58,7 +58,7 @@ function onResize() {
 			height = 60;
 		}
 		else {
-			height = Math.floor(width * 0.15);
+			height = width * 0.15;
 		}
 		
 		$(this).height(height+"px");
