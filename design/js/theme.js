@@ -77,8 +77,8 @@ function onScroll() {
 	
 	if(topButtons.css('opacity') < 1.0) {
 		setTimeout(
-			function() { topButtons.animate({'opacity': 1.0}, 200); },
-			500
+			function() { topButtons.animate({'opacity': 1.0}, 400); },
+			800
 		);
 	}
 	
@@ -108,7 +108,7 @@ function onScroll() {
 var scrollTimeout;
 $(window).scroll(function() {
 	var topButtons = $('#top-buttons');
-	if($(window).scrollTop() >= topButtons.outerHeight() && topButtons.css('opacity') == 1.0) {
+	if($(window).scrollTop() >= topButtons.outerHeight() && topButtons.css('opacity') == 1.0 && $(window).scrollTop() + $(window).height() < $(document).height() - 50) {
 		topButtons.animate({'opacity': 0.2}, 100);
 	}
 	
