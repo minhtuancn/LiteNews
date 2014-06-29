@@ -124,6 +124,10 @@ a.titleLink {
 	text-align: left;
 }
 
+.loadTitles {
+	width: 100% !important;
+}
+
 span.titleInfo {
 	font-size: 0.8em;
 	font-weight: normal;
