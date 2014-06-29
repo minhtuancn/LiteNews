@@ -99,15 +99,24 @@ a.indexLink, a.titleLink {
 
 a.indexLink {
 	padding: 7px;
-	text-align: center;
 	opacity: 0.8;
+}
+
+a.indexLink .spriteContainer {
+	margin: 0px auto;
+	position: relative;
+	min-width: 200px;
+	width: 50%;
+	max-width: 400px;
+	overflow: hidden;
 }
 
 a.indexLink img {
 	border: 0px;
-	min-width: 200px;
-	width: 50%;
-	max-width: 400px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
 }
 
 a.titleLink {
