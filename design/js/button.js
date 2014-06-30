@@ -36,5 +36,5 @@ function buttonOnResize() {
 
 $(window).resize(function() {
 	clearTimeout(buttonTimeout);
-	buttonTimeout = setTimeout(onResize, 200);
+	buttonTimeout = setTimeout(buttonOnResize, 200);
 });
