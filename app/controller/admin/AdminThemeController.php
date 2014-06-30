@@ -37,7 +37,7 @@ class AdminThemeController extends AdminController {
 		$mergedJS = "";
 		
 		foreach(Config::GetPath("layout/js/path", true) as $jsFile) {
-			$mergedJS .= str_replace(array("\n", "\r", "	"), "", file_get_contents("design/js/".$jsFile));
+			$mergedJS .= file_get_contents("design/js/".$jsFile);
 		}
 		
 		file_put_contents("cache/js.js", $mergedJS);
