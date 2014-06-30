@@ -12,17 +12,6 @@ function buttonMaxHeight(selector) {
 	return maxHeight;
 }
 
-$(document).ready(function() {
-	$('.button').each(function() {
-		var width = $(this).width();
-		var p = $(this).find('p');
-		if(width - 40 < p.width())
-			p.width(width - 40);
-	});
-	
-	buttonOnResize();
-});
-
 function buttonOnResize() {
 	var height = buttonMaxHeight('.button');
 	$('.button').each(function() {
@@ -33,6 +22,17 @@ function buttonOnResize() {
 		}
 	});
 }
+
+$(document).ready(function() {
+	$('.button').each(function() {
+		var width = $(this).width();
+		var p = $(this).find('p');
+		if(width - 40 < p.width())
+			p.width(width - 40);
+	});
+	
+	buttonOnResize();
+});
 
 $(window).resize(function() {
 	clearTimeout(buttonTimeout);

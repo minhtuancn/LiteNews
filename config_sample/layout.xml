@@ -9,6 +9,7 @@
 		<path>sprite.js</path>
 		<path>floatbuttons.js</path>
 		<path>form.js</path>
+		<path>button.js</path>
 	</js>
 	<themes>
 		<theme>Gray</theme>
