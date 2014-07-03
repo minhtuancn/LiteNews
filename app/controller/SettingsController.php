@@ -1,4 +1,8 @@
 <?php
+/*
+ * Deprecated, not in use
+ */
+
 class SettingsController extends Controller {
 	public function InitDB() {
 		$this->db = NULL;
