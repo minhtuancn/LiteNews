@@ -1,6 +1,6 @@
 // Using float prefix
 
-var floatBody, floatElement, floatTimeout;
+var floatBody, floatElement, floatTimeout, floatOpacityDelay;
 
 $(document).ready(function() {
 	floatBody = $('body');
@@ -10,9 +10,10 @@ $(document).ready(function() {
 
 function floatOnScroll() {
 	if(floatElement.css('opacity') < 1.0) {
-		setTimeout(
+		clearTimeout(floatOpacityDelay);
+		floatOpacityDelay = setTimeout(
 			function() { floatElement.animate({'opacity': 1.0}, 400); },
-			800
+			1000
 		);
 	}
 	
@@ -40,8 +41,10 @@ function floatOnScroll() {
 }
 
 $(window).scroll(function() {
-	if($(window).scrollTop() >= floatElement.outerHeight() && floatElement.css('opacity') == 1.0 && $(window).scrollTop() + $(window).height() < $(document).height() - 50) {
-		floatElement.animate({'opacity': 0.2}, 100);
+	if(	floatElement.css('opacity') > 0.2
+		&& $(window).scrollTop() >= floatElement.outerHeight()
+		&& $(window).scrollTop() + $(window).height() < $(document).height() - 50) {
+		floatElement.css('opacity', 0.2);
 	}
 	
 	clearTimeout(floatTimeout);
