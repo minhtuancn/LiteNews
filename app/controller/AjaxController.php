@@ -1,36 +1,28 @@
 <?php
 class AjaxController extends Controller {
-	// We'll do this later
 	protected function InitDB() {
-		$this->db = NULL;
+		$this->db = new ListSQL;
 	}
 	
 	
 	// Overwriting Controller::GetPage will prevent from loading unnecessary layout HTML
 	public function GetPage($page, $href) {
 		$action = explode("/", $href);
-		if(sizeof($action) < 2 || ($action[0] != "collection" && $this->GetWebsite($action[0]) == false) || !is_numeric($action[1]))
+		if(sizeof($action) < 2 || ($action[0] != "collection" && $this->GetWebsiteByName($action[0]) == false) || !is_numeric($action[1]))
 			return null;
 		
 		$titles = false;
 		if($action[0] == "collection") {
-			$this->db = new CollectionSQL;
-			$titles = $this->db->LoadCollection(unserialize(Config::GetPath("local/collection", true)), $action[1]);
+			$titles = $this->db->LoadTitles(unserialize(Config::GetPath("local/collection", true)), $action[1]);
 			
 			foreach($titles as &$title) {
-				foreach(Config::GetPath("website/website", true) as $website) {
-					if($title['website'] == $website['id']) {
-						$title['website'] = $website['name'];
-						$title['url'] = $website['name'].$title['url'];
-						break;
-					}
-				}
+				$title['website'] = $this->GetWebsiteByID($title['website'], "name");
+				$title['url'] = $title['website'].$title['url'];
 			}
 		}
 		else {
-			$this->db = new ListSQL;
-			$website = $this->GetWebsite($action[0]);
-			$titles = $this->db->LoadTitles($website['id'], $action[1]);
+			$website = $this->GetWebsiteByName($action[0]);
+			$titles = $this->db->LoadTitles(array($website['id']), $action[1]);
 			
 			foreach($titles as &$title) {
 				$title['url'] = $action[0].$title['url'];

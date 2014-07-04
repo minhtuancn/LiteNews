@@ -3,7 +3,7 @@ require_once("app/parser/Abstract.php");
 
 class ArticleController extends Controller {
 	public function InitPage() {
-		if(($website = $this->GetWebsite($this->page)) == false) {
+		if(($website = $this->GetWebsiteByName($this->page)) == false) {
 			$this->InitErrorPage();
 			return;
 		}

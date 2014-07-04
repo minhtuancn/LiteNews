@@ -22,8 +22,6 @@ class LiteNews {
 			$this->controller = new CronController;
 		elseif($this->page == "feedback")
 			$this->controller = new FeedbackController;
-		elseif($this->page == "collection")
-			$this->controller = new CollectionController;
 		elseif($this->page == "ajaxload")
 			$this->controller = new AjaxController;
 		elseif($this->page == "admin" && $href == NULL)
@@ -38,7 +36,7 @@ class LiteNews {
 			$this->controller = new AdminThemeController;
 		elseif($this->page == "admin" && $href == "website")
 			$this->controller = new AdminWebsiteController;
-		elseif(is_null($this->href))
+		elseif($this->page == "collection" || is_null($this->href))
 			$this->controller = new ListController;
 		else
 			$this->controller = new ArticleController;

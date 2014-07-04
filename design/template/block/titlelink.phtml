@@ -1,6 +1,6 @@
-<a href="<?php echo str_replace(" ", "+", $this->block['url']); ?>" class="titleLink" tabindex="<?php echo ++$this->content['tabIndex']; ?>">
+<a href="<?php echo $this->getURL(str_replace(" ", "+", $this->block['url'])); ?>" class="titleLink" tabindex="<?php echo ++$this->content['tabIndex']; ?>">
 	<span class="titleInfo">
-		<?php if(isset($this->block['website'])) echo $this->block['website']." - "; ?>
+		<?php if(!is_numeric($this->block['website'])) echo $this->block['website']." - "; ?>
 		<?php echo date("H:i", $this->block['timestamp']) == "00:00" ? date("d.m.y", $this->block['timestamp']) : date("d.m.y H:i", $this->block['timestamp']); ?>
 	</span>
 	<?php echo $this->block['title']; ?>

@@ -113,10 +113,28 @@ abstract class Controller {
 	}
 	
 	
-	protected function GetWebsite($name) {
+	protected function GetWebsiteByID($id, $key=null) {
 		foreach(Config::GetPath("website/website", true) as $website) {
-			if(str_replace("+", " ", $name) == $website['name'])
+			if($website['id'] == $id) {
+				if($key != null)
+					return $website[$key];
+				
 				return $website;
+			}
+		}
+		
+		return false;
+	}
+	
+	
+	protected function GetWebsiteByName($name, $key=null) {
+		foreach(Config::GetPath("website/website", true) as $website) {
+			if(str_replace("+", " ", $name) == $website['name']) {
+				if($key != null)
+					return $website[$key];
+				
+				return $website;
+			}
 		}
 		
 		return false;
@@ -145,7 +163,7 @@ abstract class Controller {
 		$this->page = $page;
 		$this->href = $href;
 		
-		$this->InitPage($page, $href);
+		$this->InitPage();
 		
 		$this->layout->setTitle($this->template->getTitle());
 		$this->layout->setContent(array('content'=>$this->template->getHTML()));
