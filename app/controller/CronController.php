@@ -21,11 +21,7 @@ class CronController extends Controller {
 		// Refresh timestamp also before the actual update because running script can take several minutes
 		$this->db->RefreshUpdateTime($websiteID);
 		
-		foreach(Config::GetPath("website/website", true) as $website) {
-			if($websiteID == $website['id'])
-				break;
-		}
-		
+		$website = $this->GetWebsiteByID($websiteID);
 		$parserName = str_replace(array(" ", "-"), "", $website['name'])."Parser";
 		$titles = array();
 		

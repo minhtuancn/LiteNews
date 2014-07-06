@@ -53,4 +53,19 @@ class CronSQL extends Database {
 			$paragraphs->execute(array($articleID));
 		}
 	}
+	
+	
+	public function DeleteArticles($websiteID) {
+		$articles = $this->db->prepare("SELECT ID FROM Article WHERE WebsiteID=?");
+		if(!$articles->execute(array($websiteID)))
+			return false;
+
+		$deleteArticle = $this->db->prepare("DELETE FROM Article WHERE ID=?");
+		$deleteParagraphs = $this->db->prepare("DELETE FROM ArticleParagraph WHERE ArticleID=?");
+		
+		while(($id = $articles->fetchColumn()) != false) {
+			$deleteArticle->execute(array($id));
+			$deleteParagraphs->execute(array($id));
+		}
+	}
 }
