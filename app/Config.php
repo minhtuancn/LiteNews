@@ -4,6 +4,7 @@ require_once("app/sql/ConfigSQL.php");
 
 class Config extends ConfigParser {
 	public static $db;
+	public static $cache;
 	
 	
 	public static function GetLocalConfig($name) {
@@ -27,18 +28,26 @@ class Config extends ConfigParser {
 	
 	
 	public static function GetPath($path, $array=false, $parentID=0) {
-		$path = explode("/", $path);
+		if(isset(self::$cache[$path]) && $parentID == 0)
+			return self::$cache[$path];
 		
-		if(count($path) > 1) {
-			$id = self::GetID($path[0], $parentID);
-			unset($path[0]);
-			return self::GetPath(implode("/", $path), $array, $id);
+		$pathArr = explode("/", $path);
+		
+		if(count($pathArr) > 1) {
+			$id = self::GetID($pathArr[0], $parentID);
+			unset($pathArr[0]);
+			$value = self::GetPath(implode("/", $pathArr), $array, $id);
+			
+			if($parentID == 0)
+				self::$cache[$path] = $value;
+			
+			return $value;
 		}
 		
 		if($array)
-			return self::GetRecursive($path[0], $parentID);
-		else
-			return self::Get($path[0], $parentID);
+			return self::GetRecursive($pathArr[0], $parentID);
+		
+		return self::Get($pathArr[0], $parentID);
 	}
 	
 	
