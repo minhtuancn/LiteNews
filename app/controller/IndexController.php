@@ -16,7 +16,6 @@ class IndexController extends Controller {
 			$websites = $this->SortByPopularity($websites);
 		
 		foreach($websites as $website) {
-			file_put_contents("temp/debug.log", "\n".$website['id']." ".$website['language'], FILE_APPEND);
 			$content['websites'][$website['language']][] = $website;
 		}
 		
