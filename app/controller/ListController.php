@@ -25,6 +25,7 @@ class ListController extends Controller {
 		$titles = $this->db->LoadTitles($listWebsites);
 		
 		$content = array();
+		$tabIndex = 0;
 		foreach($titles as $title) {
 			if(($title['url'] = $this->FixURL($title['website'], $title['url'])) == false)
 				continue;
@@ -32,6 +33,7 @@ class ListController extends Controller {
 			if($this->page == "collection")
 				$title['website'] = $this->GetWebsiteByID($title['website'], 'name');
 			
+			$title['tabIndex'] = ++$tabIndex;
 			$content[] = $title;
 		}
 		
