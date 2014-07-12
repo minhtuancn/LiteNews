@@ -9,8 +9,11 @@ class ListSQL extends Database {
 			FROM Article
 			WHERE WebsiteID IN (".$websitesStr.")
 			ORDER BY Timestamp DESC LIMIT :offset, :limit");
-		$query->bindParam(":offset", intval($offset), PDO::PARAM_INT);
-		$query->bindParam(":limit", intval(Config::GetPath("local/listLimit")), PDO::PARAM_INT);
+			
+		$offset = intval($offset);
+		$query->bindParam(":offset", $offset, PDO::PARAM_INT);
+		$limit = intval(Config::GetPath("local/listLimit"));
+		$query->bindParam(":limit", $limit, PDO::PARAM_INT);
 		
 		if(!$query->execute())
 			return $titles;
