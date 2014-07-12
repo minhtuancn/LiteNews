@@ -26,8 +26,7 @@ abstract class Controller {
 	
 	
 	public static function LogError($str) {
-		$file = substr($_SERVER['PHP_SELF'], 0, strrpos($_SERVER['PHP_SELF'], "."));
-		$file = substr($file, 0, 1) == "/" ? substr($file, 1) : $file;
+		$file = (isset($_GET['page']) ? $_GET['page'] : "index");
 		$file = "log/".$file.".log";
 		
 		if(is_writable($file))
