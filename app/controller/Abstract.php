@@ -159,6 +159,14 @@ abstract class Controller {
 	
 	
 	public function GetPage($page, $href) {
+		if(Config::GetPath("local/FPC") && strpos($_SERVER['PHP_SELF'], "cron") === false) {
+			$fpcParams = serialize(array('page'=>$page, 'theme'=>intval($this->GetUserSetting("theme")), 'locale'=>$this->GetUserSetting("lang")));
+			$fpc = $this->db->GetFPC($fpcParams);
+			if($fpc !== false) {
+				return $fpc;
+			}
+		}
+		
 		$this->page = $page;
 		$this->href = $href;
 		

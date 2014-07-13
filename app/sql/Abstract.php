@@ -10,10 +10,10 @@ abstract class Database {
 		$account = Config::GetLocalConfig("database");
 		$this->db = new PDO('mysql:host='.$account['host'].';dbname='.$account['db'].';charset=utf8', $account['username'], $account['password']);
 		
-		if(is_null($logData))
-			$this->AddLog($_SERVER['REQUEST_URI']);
-		elseif($logData != "config" && $logData != "cron")
+		if(!is_null($logData) && $logData != "config" && $logData != "cron")
 			$this->AddLog($logData);
+		if(is_null($logData) && isset($_SERVER['REQUEST_URI']))
+			$this->AddLog($_SERVER['REQUEST_URI']);
 	}
 	
 	
@@ -31,6 +31,13 @@ abstract class Database {
 		return $this->db
 			->prepare("INSERT INTO Log (IP, Timestamp, URL) VALUES (?, UNIX_TIMESTAMP(), ?)")
 			->execute(array($_SERVER['REMOTE_ADDR'], $data));
+	}
+	
+	
+	public function GetFPC($params) {
+		$query = $this->db->prepare("SELECT Content FROM FPC WHERE Parameters=?");
+		$result = $query->execute(array($params));
+		return (!$result ? false : $query->fetchColumn());
 	}
 }
 ?>

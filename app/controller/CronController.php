@@ -66,5 +66,48 @@ class CronController extends Controller {
 		}
 		
 		$this->db->RefreshUpdateTime($websiteID);
+		
+		if(Config::GetPath("local/FPC"))
+			$this->UpdateFPC();
+	}
+	
+	
+	protected function UpdateFPC() {
+		$params = array(array('page'=>"collection"));
+		$tempParams = array();
+		
+		// TODO: Create $params dynamically from XML
+		foreach(Config::GetPath("website/website", true) as $website) {
+			$params[] = array('page'=>$website['name']);
+		}
+		
+		foreach(array_keys(Config::GetPath("layout/themes/theme", true)) as $theme) {
+			foreach($params as $param) {
+				$tempParams[] = array_merge($param, array('theme'=>$theme));
+			}
+		}
+		
+		$params = $tempParams;
+		$tempParams = array();
+		
+		foreach(Config::GetPath("local/locales/locale", true) as $locale) {
+			foreach($params as &$param) {
+				$tempParams[] = array_merge($param, array('locale'=>$locale));
+			}
+		}
+		
+		$params = $tempParams;
+		
+		foreach($params as $param) {
+			ob_start();
+			
+			$_GET['page'] = $param['page'];
+			$_COOKIE['settings']['theme'] = $param['locale'];
+			$_COOKIE['settings']['lang'] = $param['locale'];
+			include("index.php");
+			
+			$output = ob_get_clean();
+			$this->db->AddPageCache(serialize($param), $output);
+		}
 	}
 }

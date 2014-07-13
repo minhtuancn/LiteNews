@@ -68,4 +68,21 @@ class CronSQL extends Database {
 			$deleteParagraphs->execute(array($id));
 		}
 	}
+	
+	
+	public function AddPageCache($params, $data) {
+		$check = $this->db->prepare("SELECT ID FROM FPC WHERE Parameters=?");
+		$check->execute(array($params));
+		
+		if($check->fetch()) {
+			$query = $this->db->prepare("UPDATE FPC SET Content=:data WHERE Parameters=:params");
+		}
+		else {
+			$query = $this->db->prepare("INSERT INTO FPC (Parameters, Content, Timestamp) VALUES (:params, :data, ".time().")");
+		}
+		
+		$query->bindParam(":data", $data, PDO::PARAM_STR);
+		$query->bindParam(":params", $params, PDO::PARAM_STR);
+		$query->execute();
+	}
 }

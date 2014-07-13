@@ -47,6 +47,12 @@ class AdminSQL extends Database {
 		$updateTimestamp->execute(array($id));
 	}
 	
+	// TODO: Create button for this
+	public function TruncateFPC() {
+		$query = $this->db->prepare("TRUNCATE FPC");
+		$query->execute();
+	}
+	
 	
 	public function GetFeedbacksNum($unreadOnly) {
 		if($unreadOnly)

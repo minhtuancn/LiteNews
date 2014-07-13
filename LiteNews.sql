@@ -67,6 +67,22 @@ CREATE TABLE `Config` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `FPC`
+--
+
+DROP TABLE IF EXISTS `FPC`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `FPC` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `Parameters` text NOT NULL,
+  `Content` longtext NOT NULL,
+  `Timestamp` int(11) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `Feedback`
 --
 
@@ -124,4 +140,4 @@ CREATE TABLE `UpdateTime` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-05-22 19:57:07
+-- Dump completed on 2014-07-13 23:52:51

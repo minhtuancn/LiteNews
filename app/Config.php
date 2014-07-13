@@ -38,6 +38,11 @@ class Config extends ConfigParser {
 			unset($pathArr[0]);
 			$value = self::GetPath(implode("/", $pathArr), $array, $id);
 			
+			if($value == "true")
+				$value = true;
+			elseif($value == "false")
+				$value = false;
+			
 			if($parentID == 0)
 				self::$cache[$path] = $value;
 			

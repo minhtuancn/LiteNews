@@ -4,6 +4,9 @@
 	<!-- Must end with slash -->
 	<baseURL>localhost/</baseURL>
 	
+	<!-- Enable full page cache -->
+	<FPC>true</FPC>
+	
 	<!-- Admin panel can be accessed at /admin -->
 	<admin>
 		<password>password</password>
