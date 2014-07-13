@@ -11,7 +11,7 @@ body {
 	margin: 10px 10px 20px;
 }
 
-body > *, body > form > * {
+body > *, body > form > *, body > form > label > * {
 	border-radius: 5px;
 	margin: 0px 0px 10px;
 }
