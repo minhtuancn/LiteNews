@@ -16,7 +16,7 @@ function buttonOnResize() {
 	var height = buttonMaxHeight('.button');
 	$('.button').each(function() {
 		if($(this).outerHeight() < height) {
-			var padding = height - $(this).outerHeight() - 6;
+			var padding = (height - $(this).outerHeight()) / 2 + 5;
 			$(this).css("padding-top", padding);
 			$(this).css("padding-bottom", padding);
 		}
