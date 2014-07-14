@@ -50,7 +50,7 @@ class ListController extends Controller {
 			$url = "/".$url;
 		
 		$website = $this->GetWebsiteByID($websiteID, 'name');
-		$url = "/".$website.$url;
+		$url = $website.$url;
 		return $url;
 	}
 }
