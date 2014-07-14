@@ -7,7 +7,7 @@ class AdminConfigUpdateController extends AdminController {
 	
 	protected function InitAdminPage($content) {
 		Config::UpdateConfig();
-		$content['configUpdate'] = true;
+		$content['notice'][] = "XML configuration updated successfully";
 		parent::InitAdminPage($content);
 	}
 }

@@ -1,14 +1,8 @@
 <?php echo $this->getBlock("button", array('href'=>$this->getURL(), 'icon'=>"angle-double-left", 'label'=>"Previous page")); ?>
 <?php echo $this->getBlock("button", array('href'=>$this->getURL("admin/logout"), 'icon'=>"sign-out", 'label'=>"Log out", 'pullRight'=>true)); ?>
-<?php if(isset($this->content['loginSuccess'])): ?>
-<div class="success"><?php echo $this->__("Logged in successfully"); ?></div>
-<?php endif; ?>
-<?php if(isset($this->content['configUpdate'])): ?>
-<div class="success"><?php echo $this->__("XML configuration updated successfully"); ?></div>
-<?php endif; ?>
-<?php if(isset($this->content['themeUpdate'])): ?>
-<div class="success"><?php echo $this->__("Theme cache updated successfully"); ?></div>
-<?php endif; ?>
+<?php foreach($this->content['notice'] as $notice): ?>
+<div class="success"><?php echo $this->__($notice); ?></div>
+<?php endforeach; ?>
 <?php if($this->content['unreadFeedbacks'] > 0): ?>
 <div class="success"><?php echo $this->content['unreadFeedbacks']." ".$this->__("unread feedbacks"); ?></div>
 <?php endif; ?>
@@ -21,6 +15,9 @@
 	<p class="contentText">
 		<a class="button" href="<?php echo $this->getURL("admin/website"); ?>"><?php echo $this->__("Clear website data"); ?></a>
 		<a class="button buttonRight" href="<?php echo $this->getURL("admin/theme"); ?>"><?php echo $this->__("Update theme cache"); ?></a>
+	</p>
+	<p class="contentText">
+		<a class="button" href="<?php echo $this->getURL("admin/fpc"); ?>"><?php echo $this->__("Clear FPC"); ?></a>
 	</p>
 </div>
 <div class="contentBox">

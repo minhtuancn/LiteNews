@@ -5,7 +5,7 @@ error_reporting(E_ALL | E_STRICT);
 
 class AdminController extends Controller {
 	public function InitPage() {
-		$content = array();
+		$content = array('notice'=>array());
 		$login = $this->CheckLogin($content);
 		
 		$action = explode("/", $this->href);
@@ -38,7 +38,7 @@ class AdminController extends Controller {
 				$content['maxLoginFails'] = true;
 			elseif($_POST['adminPassword'] == Config::GetPath("local/admin/password")) {
 				setcookie("admin", crypt($_POST['adminPassword'], "$2a$"), time() + 3600, "/");
-				$content['loginSuccess'] = true;
+				$content['notice'][] = "Logged in successfully";
 				$login = true;
 			}
 			else

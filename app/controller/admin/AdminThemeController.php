@@ -8,7 +8,7 @@ class AdminThemeController extends AdminController {
 	protected function InitAdminPage($content) {
 		$this->UpdateCSS();
 		$this->UpdateJS();
-		$content['themeUpdate'] = true;
+		$content['notice'][] = "Theme cache updated successfully";
 		parent::InitAdminPage($content);
 	}
 	
