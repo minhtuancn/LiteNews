@@ -14,32 +14,22 @@ class LiteNews {
 		$this->page = $page;
 		$this->href = $href;
 		
-		if(is_null($this->page))
-			$this->controller = new IndexController;
-		elseif($this->page == "cron")
-			$this->controller = new CronController;
-		elseif($this->page == "feedback")
-			$this->controller = new FeedbackController;
-		elseif($this->page == "ajaxload")
-			$this->controller = new AjaxController;
-		elseif($this->page == "admin" && $href == NULL)
-			$this->controller = new AdminController;
-		elseif($this->page == "admin" && $href == "feedback")
-			$this->controller = new AdminFeedbackController;
-		elseif($this->page == "admin" && $href == "configUpdate")
-			$this->controller = new AdminConfigUpdateController;
-		elseif($this->page == "admin" && $href == "cron")
-			$this->controller = new AdminCronController;
-		elseif($this->page == "admin" && $href == "fpc")
-			$this->controller = new AdminFPCController;
-		elseif($this->page == "admin" && $href == "theme")
-			$this->controller = new AdminThemeController;
-		elseif($this->page == "admin" && $href == "website")
-			$this->controller = new AdminWebsiteController;
-		elseif($this->page == "collection" || is_null($this->href))
-			$this->controller = new ListController;
-		else
-			$this->controller = new ArticleController;
+		// TODO: Clean this horrible piece of code
+		foreach(Config::GetPath("controller/controller", true) as $controller) {
+			$condition = $controller['condition'];
+			if(!isset($condition['page']))
+				$condition['page'] = NULL;
+			if(!isset($condition['href']))
+				$condition['href'] = NULL;
+			
+			if((!isset($condition['page']) || $page === $condition['page'] || ($page == NULL && is_string($condition['page'])))
+				&& (!isset($condition['href']) || $href === $condition['href'] || ($href == NULL && is_string($condition['href'])))
+			) {
+				$controllerName = $controller['name']."Controller";
+				$this->controller = new $controllerName;
+				break;
+			}
+		}
 	}
 	
 	

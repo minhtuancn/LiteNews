@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+
+<config>
+	<controller>
+		<name>Index</name>
+		<condition>
+			<page></page>
+			<href></href>
+		</condition>
+	</controller>
+	
+	<controller>
+		<name>Cron</name>
+		<condition>
+			<page>cron</page>
+		</condition>
+	</controller>
+	
+	<controller>
+		<name>Feedback</name>
+		<condition>
+			<page>feedback</page>
+		</condition>
+	</controller>
+	
+	<controller>
+		<name>Ajax</name>
+		<condition>
+			<page>ajaxload</page>
+		</condition>
+	</controller>
+	
+	<controller>
+		<name>Admin</name>
+		<condition>
+			<page>admin</page>
+			<href></href>
+		</condition>
+	</controller>
+	
+	<controller>
+		<name>AdminFeedback</name>
+		<condition>
+			<page>admin</page>
+			<href>feedback</href>
+		</condition>
+	</controller>
+	
+	<controller>
+		<name>AdminConfigUpdate</name>
+		<condition>
+			<page>admin</page>
+			<href>configUpdate</href>
+		</condition>
+	</controller>
+	
+	<controller>
+		<name>AdminCron</name>
+		<condition>
+			<page>admin</page>
+			<href>cron</href>
+		</condition>
+	</controller>
+	
+	<controller>
+		<name>AdminFPC</name>
+		<condition>
+			<page>admin</page>
+			<href>fpc</href>
+		</condition>
+	</controller>
+	
+	<controller>
+		<name>AdminTheme</name>
+		<condition>
+			<page>admin</page>
+			<href>theme</href>
+		</condition>
+	</controller>
+	
+	<controller>
+		<name>AdminWebsite</name>
+		<condition>
+			<page>admin</page>
+			<href>website</href>
+		</condition>
+	</controller>
+	
+	<controller>
+		<name>List</name>
+		<condition>
+			<href></href>
+		</condition>
+	</controller>
+	
+	<controller>
+		<name>Article</name>
+	</controller>
+</config>
