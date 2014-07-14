@@ -76,7 +76,6 @@ class CronController extends Controller {
 		$params = array(array('page'=>"collection"));
 		$tempParams = array();
 		
-		// TODO: Create $params dynamically from XML
 		foreach(Config::GetPath("website/website", true) as $website) {
 			$params[] = array('page'=>$website['name']);
 		}
