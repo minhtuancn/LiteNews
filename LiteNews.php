@@ -14,7 +14,6 @@ class LiteNews {
 		$this->page = $page;
 		$this->href = $href;
 		
-		// TODO: Clean this horrible piece of code
 		foreach(Config::GetPath("controller/controller", true) as $controller) {
 			$condition = $controller['condition'];
 			if(!isset($condition['page']))
@@ -22,8 +21,8 @@ class LiteNews {
 			if(!isset($condition['href']))
 				$condition['href'] = NULL;
 			
-			if((!isset($condition['page']) || $page === $condition['page'] || ($page == NULL && is_string($condition['page'])))
-				&& (!isset($condition['href']) || $href === $condition['href'] || ($href == NULL && is_string($condition['href'])))
+			if(($condition['page'] === NULL || $page === $condition['page'] || ($page == NULL && is_string($condition['page'])))
+				&& ($condition['href'] === NULL || $href === $condition['href'] || ($href == NULL && is_string($condition['href'])))
 			) {
 				$controllerName = $controller['name']."Controller";
 				$this->controller = new $controllerName;

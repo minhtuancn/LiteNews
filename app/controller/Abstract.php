@@ -43,29 +43,28 @@ abstract class Controller {
 	public static function GetUserSetting($name, $array=false) {
 		$defaultSettings = Config::GetPath("local/userSettings/default", true);
 		
-		if(isset($defaultSettings[$name])) {
-			if(Config::GetPath("local/userSettings/enable") && isset($_COOKIE[Config::GetPath("local/userSettings/cookie")][$name]) && self::CheckUserSetting($name, $_COOKIE[Config::GetPath("local/userSettings/cookie")][$name])) {
-				if(!$array)
-					return htmlspecialchars($_COOKIE[Config::GetPath("local/userSettings/cookie")][$name]);
-				else {
-					$unserializedArray = @unserialize($_COOKIE[Config::GetPath("local/userSettings/cookie")][$name]);
-					if($unserializedArray == false)
-						return unserialize($defaultSettings[$name]);
-					
-					foreach($unserializedArray as &$unserializedColumn)
-						$unserializedColumn = htmlspecialchars($unserializedColumn);
-					
-					return $unserializedArray;
-				}
-			}
-			
+		if(!isset($defaultSettings[$name]))
+			return false;
+		
+		if(Config::GetPath("local/userSettings/enable") && isset($_COOKIE[Config::GetPath("local/userSettings/cookie")][$name]) && self::CheckUserSetting($name, $_COOKIE[Config::GetPath("local/userSettings/cookie")][$name])) {
 			if(!$array)
-				return $defaultSettings[$name];
-			else
-				return unserialize($defaultSettings[$name]);
+				return htmlspecialchars($_COOKIE[Config::GetPath("local/userSettings/cookie")][$name]);
+			else {
+				$unserializedArray = @unserialize($_COOKIE[Config::GetPath("local/userSettings/cookie")][$name]);
+				if($unserializedArray == false)
+					return unserialize($defaultSettings[$name]);
+				
+				foreach($unserializedArray as &$unserializedColumn)
+					$unserializedColumn = htmlspecialchars($unserializedColumn);
+				
+				return $unserializedArray;
+			}
 		}
 		
-		return false;
+		if(!$array)
+			return $defaultSettings[$name];
+		else
+			return unserialize($defaultSettings[$name]);
 	}
 	
 	
