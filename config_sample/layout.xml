@@ -4,6 +4,7 @@
 	<css>
 		<path>font-awesome/css/font-awesome.stripped.css</path>
 		<path>base.css</path>
+		<path>responsive.css</path>
 	</css>
 	<js>
 		<path>jquery-1.11.1.min.js</path>
