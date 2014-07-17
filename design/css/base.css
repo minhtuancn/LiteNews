@@ -8,7 +8,7 @@ body {
 	font-family: Arial, Helvetica, Verdana;
 	font-weight: bold;
 	font-size: 1.2em;
-	margin: 10px 10px 20px;
+	margin: 10px 1% 20px;
 }
 
 body > *, body > form > *, body > form > label > * {

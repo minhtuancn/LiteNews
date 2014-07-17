@@ -8,26 +8,10 @@
 		width: 49%;
 		float: left;
 	}
-	
-	.indexLink:nth-child(even) {
-		margin-left: 2%;
-	}
 }
 
 @media only screen and (min-width: 1224px) {
 	.indexLink {
 		width: 32%;
-	}
-	
-	.indexLink:nth-child(even) {
-		margin-left: 0px;
-	}
-	
-	.indexLink:nth-child(3n+6), .indexLink:nth-child(3n+6) + .indexLink {
-		margin-left: 2%;
-	}
-	
-	.indexDescription + .indexLink {
-		margin-left: 0px;
 	}
 }

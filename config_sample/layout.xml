@@ -13,6 +13,7 @@
 		<path>floatbuttons.js</path>
 		<path>form.js</path>
 		<path>button.js</path>
+		<path>responsive.js</path>
 	</js>
 	<themes>
 		<theme>Gray</theme>
