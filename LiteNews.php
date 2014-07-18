@@ -1,6 +1,7 @@
 <?php
 require_once("app/controller/Abstract.php");
 
+date_default_timezone_set("Europe/Helsinki");
 ini_set("error_reporting", E_ALL | E_STRICT);
 set_error_handler(array("Controller", "LogPHPError"));
 
