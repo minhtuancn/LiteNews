@@ -1,0 +1,22 @@
+<div class="contentBox">
+	<?php if(isset($this->block['ajax']) && $this->block['ajax'] == true): ?>
+	<a href="<?php echo $this->block['url']; ?>" class="button buttonRight" target="_blank">
+		<p><?php echo $this->__("Source"); ?></p>
+		<i class="fa fa-external"></i>
+	</a>
+	<?php endif; ?>
+	<?php
+	if(empty($this->block['title']))
+		$this->block['title'] = $this->__("Loading article failed");
+	?>
+	<?php if($this->block['timestamp'] > 0): ?>
+	<p class="contentDate"><?php echo date("Hi", $this->block['timestamp']) == "0000" ? date("d.m.Y", $this->block['timestamp']) : date("d.m.Y H:i", $this->block['timestamp']); ?></p>
+	<?php endif; ?>
+	<p class="contentTitle"><?php echo (empty($this->block['title']) ? $this->__("Loading article failed") : $this->block['title']); ?></p>
+	<?php if(!is_null($this->block['subTitle'])): ?>
+	<p class="contentSubTitle"><?php echo $this->block['subTitle']; ?></p>
+	<?php endif; ?>
+	<?php foreach($this->block['bodyText'] as $p): ?>
+	<p class="contentText"><?php echo $p; ?></p>
+	<?php endforeach; ?>
+</div>

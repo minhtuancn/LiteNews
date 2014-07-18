@@ -1,19 +1,31 @@
 <?php
 class AjaxController extends Controller {
 	protected function InitDB() {
-		$this->db = new ListSQL;
+		$this->db = NULL;
 	}
 	
 	
 	// Overwriting Controller::GetPage will prevent from loading unnecessary layout HTML
 	public function GetPage($page, $href) {
 		$action = explode("/", $href);
-		if(sizeof($action) < 2 || ($action[0] != "collection" && $this->GetWebsiteByName($action[0]) == false) || !is_numeric($action[1]))
-			return null;
 		
+		if(sizeof($action) == 3 && ($action[1] == "collection") || $this->GetWebsiteByName($action[1]) != false && is_numeric($action[2])) {
+			$this->db = new ListSQL;;
+			return $this->GetList($action[1], $action[2]);
+		}
+		
+		if($this->GetWebsiteByName($action[1]) != false) {
+			$this->db = new ArticleSQL;
+			return $this->GetArticle($href);
+		}
+		return NULL;
+	}
+	
+	
+	protected function GetList($website, $offset) {
 		$titles = false;
-		if($action[0] == "collection") {
-			$titles = $this->db->LoadTitles(unserialize(Config::GetPath("local/collection", true)), $action[1]);
+		if($website == "collection") {
+			$titles = $this->db->LoadTitles(unserialize(Config::GetPath("local/collection", true)), $offset);
 			
 			foreach($titles as &$title) {
 				$title['website'] = $this->GetWebsiteByID($title['website'], "name");
@@ -21,11 +33,11 @@ class AjaxController extends Controller {
 			}
 		}
 		else {
-			$website = $this->GetWebsiteByName($action[0]);
-			$titles = $this->db->LoadTitles(array($website['id']), $action[1]);
+			$website = $this->GetWebsiteByName($website);
+			$titles = $this->db->LoadTitles(array($website['id']), $offset);
 			
 			foreach($titles as &$title) {
-				$title['url'] = $action[0].$title['url'];
+				$title['url'] = $website.$title['url'];
 			}
 		}
 		
@@ -39,6 +51,18 @@ class AjaxController extends Controller {
 			$html .= $this->layout->getBlock("titlelink", $title);
 		}
 		
+		return $html;
+	}
+	
+	
+	protected function GetArticle($href) {
+		$href = explode("/", $href, 3);
+		$websiteID = $this->GetWebsiteByName($href[1], 'id');
+		$href = "/".$href[2];
+		$content = $this->db->LoadArticle($websiteID, $href);
+		$content['url'] = $this->GetWebsiteByID($websiteID, 'url').htmlspecialchars($href);
+		$content['ajax'] = true;
+		$html = $this->layout->getBlock("article", $content);
 		return $html;
 	}
 }
