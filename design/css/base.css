@@ -124,8 +124,8 @@ a.titleLink {
 	text-align: left;
 }
 
-.loadTitles {
-	width: 100% !important;
+a.loadTitles {
+	width: 100%;
 }
 
 .ajaxArticle {

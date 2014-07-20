@@ -3,7 +3,7 @@
 		clear: both;
 	}
 	
-	.indexLink {
+	a.indexLink {
 		display: inline-block;
 		width: 49%;
 		float: left;
@@ -17,11 +17,15 @@
 }
 
 @media only screen and (min-width: 1224px) {
-	.indexLink {
+	a.indexLink {
 		width: 32%;
 	}
 	
-	.titleLink {
+	a.titleLink {
+		width: 49%;
+	}
+	
+	a.loadTitles {
 		width: 49%;
 	}
 }
