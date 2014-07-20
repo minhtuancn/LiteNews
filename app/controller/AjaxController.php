@@ -10,7 +10,7 @@ class AjaxController extends Controller {
 		$action = explode("/", $href);
 		
 		if(sizeof($action) == 3 && ($action[1] == "collection") || $this->GetWebsiteByName($action[1]) != false && is_numeric($action[2])) {
-			$this->db = new ListSQL;;
+			$this->db = new ListSQL;
 			return $this->GetList($action[1], $action[2]);
 		}
 		
