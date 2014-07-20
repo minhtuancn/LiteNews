@@ -46,8 +46,10 @@ class AjaxController extends Controller {
 		
 		$html = "";
 		$titles = array_slice($titles, 0, -1);
+		$tabIndex = $offset;
 		
 		foreach($titles as $title) {
+			$title['tabIndex'] = ++$tabIndex;
 			$html .= $this->layout->getBlock("titlelink", $title);
 		}
 		
