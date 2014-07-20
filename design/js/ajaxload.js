@@ -1,6 +1,6 @@
 $(document).ready(function() {
-	$('.loadTitles').click(function(event) {
-		event.preventDefault();
+	$('.loadTitles').click(function(e) {
+		e.preventDefault();
 		
 		$.get(
 			$(this).attr('data-load') + "/" + $('.titleLink').length,

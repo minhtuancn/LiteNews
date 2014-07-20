@@ -60,7 +60,7 @@ class AjaxController extends Controller {
 	protected function GetArticle($href) {
 		$href = explode("/", $href, 3);
 		$websiteID = $this->GetWebsiteByName($href[1], 'id');
-		$href = "/".$href[2];
+		$href = str_replace(" ", "+", "/".$href[2]);
 		$content = $this->db->LoadArticle($websiteID, $href);
 		$content['url'] = $this->GetWebsiteByID($websiteID, 'url').htmlspecialchars($href);
 		$content['ajax'] = true;
