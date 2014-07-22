@@ -21,11 +21,7 @@
 		width: 32%;
 	}
 	
-	a.titleLink {
-		width: 49%;
-	}
-	
-	a.loadTitles {
+	a.titleLink, a.loadTitles, a.loadTitles + .themeSwitch {
 		width: 49%;
 	}
 }
