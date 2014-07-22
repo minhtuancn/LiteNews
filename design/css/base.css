@@ -25,9 +25,6 @@ a {
 }
 
 #top-buttons {
-}
-
-.button-group-float {
 	position: fixed;
 	left: 0px;
 	bottom: 0px;
@@ -37,7 +34,7 @@ a {
 	border-radius: 0px;
 }
 
-.button-group-float > * {
+#top-buttons > * {
 	opacity: 1.0;
 }
 
@@ -140,6 +137,10 @@ a.loadTitles {
 
 .ajaxArticle > .contentBox {
 	border-radius: 5px;
+}
+
+.ajaxArticle > .contentBox > .fa-refresh {
+	font-size: 4.0em;
 }
 
 span.titleInfo {
@@ -305,7 +306,7 @@ a {
 	color: inherit;
 }
 
-.button-group-float {
+#top-buttons {
 	background: rgba(0, 0, 0, 0.8);
 }
 

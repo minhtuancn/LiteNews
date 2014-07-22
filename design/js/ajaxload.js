@@ -1,3 +1,7 @@
+// Using ajax prefix
+
+var ajaxTimeout;
+
 $(document).ready(function() {
 	$('.loadTitles').click(function(e) {
 		e.preventDefault();
@@ -13,6 +17,15 @@ $(document).ready(function() {
 	$('.titleLink').click(function(e) {
 		if($(window).width() >= 1224) {
 			e.preventDefault();
+			
+			var top = $('.titleLink').position().top;
+			
+			$('.ajaxArticle')
+				.html('<div class="contentBox"><i class="fa fa-refresh fa-spin"></i></div>')
+				.css('top', top)
+				.css('display', 'inline-block');
+				
+			$('.ajaxArticle > .contentBox').css('height', $(window).height() - top - 58);
 			
 			var url = document.URL;
 			var strIndex = url.lastIndexOf("/");
@@ -30,14 +43,27 @@ $(document).ready(function() {
 			$.get(
 				url,
 				function(data) {
-					var position = $('.titleLink').position();
 					$('.ajaxArticle')
 						.html(data)
-						.css('display', 'inline-block')
-						.css('top', position.top)
-						.css('max-height', $(window).height() - position.top - 58);
+						.css('height', 'auto')
+						.scrollTop(0);
+					
+					ajaxOnResize();
 				}
 			);
 		}
 	});
+});
+
+function ajaxOnResize() {
+	var top = $('.titleLink').position().top;
+	
+	$('.ajaxArticle')
+		.css('top', top)
+		.css('max-height', $(window).height() - top - 58);
+}
+
+$(window).resize(function() {
+	clearTimeout(ajaxTimeout);
+	ajaxTimeout = setTimeout(ajaxOnResize, 200);
 });
