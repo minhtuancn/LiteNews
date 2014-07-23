@@ -14,7 +14,7 @@ $(document).ready(function() {
 		);
 	});
 	
-	$('.titleLink').click(function(e) {
+	$('body').delegate('.titleLink', 'click', function(e) {
 		if($(window).width() >= 1224) {
 			e.preventDefault();
 			
