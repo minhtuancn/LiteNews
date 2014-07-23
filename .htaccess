@@ -5,3 +5,18 @@ RewriteRule ^design/(.*)$ design/$1 [NC,L]
 
 RewriteRule ^([A-Za-z0-9-+]+)/(.*)?$ index.php?page=$1&href=$2 [NC,L]
 RewriteRule ^([A-Za-z0-9-+]+)/?$ index.php?page=$1 [NC,L]
+
+<Files *.php>
+    Order Deny,Allow
+    Deny from all
+</Files>
+
+<Files index.php>
+    Order Allow,Deny
+    Allow from all
+</Files>
+
+<FilesMatch ".*\.(css|js)$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
