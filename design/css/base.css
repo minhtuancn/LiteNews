@@ -141,6 +141,7 @@ a.loadTitles {
 
 .ajaxArticle > .contentBox > .fa-refresh {
 	font-size: 4.0em;
+	font-size: 20vw;
 }
 
 span.titleInfo {
