@@ -47,6 +47,14 @@
 	</controller>
 	
 	<controller>
+		<name>Admin</name>
+		<condition>
+			<page>admin</page>
+			<href>logout</href>
+		</condition>
+	</controller>
+	
+	<controller>
 		<name>AdminFeedback</name>
 		<condition>
 			<page>admin</page>
