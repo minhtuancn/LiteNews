@@ -35,7 +35,8 @@ class CronController extends Controller {
 			
 			if(empty($listHTML)) {
 				self::LogError("Failed to fetch list from ".$website['url'].$path);
-				$this->db->DeleteArticles($website['id']); // Without deleting we may not notice possible malfunctioning
+				// Without deleting we may not notice possible malfunctioning
+				$this->db->DeleteArticles($website['id']);
 				return;
 			}
 			
@@ -73,7 +74,7 @@ class CronController extends Controller {
 	
 	
 	protected function UpdateFPC() {
-		$params = array(array('page'=>"collection"));
+		$params = array(array('page'=>"index"), array('page'=>"collection"));
 		$tempParams = array();
 		
 		foreach(Config::GetPath("website/website", true) as $website) {

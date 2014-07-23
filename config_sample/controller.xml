@@ -10,6 +10,14 @@
 	</controller>
 	
 	<controller>
+		<name>Index</name>
+		<condition>
+			<page>index</page>
+			<href></href>
+		</condition>
+	</controller>
+	
+	<controller>
 		<name>Cron</name>
 		<condition>
 			<page>cron</page>
