@@ -10,13 +10,7 @@ $(document).ready(function() {
 });
 
 function floatOnScroll() {
-	if(floatElement.css('opacity') < 1.0) {
-		clearTimeout(floatOpacityDelay);
-		floatOpacityDelay = setTimeout(
-			function() { floatElement.animate({'opacity': 1.0}, 400); },
-			1000
-		);
-	}
+	floatElement.stop().animate({'opacity': 1.0}, 1000);
 }
 
 $(window).scroll(function() {
@@ -25,7 +19,7 @@ $(window).scroll(function() {
 	}
 	
 	clearTimeout(floatTimeout);
-	floatTimeout = setTimeout(floatOnScroll, 200);
+	floatTimeout = setTimeout(floatOnScroll, 1000);
 });
 
 $(window).resize(function() {
