@@ -5,6 +5,7 @@ var buttonTimeout;
 function buttonMaxHeight(selector) {
 	var maxHeight = 0;
 	$(selector).each(function() {
+		$(this).removeAttr('style');
 		if($(this).outerHeight() > maxHeight) {
 			maxHeight = $(this).outerHeight();
 		}
