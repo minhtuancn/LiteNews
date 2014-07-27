@@ -6,10 +6,14 @@ $(document).ready(function() {
 	$('.loadTitles').click(function(e) {
 		e.preventDefault();
 		
+		var origValue = $(this).html();
+		$(this).html('<i class="fa fa-refresh fa-spin"></i>');
+		
 		$.get(
 			$(this).attr('data-load') + "/" + $('.titleLink').length,
 			function(data) {
 				$('.titleLink').last().after(data);
+				$('.loadTitles').html(origValue);
 			}
 		);
 	});
