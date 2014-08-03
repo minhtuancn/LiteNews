@@ -102,7 +102,7 @@ class CronController extends Controller {
 			ob_start();
 			
 			$_GET['page'] = $param['page'];
-			$_COOKIE['settings']['theme'] = $param['locale'];
+			$_COOKIE['settings']['theme'] = $param['theme'];
 			$_COOKIE['settings']['lang'] = $param['locale'];
 			include("index.php");
 			
