@@ -128,4 +128,14 @@
 		<language>en</language>
 		<rss>1</rss>
 	</website>
+	
+	<website>
+		<id>14</id>
+		<name>Foreca</name>
+		<url>http://www.foreca.fi</url>
+		<listPath></listPath>
+		<logo>7</logo>
+		<language>en</language>
+		<indexExclude>true</indexExclude>
+	</website>
 </config>

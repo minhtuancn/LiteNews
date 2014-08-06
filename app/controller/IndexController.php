@@ -9,7 +9,9 @@ class IndexController extends Controller {
 			$websites = $this->SortByPopularity($websites);
 		
 		foreach($websites as $website) {
-			$content['websites'][$website['language']][] = $website;
+			if(!isset($website['indexExclude'])) {
+				$content['websites'][$website['language']][] = $website;
+			}
 		}
 		
 		if(key($content['websites']) != $this->GetUserSetting("lang"))
