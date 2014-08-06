@@ -19,6 +19,10 @@ $(document).ready(function() {
 	});
 	
 	$('body').delegate('.titleLink', 'click', function(e) {
+		if($(this).hasClass('weatherLink')) {
+			return;
+		}
+		
 		if($(window).width() >= 1224) {
 			e.preventDefault();
 			
@@ -31,17 +35,8 @@ $(document).ready(function() {
 				
 			$('.ajaxArticle > .contentBox').css('height', $(window).height() - top - 58);
 			
-			var url = document.URL;
-			var strIndex = url.lastIndexOf("/");
-			if(url.length - 1 == strIndex) {
-				url = url.substr(0, strIndex);
-				url = url.substr(0, url.lastIndexOf("/"));
-			}
-			else {
-				url = url.substr(0, strIndex);
-			}
-			
 			var articleUrl = $(this).attr('href');
+			var url = ajaxGetUrl();
 			url = url + "/ajaxload/article" + articleUrl.substr(url.length);
 			
 			$.get(
@@ -57,7 +52,47 @@ $(document).ready(function() {
 			);
 		}
 	});
+	
+	if($('.weather').length > 0) {
+		navigator.geolocation.getCurrentPosition(function (location) {
+			var url = ajaxGetUrl() + "/ajaxload/weather/" + location.coords.latitude + "/" + location.coords.longitude;
+			$.get(
+				url,
+				function(data) {
+					$('.weather').html(data);
+				}
+			);
+		});
+	}
+	
+	$('.weatherLink').click(function(e) {
+		e.preventDefault();
+		
+		$('.weather').html('<div class="contentBox"><i class="fa fa-refresh fa-spin"></i></div>');
+		$('html,body').scrollTop(0);
+		
+		var url = ajaxGetUrl() + "/ajaxload/weather/" + $(this).text();
+		$.get(
+			url,
+			function(data) {
+				$('.weather').html(data);
+			}
+		);
+	});
 });
+
+function ajaxGetUrl() {
+	var url = document.URL;
+	var strIndex = url.lastIndexOf("/");
+	if(url.length - 1 == strIndex) {
+		url = url.substr(0, strIndex);
+		url = url.substr(0, url.lastIndexOf("/"));
+	}
+	else {
+		url = url.substr(0, strIndex);
+	}
+	return url;
+}
 
 function ajaxOnResize() {
 	var top = $('.titleLink').position().top;

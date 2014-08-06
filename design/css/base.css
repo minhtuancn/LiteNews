@@ -139,9 +139,13 @@ a.loadTitles {
 	border-radius: 5px;
 }
 
-.ajaxArticle > .contentBox > .fa-refresh {
+.weather > .contentBox {
+	border-radius: 5px;
+}
+
+.ajaxArticle > .contentBox > .fa-refresh, .weather > .contentBox > .fa-refresh {
 	font-size: 4.0em;
-	font-size: 20vw;
+	margin-left: 46%;
 }
 
 span.titleInfo {

@@ -24,4 +24,9 @@
 	a.titleLink, a.loadTitles, a.loadTitles + .themeSwitch {
 		width: 49%;
 	}
+	
+	.weather {
+		width: 49%;
+		float: right;
+	}
 }

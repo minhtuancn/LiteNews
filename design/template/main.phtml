@@ -7,6 +7,11 @@
 		<img src="design/img/logo.png" alt="<?php echo $this->__("Collection"); ?>" data-logo="7" />
 	</div>
 </a>
+<a href="<?php echo $this->getURL("weather"); ?>" class="indexLink" tabindex="<?php echo ++$this->content['tabIndex']; ?>">
+	<div class="spriteContainer">
+		<img src="design/img/logo.png" alt="Foreca" data-logo="13" />
+	</div>
+</a>
 <?php foreach($this->content['websites'] as $websiteByLang): ?>
 <div class="indexDescription">
 	<span><?php echo $this->__("news_".$websiteByLang[0]['language']); ?></span>
