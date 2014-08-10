@@ -74,7 +74,7 @@ class CronController extends Controller {
 	
 	
 	protected function UpdateFPC() {
-		$params = array(array('page'=>"index"), array('page'=>"collection"));
+		$params = array(array('page'=>"index"), array('page'=>"collection"), array('page'=>"weather"));
 		$tempParams = array();
 		
 		foreach(Config::GetPath("website/website", true) as $website) {
