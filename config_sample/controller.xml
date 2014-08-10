@@ -39,6 +39,13 @@
 	</controller>
 	
 	<controller>
+		<name>Weather</name>
+		<condition>
+			<page>weather</page>
+		</condition>
+	</controller>
+	
+	<controller>
 		<name>Admin</name>
 		<condition>
 			<page>admin</page>
