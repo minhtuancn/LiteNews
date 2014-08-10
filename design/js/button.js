@@ -32,6 +32,11 @@ $(document).ready(function() {
 			p.width(width - 40);
 	});
 	
+	$('.button.refresh').click(function() {
+		document.location.reload(true);
+		$('html,body').scrollTop(0);
+	});
+	
 	buttonOnResize();
 });
 

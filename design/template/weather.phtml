@@ -1,6 +1,6 @@
 <div id="top-buttons">
 	<?php echo $this->getBlock("button", array('href'=>"/", 'icon'=>"angle-double-left", 'label'=>"Previous page")); ?>
-	<?php echo $this->getBlock("button", array('href'=>"javascript:document.location.reload(true)", 'icon'=>"refresh", 'label'=>"Refresh", 'pullRight'=>true)); ?>
+	<?php echo $this->getBlock("button", array('href'=>"#", 'icon'=>"refresh", 'label'=>"Refresh", 'pullRight'=>true, 'customClass'=>"refresh")); ?>
 </div>
 <?php if(empty($this->content)): ?>
 <div class="error"><?php echo $this->__("No articles found"); ?></div>
