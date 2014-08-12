@@ -148,6 +148,16 @@ a.loadTitles {
 	margin-left: 46%;
 }
 
+.weather .contentText {
+	display: inline-block;
+	width: 49%;
+	height: 50px;
+}
+
+.weather .contentText:nth-child(odd) {
+	float: right;
+}
+
 span.titleInfo {
 	font-size: 0.8em;
 	font-weight: normal;

@@ -48,17 +48,13 @@ class ForecaParser extends Parser {
 				$day = $div->getElementsByTagName('span');
 				foreach($day as $span) {
 					if($span->getAttribute('class') == "h5") {
-						$content['bodyText'][] = $span->nodeValue." ".$condition;
+						$content['bodyText'][] = $span->nodeValue."<br />".$condition;
 						break;
 					}
 				}
 				
-				$degrees = "";
-				$info = $div->getElementsByTagName('abbr');
-				foreach($info as $p) {
-					$degrees .= " ".$p->nodeValue;
-				}
-				$content['bodyText'][] = trim($degrees);
+				$degrees = $div->getElementsByTagName('abbr');
+				$content['bodyText'][] = $degrees->item(0)->nodeValue."<br />".$degrees->item(1)->nodeValue;
 			}
 		}
 		
