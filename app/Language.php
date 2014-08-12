@@ -6,7 +6,7 @@ class Language {
 	public function __construct($language="en") {
 		$this->translations = array();
 		
-		$file = "locale/".$language.".csv";
+		$file = "design/locale/".$language.".csv";
 		if(file_exists($file)) {
 			$csv = @file_get_contents($file);
 			
