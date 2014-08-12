@@ -39,10 +39,16 @@ class ForecaParser extends Parser {
 		$divs = $this->dom->getElementsByTagName('div');
 		foreach($divs as $div) {
 			if(strpos($div->getAttribute('class'), "c1 daily clr") === 0) {
+				$weatherCondition = $div->getElementsByTagName('a');
+				if($weatherCondition->length == 0) {
+					continue;
+				}
+				$condition = $weatherCondition->item(0)->getAttribute('title');
+				
 				$day = $div->getElementsByTagName('span');
 				foreach($day as $span) {
 					if($span->getAttribute('class') == "h5") {
-						$content['bodyText'][] = $span->nodeValue;
+						$content['bodyText'][] = $span->nodeValue." ".$condition;
 						break;
 					}
 				}
