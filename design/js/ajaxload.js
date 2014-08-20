@@ -95,7 +95,12 @@ function ajaxGetUrl() {
 }
 
 function ajaxOnResize() {
-	var top = $('.titleLink').position().top;
+	var top = $('.titleLink');
+	if(top.length == 0) {
+		return;
+	}
+	
+	top = top.position().top;
 	
 	$('.ajaxArticle')
 		.css('top', top)
@@ -104,5 +109,5 @@ function ajaxOnResize() {
 
 $(window).resize(function() {
 	clearTimeout(ajaxTimeout);
-	ajaxTimeout = setTimeout(ajaxOnResize, 200);
+	ajaxTimeout = setTimeout(ajaxOnResize, 100);
 });
