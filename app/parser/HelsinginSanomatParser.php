@@ -72,7 +72,7 @@ class HelsinginSanomatParser extends Parser {
 			$p = trim($p->nodeValue, " ");
 			
 			if(!empty($p))
-				$content['bodyText'][] = utf8_decode($p);
+				$content['bodyText'][] = $p;
 		}
 		
 		return $content;
