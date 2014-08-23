@@ -4,6 +4,8 @@
 	<!-- Must end with slash -->
 	<baseURL>localhost/</baseURL>
 	
+	<timezone>Europe/Helsinki</timezone>
+	
 	<!-- Enable full page cache -->
 	<FPC>true</FPC>
 	

@@ -1,7 +1,7 @@
 <?php
 require_once("app/controller/Abstract.php");
 
-date_default_timezone_set("Europe/Helsinki");
+date_default_timezone_set(Config::GetPath("local/timezone"));
 ini_set("error_reporting", E_ALL | E_STRICT);
 set_error_handler(array("Controller", "LogPHPError"));
 
