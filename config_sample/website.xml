@@ -104,7 +104,7 @@
 		<logo>9</logo>
 		<language>fi</language>
 		<rss>1</rss>
-		<hideFromCollection>1</hideFromCollection>
+		<hideFromCollection>true</hideFromCollection>
 	</website>
 	
 	<website>
@@ -137,5 +137,6 @@
 		<logo>7</logo>
 		<language>en</language>
 		<indexExclude>true</indexExclude>
+		<hideFromCollection>true</hideFromCollection>
 	</website>
 </config>

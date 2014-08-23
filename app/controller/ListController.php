@@ -12,8 +12,10 @@ class ListController extends Controller {
 		if($this->page == "collection") {
 			$this->template->setTitle("Collection");
 			
-			foreach(unserialize(Config::GetPath("local/collection")) as $listWebsite) {
-				$listWebsites[] = $listWebsite;
+			foreach(Config::GetPath("website/website", true) as $listWebsite) {
+				if($listWebsite['language'] == $this->GetUserSetting("lang") && (!isset($listWebsite['hideFromCollection']) || !$listWebsite['hideFromCollection'])) {
+					$listWebsites[] = $listWebsite['id'];
+				}
 			}
 		}
 		else {
