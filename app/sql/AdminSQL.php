@@ -37,7 +37,7 @@ class AdminSQL extends Database {
 		
 		$deleteParagraphs = $this->db->prepare("DELETE FROM ArticleParagraph WHERE ArticleID=?");
 		foreach($articles as $article) {
-			$deleteParagraphs->execute(array($article));
+			$deleteParagraphs->execute(array($article['ID']));
 		}
 		
 		$deleteArticles = $this->db->prepare("DELETE FROM Article WHERE WebsiteID=?");
