@@ -26,7 +26,7 @@ abstract class Controller {
 	
 	
 	public static function LogError($str) {
-		$file = (isset($_GET['page']) ? $_GET['page'] : "index");
+		$file = !empty($page) ? $page : "system";
 		$file = "log/".$file.".log";
 		
 		if(is_writable($file))
