@@ -1,10 +1,21 @@
 // Using float prefix
 
-var floatBody, floatElement, floatTimeout, floatOpacityDelay;
+var floatActive = true,
+	floatBody,
+	floatElement,
+	floatScrollTimeout,
+	floatResizeTimeout,
+	floatOpacityDelay;
 
 $(document).ready(function() {
 	floatBody = $('body');
 	floatElement = $('#top-buttons');
+	
+	if(floatElement.length == 0) {
+		floatActive = false;
+		return;
+	}
+	
 	$(window).trigger('scroll');
 	$(window).trigger('resize');
 });
@@ -14,14 +25,27 @@ function floatOnScroll() {
 }
 
 $(window).scroll(function() {
+	if(!floatActive) {
+		return;
+	}
+	
 	if(floatElement.css('opacity') > 0.2 && $(window).scrollTop() + $(window).height() < $(document).height() - 50) {
 		floatElement.css('opacity', 0.2);
 	}
 	
-	clearTimeout(floatTimeout);
-	floatTimeout = setTimeout(floatOnScroll, 1000);
+	clearTimeout(floatScrollTimeout);
+	floatScrollTimeout = setTimeout(floatOnScroll, 1000);
 });
 
-$(window).resize(function() {
+function floatOnResize() {
 	floatBody.css('margin-bottom', floatElement.outerHeight());
+}
+
+$(window).resize(function() {
+	if(!floatActive) {
+		return;
+	}
+	
+	clearTimeout(floatResizeTimeout);
+	floatResizeTimeout = setTimeout(floatOnResize, 50);
 });
