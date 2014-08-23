@@ -16,7 +16,7 @@ class LiteNews {
 		$this->href = $href;
 		
 		foreach(Config::GetPath("controller/controller", true) as $controller) {
-			$condition = $controller['condition'];
+			$condition = isset($controller['condition']) ? $controller['condition'] : array();
 			if(!isset($condition['page']))
 				$condition['page'] = NULL;
 			if(!isset($condition['href']))
