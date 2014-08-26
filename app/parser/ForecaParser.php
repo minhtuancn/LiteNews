@@ -38,7 +38,7 @@ class ForecaParser extends Parser {
 		
 		$divs = $this->dom->getElementsByTagName('div');
 		foreach($divs as $div) {
-			if(strpos($div->getAttribute('class'), "c1 daily clr") === 0) {
+			if(strpos($div->getAttribute('class'), "c1 daily") === 0) {
 				$weatherCondition = $div->getElementsByTagName('a');
 				if($weatherCondition->length == 0) {
 					continue;
