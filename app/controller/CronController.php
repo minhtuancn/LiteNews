@@ -16,7 +16,7 @@ class CronController extends Controller {
 	protected function UpdateData() {
 		$websiteID = $this->db->EldestUpdate();
 		if($websiteID == NULL)
-			exit;
+			return;
 		
 		// Refresh timestamp also before the actual update because running script can take several minutes
 		$this->db->RefreshUpdateTime($websiteID);
