@@ -27,7 +27,11 @@ a.titleLink {
 }
 
 a.indexLink:active, a.indexLink:focus {
-	opacity: 1.0;
+	background: rgba(255, 255, 255, 1.0);
+}
+
+a.indexLink .spriteContainer {
+	background: #000;
 }
 
 a.titleLink:active, a.titleLink:focus {

@@ -22,6 +22,10 @@ a.indexLink {
 	border-color: #135;
 }
 
+a.indexLink .spriteContainer {
+	background: #fff;
+}
+
 a.titleLink {
 	background: #357;
 	border-color: #135;
@@ -29,7 +33,7 @@ a.titleLink {
 }
 
 a.indexLink:active, a.indexLink:focus {
-	opacity: 1.0;
+	background: rgba(255, 255, 255, 1.0);
 }
 
 a.titleLink:active, a.titleLink:focus {
