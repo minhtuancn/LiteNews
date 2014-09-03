@@ -32,5 +32,5 @@ $(document).ready(function() {
 
 $(window).resize(function() {
 	clearTimeout(responsiveTimeout);
-	responsiveTimeout = setTimeout(responsiveOnResize, 200);
+	responsiveTimeout = setTimeout(responsiveOnResize, 100);
 });

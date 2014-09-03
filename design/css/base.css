@@ -1,3 +1,8 @@
+@font-face {
+	font-family: ubuntu;
+	src: url(../../design/font/ubuntu.ttf);
+}
+
 * {
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
@@ -94,8 +99,12 @@ a.indexLink, a.titleLink {
 }
 
 a.indexLink {
-	padding: 7px;
 	box-shadow: 5px 5px 5px -5px #000 inset, -5px -5px 5px -5px #fff inset;
+	height: 40px;
+	max-height: 40px;
+	text-align: center;
+	overflow: hidden;
+	position: relative;
 }
 
 a.indexLink:active, a.indexLink:focus {
@@ -103,37 +112,24 @@ a.indexLink:active, a.indexLink:focus {
 }
 
 a.indexLink p {
+	font-family: ubuntu, "Comic Sans MS";
 	color: #000;
 	margin: 0px;
-	text-align: center;
-	text-transform: uppercase;
 	font-weight: 900;
 	font-size: 1.4em;
-}
-
-a.indexLink i {
-	font-size: 0.7em;
-	vertical-align: top;
-	padding: 0px 5px;
-}
-
-a.indexLink .spriteContainer {
-	margin: 0px auto;
-	position: relative;
-	min-width: 200px;
-	width: 50%;
-	max-width: 400px;
-	overflow: hidden;
+	display: inline-block;
+	position: absolute;
+	top: 50%;
+	transform: translate(-50%, -50%);
 }
 
 a.indexLink img {
-	border: 0px;
+	max-width: 100%;
+	display: inline-block;
 	position: absolute;
-	top: 0px;
-	left: 0px;
-	width: 100%;
-	background: #fff;
-	opacity: 0.8;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 a.titleLink {
@@ -216,7 +212,7 @@ p.contentText {
 
 .langSwitch {
 	float: right;
-	margin: -7px 0px 0px 0px;
+	margin: -10px 0px 0px 0px;
 }
 
 .langSwitch a:not(:first-child) {
@@ -328,6 +324,10 @@ select:focus {
 
 #feedbackType {
 	width: 100%;
+}
+
+.advert {
+	text-align: center;
 }
 
 /* All below should be overwritten by theme files */
