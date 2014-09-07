@@ -9,6 +9,12 @@
 	<!-- Enable full page cache -->
 	<FPC>true</FPC>
 	
+	<!-- Merge CSS files -->
+	<mergeCSS>true</mergeCSS>
+	
+	<!-- Merge JS files -->
+	<mergeJS>true</mergeJS>
+	
 	<!-- Admin panel can be accessed at /admin -->
 	<admin>
 		<password>password</password>

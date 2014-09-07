@@ -65,6 +65,54 @@ class Template {
 		return $this->content;
 	}
 	
+	public function getCSS() {
+		$files = array();
+		$themes = array_map(
+			function($theme) {
+				return strtolower(str_replace(" ", "", $theme));
+			},
+			Config::GetPath("layout/themes/theme", true)
+		);
+		$theme = $themes[Controller::GetUserSetting("theme")];
+		
+		if(Config::GetPath("local/mergeCSS")) {
+			$files[] = "cache/css/".$theme.".css";
+		}
+		else {
+			foreach(Config::GetPath("layout/css/path", true) as $path) {
+				$files[] = "design/css/".$path;
+			}
+			$files[] = "design/css/".$theme.".css";
+		}
+		
+		$html = "";
+		foreach($files as $file) {
+			$html .= '<link rel="stylesheet" type="text/css" href="'.$this->getURL($file).'" media="screen" />';
+		}
+		
+		return $html;
+	}
+	
+	public function getJS() {
+		$files = array();
+		
+		if(Config::GetPath("local/mergeJS")) {
+			$files[] = "cache/js.js";
+		}
+		else {
+			foreach(Config::GetPath("layout/js/path", true) as $path) {
+				$files[] = "design/js/".$path;
+			}
+		}
+		
+		$html = "";
+		foreach($files as $file) {
+			$html .= '<script src="'.$this->getURL($file).'"></script>';
+		}
+		
+		return $html;
+	}
+	
 	public function getBlock($name, $data=NULL) {
 		$this->block = $data;
 		return $this->getHTML($name);
