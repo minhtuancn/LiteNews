@@ -120,6 +120,7 @@ a.indexLink p {
 	display: inline-block;
 	position: absolute;
 	top: 50%;
+	-webkit-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
 }
 
@@ -129,6 +130,7 @@ a.indexLink img {
 	position: absolute;
 	top: 50%;
 	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
 }
 
