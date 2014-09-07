@@ -114,8 +114,11 @@ class Template {
 	}
 	
 	public function getBlock($name, $data=NULL) {
+		$currentBlock = $this->block;
 		$this->block = $data;
-		return $this->getHTML($name);
+		$html = $this->getHTML($name);
+		$this->block = $currentBlock;
+		return $html;
 	}
 	
 	public function getHTML($blockName=NULL) {
