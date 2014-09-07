@@ -1,7 +1,15 @@
+<?php
+$themes = array_map(
+	function($theme) {
+		return strtolower(str_replace(" ", "", $theme));
+	},
+	Config::GetPath("layout/themes/theme", true)
+);
+array_splice($themes, Controller::GetUserSetting("theme"), 1);
+?>
 <div class="contentBox themeSwitch">
-	<?php for($i = 0; $i < sizeof($this->block['themes']); ++$i): ?>
-	<?php if($this->block['userTheme'] == $i) continue; ?>
-	<a href="" style="background-color: <?php echo $this->block['themes'][$i]; ?>;" id="theme-<?php echo $i; ?>">&nbsp;</a>
+	<?php for($i = 0; $i < sizeof($themes); ++$i): ?>
+	<a href="" style="background-color: <?php echo $themes[$i]; ?>;" id="theme-<?php echo $i; ?>">&nbsp;</a>
 	<?php endfor; ?>
 	<form action="#" method="post" id="themeSwitchForm">
 		<input type="hidden" name="theme" value="" />
