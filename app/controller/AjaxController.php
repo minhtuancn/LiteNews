@@ -21,7 +21,6 @@ class AjaxController extends Controller {
 		
 		if(sizeof($action) == 3 && ($action[1] == "collection" || $this->GetWebsiteByName($action[1]) != false) && is_numeric($action[2])) {
 			$this->db = new ListSQL;
-			file_put_contents("log/debug.log", "\n".$action[1]." ".$action[2], FILE_APPEND);
 			return $this->GetList($action[1], $action[2]);
 		}
 		
