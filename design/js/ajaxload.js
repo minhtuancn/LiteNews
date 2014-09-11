@@ -114,6 +114,10 @@ function ajaxOnResize() {
 	var padding = 58;
 	if($(window).width() >= 1224) {
 		padding += 10;
+		$('body').css('overflow', 'visible');
+	}
+	else if($('.ajaxArticle .contentBox').length > 0 && $('.ajaxArticle').is(':visible')) {
+		$('body').css('overflow', 'hidden');
 	}
 	
 	$('.ajaxArticle').css('padding-bottom', padding);
