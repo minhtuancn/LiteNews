@@ -5,10 +5,11 @@ $themes = array_map(
 	},
 	Config::GetPath("layout/themes/theme", true)
 );
-array_splice($themes, Controller::GetUserSetting("theme"), 1);
+$activeTheme = Controller::GetUserSetting("theme");
 ?>
 <div class="contentBox themeSwitch">
-	<?php for($i = 0; $i < sizeof($themes); ++$i): ?>
+	<?php for($i = 0; $i < count($themes); ++$i): ?>
+	<?php if($i == $activeTheme) continue; ?>
 	<a href="" style="background-color: <?php echo $themes[$i]; ?>;" id="theme-<?php echo $i; ?>">&nbsp;</a>
 	<?php endfor; ?>
 	<form action="#" method="post" id="themeSwitchForm">
