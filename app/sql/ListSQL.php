@@ -3,7 +3,7 @@ class ListSQL extends Database {
 	public function LoadTitles($websites, $offset=0) {
 		$titles = array();
 		
-		$websitesStr = implode(',', $websites);
+		$websitesStr = $this->GetWebsiteArray($websites);
 		$query = $this->db->prepare("
 			SELECT WebsiteID, ListTitle, URL, Timestamp
 			FROM Article
@@ -22,5 +22,19 @@ class ListSQL extends Database {
 			$titles[] = array('website'=>$row['WebsiteID'], 'title'=>$row['ListTitle'], 'url'=>$row['URL'], 'timestamp'=>$row['Timestamp']);
 		
 		return $titles;
+	}
+	
+	
+	public function GetOffset($timestamp, $websites) {
+		$websitesStr = $this->GetWebsiteArray($websites);
+		$query = $this->db->prepare("SELECT COUNT(*) FROM Article WHERE Timestamp >= ? AND WebsiteID IN (".$websitesStr.")");
+		$query->execute(array($timestamp));
+		
+		return $query->fetchColumn();
+	}
+	
+	
+	protected function GetWebsiteArray($websites) {
+		return implode(',', $websites);
 	}
 }
