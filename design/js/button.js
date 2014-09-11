@@ -1,10 +1,11 @@
 // Using button prefix
 
-var buttonTimeout;
+var buttonTimeout,
+	buttonSelector = '.button';
 
-function buttonMaxHeight(selector) {
+function buttonMaxHeight(elements) {
 	var maxHeight = 0;
-	$(selector).each(function() {
+	elements.each(function() {
 		$(this).removeAttr('style');
 		if($(this).outerHeight() > maxHeight) {
 			maxHeight = $(this).outerHeight();
@@ -14,13 +15,25 @@ function buttonMaxHeight(selector) {
 }
 
 function buttonOnResize() {
-	var height = buttonMaxHeight('.button');
-	$('.button').each(function() {
-		if($(this).outerHeight() < height) {
-			var padding = (height - $(this).outerHeight()) / 2 + 5;
-			$(this).css("padding-top", padding);
-			$(this).css("padding-bottom", padding);
+	var parents = [];
+	
+	$(buttonSelector).each(function() {
+		var parent = $(this).parent();
+		if($.inArray(parent, parents) == -1) {
+			parents.push(parent);
 		}
+	});
+	
+	$.each(parents, function(index, parent) {
+		var buttons = parent.find(">"+buttonSelector);
+		var height = buttonMaxHeight(buttons);
+		buttons.each(function() {
+			if($(this).outerHeight() < height) {
+				var padding = (height - $(this).outerHeight()) / 2 + 5;
+				$(this).css("padding-top", padding);
+				$(this).css("padding-bottom", padding);
+			}
+		});
 	});
 }
 
@@ -32,7 +45,8 @@ $(document).ready(function() {
 			p.width(width - 40);
 	});
 	
-	$('.button.refresh').click(function() {
+	$('.button.refresh').click(function(e) {
+		e.preventDefault();
 		document.location.reload(true);
 		$('html,body').scrollTop(0);
 	});

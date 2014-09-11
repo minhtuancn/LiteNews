@@ -9,7 +9,7 @@ var floatActive = true,
 
 $(document).ready(function() {
 	floatBody = $('body');
-	floatElement = $('#top-buttons');
+	floatElement = $('.float-buttons.list-view');
 	
 	if(floatElement.length == 0) {
 		floatActive = false;

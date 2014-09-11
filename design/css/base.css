@@ -29,17 +29,19 @@ a {
 	text-decoration: none;
 }
 
-#top-buttons {
+.float-buttons {
 	position: fixed;
 	left: 0px;
 	bottom: 0px;
-	margin-bottom: 0px;
+	margin: 0px;
 	padding: 10px 1%;
 	width: 100%;
 	border-radius: 0px;
+	background: inherit;
+	z-index: 1;
 }
 
-#top-buttons > * {
+.float-buttons > * {
 	opacity: 1.0;
 }
 
@@ -120,6 +122,8 @@ a.indexLink p {
 	display: inline-block;
 	position: absolute;
 	top: 50%;
+	left: 50%;
+	-ms-transform: translate(-50%, -50%);
 	-webkit-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
 }
@@ -130,6 +134,7 @@ a.indexLink img {
 	position: absolute;
 	top: 50%;
 	left: 50%;
+	-ms-transform: translate(-50%, -50%);
 	-webkit-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
 }
@@ -145,12 +150,16 @@ a.loadTitles {
 
 .ajaxArticle {
 	display: none;
-	width: 48%;
+	width: 100%;
+	height: 100%;
 	margin: 0px;
+	padding: 10px 1% 0px;
 	position: fixed;
-	top: 30px;
-	right: 1%;
+	top: 0px;
+	left: 0px;
 	overflow: auto;
+	background: inherit;
+	z-index: 2;
 }
 
 .ajaxArticle > .contentBox {
@@ -343,7 +352,7 @@ a {
 	color: inherit;
 }
 
-#top-buttons {
+.float-buttons.list-view {
 	background: rgba(0, 0, 0, 0.8);
 }
 
