@@ -62,7 +62,7 @@ class AjaxController extends Controller {
 		}
 		
 		if($titles == false)
-			return null;
+			return "";
 		
 		$html = "";
 		$titles = array_slice($titles, 0, -1);
