@@ -1,10 +1,10 @@
+<?php if(isset($this->block['ajax']) && $this->block['ajax'] == true): ?>
+<div class="float-buttons">
+	<?php echo $this->getBlock("button", array('href'=>$this->block['url'], 'icon'=>"external-link", 'label'=>"Source", "external"=>true)); ?>
+	<?php echo $this->getBlock("button", array('href'=>"#", 'label'=>"Close", 'customClass'=>"close-ajax", 'pullRight'=>true)); ?>
+</div>
+<?php endif; ?>
 <div class="contentBox">
-	<?php if(isset($this->block['ajax']) && $this->block['ajax'] == true): ?>
-	<a href="<?php echo $this->block['url']; ?>" class="button buttonRight" target="_blank">
-		<p><?php echo $this->__("Source"); ?></p>
-		<i class="fa fa-external-link"></i>
-	</a>
-	<?php endif; ?>
 	<?php
 	if(empty($this->block['title']))
 		$this->block['title'] = $this->__("Loading article failed");
@@ -19,4 +19,5 @@
 	<?php foreach($this->block['bodyText'] as $p): ?>
 	<p class="contentText"><?php echo $p; ?></p>
 	<?php endforeach; ?>
+	<?php echo $this->getBlock("ad/article"); ?>
 </div>
