@@ -3,6 +3,7 @@ cache/*
 config/
 debug/
 design/css/font-awesome/css/font-awesome.css
+design/template/block/ad/*
 dev/
 install/
 log/*
