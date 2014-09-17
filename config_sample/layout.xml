@@ -9,7 +9,6 @@
 	<js>
 		<path>jquery-1.11.1.min.js</path>
 		<path>ajaxload.js</path>
-		<path>sprite.js</path>
 		<path>floatbuttons.js</path>
 		<path>form.js</path>
 		<path>button.js</path>

@@ -4,6 +4,8 @@
 	<!-- Must end with slash -->
 	<baseURL>localhost/</baseURL>
 	
+	<siteTitle> - LiteNews</siteTitle>
+	
 	<timezone>Europe/Helsinki</timezone>
 	
 	<!-- Enable full page cache -->

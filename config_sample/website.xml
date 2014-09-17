@@ -6,7 +6,8 @@
 		<name>Iltalehti</name>
 		<url>http://iltalehti.fi</url>
 		<listPath>/etusivu/</listPath>
-		<logo>3</logo>
+		<logo>iltalehti.svg</logo>
+		<logoScale>64</logoScale>
 		<language>fi</language>
 	</website>
 	
@@ -15,7 +16,8 @@
 		<name>Ilta-Sanomat</name>
 		<url>http://iltasanomat.fi</url>
 		<listPath></listPath>
-		<logo>4</logo>
+		<logo>iltasanomat.svg</logo>
+		<logoScale>72</logoScale>
 		<language>fi</language>
 	</website>
 	
@@ -24,7 +26,8 @@
 		<name>Kaleva</name>
 		<url>http://www.kaleva.fi</url>
 		<listPath>/uutiset</listPath>
-		<logo>6</logo>
+		<logo>kaleva.svg</logo>
+		<logoScale>50</logoScale>
 		<language>fi</language>
 	</website>
 	
@@ -33,7 +36,8 @@
 		<name>Helsingin Sanomat</name>
 		<url>http://www.hs.fi</url>
 		<listPath>/uutiset</listPath>
-		<logo>2</logo>
+		<logo>hs.svg</logo>
+		<logoScale>60</logoScale>
 		<language>fi</language>
 	</website>
 	
@@ -42,7 +46,8 @@
 		<name>It-viikko</name>
 		<url>http://www.itviikko.fi</url>
 		<listPath>/uutislista</listPath>
-		<logo>5</logo>
+		<logo>itviikko.svg</logo>
+		<logoScale>39</logoScale>
 		<language>fi</language>
 	</website>
 	
@@ -51,7 +56,8 @@
 		<name>MTV3</name>
 		<url>http://mtv3.fi</url>
 		<listPath>/rss/uutiset.rss</listPath>
-		<logo>8</logo>
+		<logo>mtv.svg</logo>
+		<logoScale>35</logoScale>
 		<language>fi</language>
 		<rss>1</rss>
 	</website>
@@ -61,7 +67,8 @@
 		<name>BBC</name>
 		<url>http://m.bbc.co.uk</url>
 		<listPath>/news</listPath>
-		<logo>0</logo>
+		<logo>bbc.svg</logo>
+		<logoScale>61</logoScale>
 		<language>en</language>
 	</website>
 	
@@ -70,7 +77,7 @@
 		<name>New York Times</name>
 		<url>http://www.nytimes.com</url>
 		<listPath>/services/xml/rss/nyt/InternationalHome.xml</listPath>
-		<logo>nyt.png</logo>
+		<logo>nyt.svg</logo>
 		<language>en</language>
 		<rss>1</rss>
 	</website>-->
@@ -80,28 +87,19 @@
 		<name>YLE</name>
 		<url>http://yle.fi</url>
 		<listPath>/uutiset/rss/uutiset.rss</listPath>
-		<logo>12</logo>
+		<logo>yle.svg</logo>
+		<logoScale>17</logoScale>
 		<language>fi</language>
 		<rss>1</rss>
 	</website>
-	
-	<!--<website>
-		<id>10</id>
-		<name>Sodexo</name>
-		<url>http://m.sodexo.fi/m/412</url>
-		<listPath></listPath>
-		<logo>sodexo.png</logo>
-		<language>fi</language>
-		<reverseSort>true</reverseSort>
-		<hideFromCollection>1</hideFromCollection>
-	</website>-->
 	
 	<website>
 		<id>11</id>
 		<name>Muropaketti</name>
 		<url>http://muropaketti.com</url>
 		<listPath>/feed</listPath>
-		<logo>9</logo>
+		<logo>muropaketti.svg</logo>
+		<logoScale>41</logoScale>
 		<language>fi</language>
 		<rss>1</rss>
 		<hideFromCollection>true</hideFromCollection>
@@ -112,7 +110,8 @@
 		<name>Digitoday</name>
 		<url>http://www.digitoday.fi</url>
 		<listPath>/feeds/DigitodayText.xml</listPath>
-		<logo>1</logo>
+		<logo>digitoday.svg</logo>
+		<logoScale>26</logoScale>
 		<language>fi</language>
 		<rss>1</rss>
 	</website>
@@ -124,7 +123,8 @@
 		<listPath>/xml/rss/3_7041.xml</listPath>
 		<listPath>/xml/rss/3_7455.xml</listPath>
 		<listPath>/xml/rss/3_7201.xml</listPath>
-		<logo>11</logo>
+		<logo>wsj.svg</logo>
+		<logoScale>69</logoScale>
 		<language>en</language>
 		<rss>1</rss>
 	</website>
@@ -134,7 +134,7 @@
 		<name>Foreca</name>
 		<url>http://www.foreca.fi</url>
 		<listPath></listPath>
-		<logo>7</logo>
+		<logo></logo>
 		<language>en</language>
 		<indexExclude>true</indexExclude>
 		<hideFromCollection>true</hideFromCollection>
