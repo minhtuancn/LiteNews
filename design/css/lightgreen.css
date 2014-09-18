@@ -1,10 +1,11 @@
 body {
-	background: #adf;
+	background: #ae8;
+	color: #040;
 }
 
 a.button {
-	background: #f0f0f0;
-	border-color: #aaa;
+	background: #f0faf0;
+	border-color: #0a0;
 }
 
 a.button:active, a.button:focus {
@@ -13,12 +14,12 @@ a.button:active, a.button:focus {
 
 .indexDescription span {
 	background: #fff;
-	color: #000;
+	color: #050;
 }
 
 a.indexLink, a.titleLink {
 	background: #fff;
-	border-color: #aaa;
+	border-color: #0a0;
 }
 
 a.indexLink:active, a.indexLink:focus {
@@ -35,9 +36,9 @@ a.titleLink:active, a.titleLink:focus {
 
 .contentBox {
 	background: #fff;
-	border-color: #aaa;
+	border-color: #0a0;
 }
 
 .float-buttons.list-view {
-	background: rgba(160, 208, 240, 0.8);
+	background: rgba(170, 238, 136, 0.9);
 }
