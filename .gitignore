@@ -3,7 +3,9 @@ cache/*
 config/
 debug/
 design/css/font-awesome/css/font-awesome.css
+design/img/favicon.png
 design/template/block/ad/*
 dev/
 install/
 log/*
+todo.txt
