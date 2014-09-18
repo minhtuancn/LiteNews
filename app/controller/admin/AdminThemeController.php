@@ -8,6 +8,7 @@ class AdminThemeController extends AdminController {
 	protected function InitAdminPage($content) {
 		$this->UpdateCSS();
 		$this->UpdateJS();
+		$this->UpdateSVG();
 		$content['notice'][] = "Theme cache updated successfully";
 		parent::InitAdminPage($content);
 	}
@@ -37,9 +38,27 @@ class AdminThemeController extends AdminController {
 		$mergedJS = "";
 		
 		foreach(Config::GetPath("layout/js/path", true) as $jsFile) {
-			$mergedJS .= file_get_contents("design/js/".$jsFile);
+			$mergedJS .= file_get_contents("design/js/".$jsFile)."\n";
 		}
 		
 		file_put_contents("cache/js.js", $mergedJS);
+	}
+	
+	
+	protected function UpdateSVG() {
+		$mergedSVG = "";
+		
+		foreach(Config::GetPath("website/website", true) as $website) {
+			$path = "design/img/logo/".$website['logo'];
+			
+			if(!isset($website['logo']) || !file_exists($path))
+				continue;
+			
+			$content = file_get_contents($path);
+			$content = str_replace(array("	", "\n", "\r"), "", substr($content, strpos($content, "<svg")));
+			$mergedSVG .= str_pad($website['id'], 2, "0", STR_PAD_LEFT).$content."\n";
+		}
+		
+		file_put_contents("cache/logo.svg", $mergedSVG);
 	}
 }

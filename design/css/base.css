@@ -96,7 +96,7 @@ a.indexLink, a.titleLink {
 }
 
 a.indexLink {
-	box-shadow: 5px 5px 5px -5px #000 inset, -5px -5px 5px -5px #fff inset;
+	/*box-shadow: 5px 5px 5px -5px #000 inset, -5px -5px 5px -5px #fff inset;*/
 	height: 40px;
 	max-height: 40px;
 	text-align: center;
@@ -122,7 +122,7 @@ a.indexLink p {
 	transform: translate(-50%, -50%);
 }
 
-a.indexLink img {
+a.indexLink .logo {
 	max-width: 100%;
 	display: inline-block;
 	position: absolute;
@@ -131,6 +131,10 @@ a.indexLink img {
 	-ms-transform: translate(-50%, -50%);
 	-webkit-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
+}
+
+a.indexLink .logo svg {
+	width: 100%;
 }
 
 a.titleLink {
@@ -329,6 +333,7 @@ select:focus {
 
 #feedbackType {
 	width: 100%;
+	font-size: 0.7em;
 }
 
 .advert {
@@ -391,4 +396,8 @@ a.titleLink:active, a.titleLink:focus {
 .contentBox {
 	background: rgba(255, 255, 255, 0.8);
 	border-color: #aaa;
+}
+
+.float-buttons.list-view {
+	background: rgba(204, 204, 204, 0.8);
 }

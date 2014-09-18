@@ -13,9 +13,7 @@
 	<span><?php echo $this->__("news_".$websiteByLang[0]['language']); ?></span>
 </div>
 <?php foreach($websiteByLang as $website): ?>
-<a href="<?php echo $this->getURL($website['name']); ?>" class="indexLink" tabindex="<?php echo ++$this->content['tabIndex']; ?>">
-	<img src="<?php echo $this->getURL("design/img/logo/".$website['logo']); ?>" alt="<?php echo $website['name']; ?>" style="width: <?php echo $website['logoScale']; ?>%;" />
-</a>
+<a href="<?php echo $this->getURL($website['name']); ?>" class="indexLink" data-id="<?php echo $website['id']; ?>" data-width="<?php echo $website['logoScale']; ?>" tabindex="<?php echo ++$this->content['tabIndex']; ?>"></a>
 <?php endforeach; ?>
 <?php endforeach; ?>
 <?php if($this->content['feedback']): ?>
