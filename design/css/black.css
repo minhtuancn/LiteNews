@@ -42,3 +42,7 @@ a.titleLink:active, a.titleLink:focus {
 	background: rgba(255, 255, 255, 0.15);
 	border-color: #111;
 }
+
+.float-buttons.list-view {
+	background: rgba(0, 0, 0, 0.8);
+}
