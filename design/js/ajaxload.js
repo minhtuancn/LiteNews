@@ -1,6 +1,10 @@
 // Using ajax prefix
 
-var ajaxTimeout, ajaxScrollPos;
+var ajaxTimeout,
+	ajaxScrollPos,
+	ajaxPreLoadTimeout,
+	ajaxPreLoadData = [],
+	ajaxPreLoadQueue = [];
 
 $(document).ready(function() {	
 	$('.loadTitles').click(function(e) {
@@ -46,17 +50,18 @@ $(document).ready(function() {
 		}
 		
 		var articleUrl = $(this).attr('href');
+		if(articleUrl in ajaxPreLoadData) {
+			ajaxArticleComplete(ajaxPreLoadData[articleUrl]);
+			return;
+		}
+		
 		var url = ajaxGetUrl();
 		url = url + "/ajaxload/article" + articleUrl.substr(url.length);
 		
 		$.get(
 			url,
 			function(data) {
-				$('.ajaxArticle')
-					.html(data)
-					.scrollTop(0);
-				
-				ajaxOnResize();
+				ajaxArticleComplete(data);
 			}
 		);
 	});
@@ -95,6 +100,9 @@ $(document).ready(function() {
 			}
 		);
 	});
+	
+	$(window).scroll();
+	$(window).resize();
 });
 
 function ajaxGetUrl() {
@@ -109,6 +117,54 @@ function ajaxGetUrl() {
 	}
 	return url;
 }
+
+function ajaxArticleComplete(data) {
+	$('.ajaxArticle')
+		.html(data)
+		.scrollTop(0);
+	
+	ajaxOnResize();
+}
+
+function ajaxPreLoad(keepQueue) {
+	if(!keepQueue || ajaxPreLoadQueue.length == 0) {
+		ajaxPreLoadQueue = [];
+		
+		var scrollTop = $(window).scrollTop();
+		var scrollBottom = scrollTop + $(window).height(); 
+		var titleTop;
+		$('.titleLink').each(function() {
+			titleTop = $(this).position().top;
+			if(scrollTop - 100 < titleTop && scrollBottom + 100 > titleTop && !($(this).attr('href') in ajaxPreLoadData)) {
+				ajaxPreLoadQueue.push($(this).attr('href'));
+			}
+		});
+	}
+	
+	if(ajaxPreLoadQueue.length == 0) {
+		return;
+	}
+	
+	var articleUrl = ajaxPreLoadQueue.shift();
+	var url = ajaxGetUrl();
+	url = url + "/ajaxload/article" + articleUrl.substr(url.length);
+	$.get(
+		url,
+		function(data) {
+			ajaxPreLoadData[articleUrl] = data;
+		}
+	);
+	
+	clearTimeout(ajaxPreLoadTimeout);
+	if(ajaxPreLoadQueue.length > 0) {
+		ajaxPreLoadTimeout = setTimeout(function() { ajaxPreLoad(true); }, 100);
+	}
+}
+
+$(window).scroll(function() {
+	clearTimeout(ajaxPreLoadTimeout);
+	ajaxPreLoadTimeout = setTimeout(function() { ajaxPreLoad(false); }, 200);
+});
 
 function ajaxOnResize() {
 	var padding = 58;

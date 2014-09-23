@@ -29,7 +29,7 @@ class AjaxController extends Controller {
 			return $this->GetArticle($href);
 		}
 		
-		return NULL;
+		return "";
 	}
 	
 	
