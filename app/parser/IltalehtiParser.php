@@ -12,8 +12,10 @@ class IltalehtiParser extends Parser {
 			$titleURL = $links->item(0)->getAttribute('href');
 			$title = "";
 			
-			if(substr($titleURL, 0, 4) == "http")
+			if(strpos($titleURL, "http") === 0)
 				continue;
+			
+			$titleURL = substr($titleURL, 0, (strpos($titleURL, "?") === false ? strlen($titleURL) : strpos($titleURL, "?")));
 			
 			foreach($header->getElementsByTagName('span') as $titlePart)
 				$title .= $titlePart->nodeValue." ";
