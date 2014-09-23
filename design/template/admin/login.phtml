@@ -10,10 +10,7 @@
 	<?php endif; ?>
 	<div class="contentBox">
 		<p class="contentTitle"><?php echo $this->__("Admin panel"); ?></p>
-		<p class="contentText">
-			<label for="adminPassword"><?php echo $this->__("Password"); ?></label>
-		</p>
-		<input type="password" name="adminPassword" id="adminPassword" />
+		<input type="password" name="adminPassword" placeholder="<?php echo $this->__("Password"); ?>" />
 	</div>
 	<?php echo $this->getBlock("button", array('href'=>$this->getURL(), 'icon'=>"angle-double-left", 'label'=>"Previous page")); ?>
 	<?php echo $this->getBlock("button", array('href'=>"javascript:document.adminLogin.submit();", 'icon'=>"sign-in", 'label'=>"Login", 'pullRight'=>true)); ?>
