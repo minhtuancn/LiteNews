@@ -4,7 +4,7 @@ class AdminController extends Controller {
 		$content = array('notice'=>array());
 		$login = $this->CheckLogin($content);
 		
-		$action = explode("/", $this->href);
+		$this->action = explode("/", $this->href);
 		
 		if(!$login)
 			$this->InitLogin($content);

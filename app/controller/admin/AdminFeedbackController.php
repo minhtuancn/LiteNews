@@ -5,12 +5,12 @@ class AdminFeedbackController extends AdminController {
 	}
 	
 	
-	protected function InitAdminPage($action, $content) {
+	protected function InitAdminPage($content) {
 		$this->template->setTemplate("admin/feedback");
 		$this->template->setTitle("Feedbacks");
 		
-		if(isset($action[1]) && is_numeric($action[1]) && $action[1] > 0)
-			$page = $action[1] - 1;
+		if(isset($this->action[1]) && is_numeric($this->action[1]) && $this->action[1] > 0)
+			$page = $this->action[1] - 1;
 		else
 			$page = 0;
 		
