@@ -49,12 +49,12 @@ class AdminThemeController extends AdminController {
 		$mergedSVG = "";
 		
 		foreach(Config::GetPath("website/website", true) as $website) {
-			$path = "design/img/logo/".$website['logo'];
+			$path = "design/img/logo/";
 			
-			if(!isset($website['logo']) || !file_exists($path))
+			if(!isset($website['logo']) || !file_exists($path.$website['logo']))
 				continue;
 			
-			$content = file_get_contents($path);
+			$content = file_get_contents($path.$website['logo']);
 			$content = str_replace(array("	", "\n", "\r"), "", substr($content, strpos($content, "<svg")));
 			$mergedSVG .= str_pad($website['id'], 2, "0", STR_PAD_LEFT).$content."\n";
 		}
