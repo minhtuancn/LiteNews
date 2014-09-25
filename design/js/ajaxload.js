@@ -130,10 +130,15 @@ function ajaxPreLoad(keepQueue) {
 	if(!keepQueue || ajaxPreLoadQueue.length == 0) {
 		ajaxPreLoadQueue = [];
 		
+		var titles = $('.titleLink');
+		if(titles.hasClass('weatherLink')) {
+			return;
+		}
+		
 		var scrollTop = $(window).scrollTop();
 		var scrollBottom = scrollTop + $(window).height(); 
 		var titleTop;
-		$('.titleLink').each(function() {
+		titles.each(function() {
 			titleTop = $(this).position().top;
 			if(scrollTop - 100 < titleTop && scrollBottom + 100 > titleTop && !($(this).attr('href') in ajaxPreLoadData)) {
 				ajaxPreLoadQueue.push($(this).attr('href'));
