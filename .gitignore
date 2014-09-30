@@ -1,6 +1,7 @@
 .htaccess
 cache/*
 config/
+cron.lock
 debug/
 design/css/font-awesome/css/font-awesome.css
 design/img/favicon.png
