@@ -7,7 +7,7 @@ var ajaxTimeout,
 	ajaxPreLoadQueue = [];
 
 $(document).ready(function() {	
-	$('.loadTitles').click(function(e) {
+	$('.loadTitles').fastClick(function(e) {
 		e.preventDefault();
 		
 		var origValue = $(this).html();
@@ -31,7 +31,8 @@ $(document).ready(function() {
 		);
 	});
 	
-	$('body').delegate('.titleLink', 'click', function(e) {
+	/* Make a workaround with fastClick */
+	$('body').on('click', '.titleLink', function(e) {
 		if($(this).hasClass('weatherLink')) {
 			return;
 		}
@@ -86,7 +87,7 @@ $(document).ready(function() {
 		});
 	}
 	
-	$('.weatherLink').click(function(e) {
+	$('.weatherLink').fastClick(function(e) {
 		e.preventDefault();
 		
 		$('.weather').html('<div class="contentBox"><i class="fa fa-refresh fa-spin"></i></div>');
@@ -172,6 +173,7 @@ $(window).scroll(function() {
 });
 
 function ajaxOnResize() {
+	/* TODO: Move these to CSS */
 	var padding = 58;
 	if($(window).width() >= 1224) {
 		padding += 10;

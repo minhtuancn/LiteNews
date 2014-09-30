@@ -45,7 +45,7 @@ $(document).ready(function() {
 			p.width(width - 40);
 	});
 	
-	$('.button.refresh').click(function(e) {
+	$('.button.refresh').fastClick(function(e) {
 		e.preventDefault();
 		document.location.reload(true);
 		$('html,body').scrollTop(0);

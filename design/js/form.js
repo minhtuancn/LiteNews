@@ -7,12 +7,12 @@ function formAction(formID, value) {
 }
 
 $(document).ready(function() {
-	$('.langSwitch a').click(function(event) {
+	$('.langSwitch a').fastClick(function(event) {
 		event.preventDefault();
 		formAction("#langSwitchForm", this.id.substr(5, 2));
 	});
 	
-	$('.themeSwitch a').click(function(event) {
+	$('.themeSwitch a').fastClick(function(event) {
 		event.preventDefault();
 		formAction("#themeSwitchForm", this.id.substr(6, 1));
 	});
