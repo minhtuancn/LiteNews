@@ -27,8 +27,8 @@ class CronSQL extends Database {
 	public function AddArticle($website, $url, $data) {
 		$this->DeleteDuplicates($website, $url);
 		
-		$insert = $this->db->prepare("INSERT IGNORE INTO Article (WebsiteID, URL, ListTitle, ArticleTitle, SubTitle, Timestamp) VALUES (?, ?, ?, ?, ?, ?)");
-		if(!$insert->execute(array($website, $url, trim($data['listTitle']), trim($data['title']), trim($data['subTitle']), trim($data['timestamp']))))
+		$insert = $this->db->prepare("INSERT IGNORE INTO Article (WebsiteID, URL, Category, ListTitle, ArticleTitle, SubTitle, Timestamp) VALUES (?, ?, ?, ?, ?, ?, ?)");
+		if(!$insert->execute(array($website, $url, $data['category'], trim($data['listTitle']), trim($data['title']), trim($data['subTitle']), trim($data['timestamp']))))
 			return false;
 		
 		$newArticleID = $this->db->lastInsertId("ID");

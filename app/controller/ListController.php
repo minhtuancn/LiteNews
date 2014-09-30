@@ -24,7 +24,8 @@ class ListController extends Controller {
 			$listWebsites[] = $website['id'];
 		}
 		
-		$titles = $this->db->LoadTitles($listWebsites);
+		$category = $this->GetUserSetting("category");
+		$titles = $this->db->LoadTitles($listWebsites, 0, $category);
 		
 		$content = array();
 		$tabIndex = 0;

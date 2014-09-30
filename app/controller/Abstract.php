@@ -162,7 +162,12 @@ abstract class Controller {
 			if(empty($page))
 				$page = "index";
 			
-			$fpcParams = serialize(array('page'=>$page, 'theme'=>intval($this->GetUserSetting("theme")), 'locale'=>$this->GetUserSetting("lang")));
+			$fpcParams = serialize(array(
+				'page'=>$page,
+				'theme'=>intval($this->GetUserSetting("theme")),
+				'locale'=>$this->GetUserSetting("lang"),
+				'category'=>$this->GetUserSetting('category')
+			));
 			$fpc = $this->db->GetFPC($fpcParams);
 			if($fpc !== false) {
 				return $fpc;

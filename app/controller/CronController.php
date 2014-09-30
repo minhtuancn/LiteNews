@@ -55,6 +55,7 @@ class CronController extends Controller {
 		}
 		
 		$titles = array_map("unserialize", array_unique(array_map("serialize", $titles)));
+		$categories = Config::GetPath("category/urlKeys/key", true);
 		
 		foreach($titles as $title) {
 			$articleHTML = @file_get_contents(str_replace(" ", "+", $website['url'].$title['url']));
@@ -66,6 +67,16 @@ class CronController extends Controller {
 			
 			$parser = new $parserName($articleHTML);
 			$data = $parser->GetArticle();
+			
+			$categorySearch = explode("/", $title['url'], 3);
+			$data['category'] = 1;
+			foreach($categories as $category) {
+				if($category['key'] == $website['name'] || $category['key'] == $categorySearch[0] || $category['key'] == $categorySearch[1]) {
+					$data['category'] = $category['id'];
+					break;
+				}
+			}
+			
 			$data['listTitle'] = $title['title'];
 			
 			if(!is_null($data['title']) && !empty($data['bodyText']))
@@ -97,8 +108,18 @@ class CronController extends Controller {
 		$tempParams = array();
 		
 		foreach(Config::GetPath("local/locales/locale", true) as $locale) {
-			foreach($params as &$param) {
+			foreach($params as $param) {
 				$tempParams[] = array_merge($param, array('locale'=>$locale));
+			}
+		}
+		
+		$params = $tempParams;
+		$tempParams = array();
+		
+		foreach(Config::GetPath("category/categories/category", true) as $category) {
+			foreach($params as $param) {
+				$tempParams[] = array_merge($param, array('category'=>$category['id']));
+				file_put_contents("log/debug.log", "\n".$category['id'], FILE_APPEND);
 			}
 		}
 		

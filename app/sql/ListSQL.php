@@ -1,14 +1,25 @@
 <?php
 class ListSQL extends Database {
-	public function LoadTitles($websites, $offset=0) {
+	public function LoadTitles($websites, $offset=0, $category=0) {
 		$titles = array();
-		
 		$websitesStr = $this->GetWebsiteArray($websites);
-		$query = $this->db->prepare("
-			SELECT WebsiteID, ListTitle, URL, Timestamp
-			FROM Article
-			WHERE WebsiteID IN (".$websitesStr.")
-			ORDER BY Timestamp DESC LIMIT :offset, :limit");
+		
+		if($category > 0) {
+			$query = $this->db->prepare("
+				SELECT WebsiteID, ListTitle, URL, Timestamp
+				FROM Article
+				WHERE WebsiteID IN (".$websitesStr.") AND Category=:category
+				ORDER BY Timestamp DESC LIMIT :offset, :limit");
+			$category = intval($category);
+			$query->bindParam(":category", $category, PDO::PARAM_INT);
+		}
+		else {
+			$query = $this->db->prepare("
+				SELECT WebsiteID, ListTitle, URL, Timestamp
+				FROM Article
+				WHERE WebsiteID IN (".$websitesStr.")
+				ORDER BY Timestamp DESC LIMIT :offset, :limit");
+		}
 			
 		$offset = intval($offset);
 		$query->bindParam(":offset", $offset, PDO::PARAM_INT);
