@@ -3,12 +3,13 @@ body {
 	color: #fff;
 }
 
-a.button {
+.button {
 	background: rgba(255, 255, 255, 0.2);
 	border-color: #222;
+	color: #fff;
 }
 
-a.button:active, a.button:focus {
+.button:active, .button:focus {
 	background: rgba(255, 255, 255, 0.3);
 }
 

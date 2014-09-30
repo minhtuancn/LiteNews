@@ -32,6 +32,10 @@
 		display: none;
 	}
 	
+	.categoryContainer {
+		width: 49%;
+	}
+	
 	.weather {
 		width: 49%;
 		float: right;

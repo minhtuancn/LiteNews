@@ -2,12 +2,12 @@ body {
 	background: #adf;
 }
 
-a.button {
+.button {
 	background: #f0f0f0;
 	border-color: #aaa;
 }
 
-a.button:active, a.button:focus {
+.button:active, .button:focus {
 	background: #ddd;
 }
 
