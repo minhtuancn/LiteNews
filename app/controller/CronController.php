@@ -119,7 +119,6 @@ class CronController extends Controller {
 		foreach(Config::GetPath("category/categories/category", true) as $category) {
 			foreach($params as $param) {
 				$tempParams[] = array_merge($param, array('category'=>$category['id']));
-				file_put_contents("log/debug.log", "\n".$category['id'], FILE_APPEND);
 			}
 		}
 		
