@@ -6,6 +6,7 @@ class CronController extends Controller {
 	public function GetPage($page, $href) {
 		$lockFile = @file_get_contents(Config::GetPath("cron/lockFile"));
 		
+        // Checks if lock exists or is it older than 5 minutes
 		if($lockFile === false || $lockFile + 300 < time()) {
 			file_put_contents($lockFile, time());
 			$this->UpdateData();
