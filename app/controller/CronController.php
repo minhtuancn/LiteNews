@@ -4,10 +4,10 @@ require_once("app/parser/Abstract.php");
 class CronController extends Controller {
 	// Overwriting Controller::GetPage will prevent from loading unnecessary layout HTML
 	public function GetPage($page, $href) {
-		$lockFile = Config::GetPath("cron/lockFile");
+		$lockFile = @file_get_contents(Config::GetPath("cron/lockFile"));
 		
-		if(!file_exists($lockFile)) {
-			file_put_contents($lockFile, date("d-m-Y H:i:s"));
+		if($lockFile === false || $lockFile + 300 < time()) {
+			file_put_contents($lockFile, time());
 			$this->UpdateData();
 			unlink($lockFile);
 		}
