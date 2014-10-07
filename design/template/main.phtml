@@ -2,10 +2,10 @@
 <div class="indexDescription">
 	<span><?php echo $this->__("All news mixed"); ?></span>
 </div>
-<a href="<?php echo $this->getURL("collection"); ?>" class="indexLink" tabindex="<?php echo ++$this->content['tabIndex']; ?>">
+<a href="<?php echo $this->getURL("collection"); ?>" class="container indexLink" tabindex="<?php echo ++$this->content['tabIndex']; ?>">
 	<p><?php echo $this->__("All news mixed"); ?></p>
 </a>
-<a href="<?php echo $this->getURL("weather"); ?>" class="indexLink" tabindex="<?php echo ++$this->content['tabIndex']; ?>">
+<a href="<?php echo $this->getURL("weather"); ?>" class="container indexLink" tabindex="<?php echo ++$this->content['tabIndex']; ?>">
 	<p><?php echo $this->__("Weather"); ?></p>
 </a>
 <?php foreach($this->content['websites'] as $websiteByLang): ?>
@@ -13,7 +13,7 @@
 	<span><?php echo $this->__("news_".$websiteByLang[0]['language']); ?></span>
 </div>
 <?php foreach($websiteByLang as $website): ?>
-<a href="<?php echo $this->getURL($website['name']); ?>" class="indexLink" data-id="<?php echo $website['id']; ?>" data-width="<?php echo $website['logoScale']; ?>" tabindex="<?php echo ++$this->content['tabIndex']; ?>"></a>
+<a href="<?php echo $this->getURL($website['name']); ?>" class="container indexLink" data-id="<?php echo $website['id']; ?>" data-width="<?php echo $website['logoScale']; ?>" tabindex="<?php echo ++$this->content['tabIndex']; ?>"></a>
 <?php endforeach; ?>
 <?php endforeach; ?>
 <?php if($this->content['feedback']): ?>

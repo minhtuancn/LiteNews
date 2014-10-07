@@ -13,7 +13,7 @@ $(document).ready(function() {
 		var origValue = $(this).html();
 		$(this).html('<i class="fa fa-refresh fa-spin"></i>');
 		
-		var offsetDate = $('.titleLink').last().find('.titleInfo').text();
+		var offsetDate = $('.titleLink').last().find('.info').text();
 		offsetDate = offsetDate.substr(offsetDate.length - 14, 14).split('.');
 		var offsetTime = offsetDate[2].split(':');
 		offsetTime[0] = offsetTime[0].substr(3, 2);

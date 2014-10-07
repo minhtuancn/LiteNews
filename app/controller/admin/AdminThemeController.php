@@ -17,19 +17,21 @@ class AdminThemeController extends AdminController {
 	protected function UpdateCSS() {
 		$base = "";
 		foreach(Config::GetPath("layout/css/path", true) as $file) {
-			$base .= file_get_contents("design/css/".$file);
+			$base .= file_get_contents("design/".$file);
 		}
-		
-		// Strip base before loop for optimization
-		$base = str_replace(array("\n", "\r", "	"), "", $base);
 		
 		array_map("unlink", glob("cache/css/*"));
 		
 		foreach(Config::GetPath("layout/themes/theme", true) as $theme) {
 			$themeName = strtolower(str_replace(" ", "", $theme));
-			$css = str_replace(array("\n", "\r", "	"), "", file_get_contents("design/css/".$themeName.".css"));
-			$mergedCSS = $base.$css;
-			file_put_contents("cache/css/".$themeName.".css", $mergedCSS);
+			$scss = file_get_contents("design/scss/theme/".$themeName.".scss");
+			file_put_contents("cache/css/temp.scss", $scss.$base);
+            exec("sass --scss cache/css/temp.scss > cache/css/".$themeName.".css");
+            unlink("cache/css/temp.scss");
+            file_put_contents(
+                "cache/css/".$themeName.".css",
+                str_replace(array("\n", "\r", "   "), "", file_get_contents("cache/css/".$themeName.".css"))
+            );
 		}
 	}
 	

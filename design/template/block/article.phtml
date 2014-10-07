@@ -1,5 +1,5 @@
 <?php if(isset($this->block['ajax']) && $this->block['ajax'] == true): ?>
-<div class="float-buttons">
+<div class="floatButtons">
 	<?php echo $this->getBlock("button", array('href'=>$this->block['url'], 'icon'=>"external-link", 'label'=>"Source", "external"=>true)); ?>
 	<?php echo $this->getBlock("button", array('href'=>"#", 'label'=>"Close", 'customClass'=>"close-ajax", 'pullRight'=>true)); ?>
 </div>
@@ -10,14 +10,14 @@
 		$this->block['title'] = $this->__("Loading article failed");
 	?>
 	<?php if($this->block['timestamp'] > 0): ?>
-	<p class="contentDate"><?php echo date("Hi", $this->block['timestamp']) == "0000" ? date("d.m.Y", $this->block['timestamp']) : date("d.m.Y H:i", $this->block['timestamp']); ?></p>
+	<p class="date"><?php echo date("Hi", $this->block['timestamp']) == "0000" ? date("d.m.Y", $this->block['timestamp']) : date("d.m.Y H:i", $this->block['timestamp']); ?></p>
 	<?php endif; ?>
-	<p class="contentTitle"><?php echo (empty($this->block['title']) ? $this->__("Loading article failed") : $this->block['title']); ?></p>
+	<p class="title"><?php echo (empty($this->block['title']) ? $this->__("Loading article failed") : $this->block['title']); ?></p>
 	<?php if(!empty($this->block['subTitle'])): ?>
-	<p class="contentSubTitle"><?php echo $this->block['subTitle']; ?></p>
+	<p class="subTitle"><?php echo $this->block['subTitle']; ?></p>
 	<?php endif; ?>
 	<?php foreach($this->block['bodyText'] as $p): ?>
-	<p class="contentText"><?php echo $p; ?></p>
+	<p class="text"><?php echo $p; ?></p>
 	<?php endforeach; ?>
 	<?php echo $this->getBlock("ad/article"); ?>
 </div>

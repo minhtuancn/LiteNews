@@ -84,3 +84,6 @@
 .fa-sign-out:before {
   content: "\f08b";
 }
+.fa-bars:before {
+  content: "\f0c9";
+}

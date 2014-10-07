@@ -7,7 +7,9 @@ if(isset($this->block['customClass'])) $class .= " ".$this->block['customClass']
 	<?php if(isset($this->block['icon']) && !isset($this->block['pullRight'])): ?>
 	<i class="fa fa-<?php echo $this->block['icon']; ?>"></i>
 	<?php endif; ?>
+	<?php if(isset($this->block['label'])): ?>
 	<p><?php echo $this->__($this->block['label']); ?></p>
+	<?php endif; ?>
 	<?php if(isset($this->block['icon']) && isset($this->block['pullRight'])): ?>
 	<i class="fa fa-<?php echo $this->block['icon']; ?>"></i>
 	<?php endif; ?>

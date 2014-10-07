@@ -1,0 +1,401 @@
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  outline: none;
+}
+
+body {
+  background: $bg;
+  color: $color;
+  font-family: Arial, Helvetica, Verdana;
+  font-weight: bold;
+  font-size: 1.2em;
+  margin: 10px 1% 20px;
+  
+  & > form {
+    margin-bottom: 0px;
+  }
+}
+
+// TODO: Find all containers and add this class
+.container {
+  display: block;
+  background: $contentBg;
+  border-radius: 5px;
+  margin: 0px 0px 10px;
+}
+
+a {
+  text-decoration: none;
+  color: $color;
+  border-color: $borderColor;
+}
+
+.button {
+  background: $buttonBg;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  border: 1px solid $borderColor;
+  border-radius: 5px;
+  display: inline-block;
+  font-size: 1.1em;
+  width: 49%;
+  text-align: center;
+  vertical-align: middle;
+  
+  p {
+    color: $color;
+    text-align: left;
+    margin: 0px;
+    display: inline-block;
+    max-width: 80%;
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+  .fa {
+    margin-right: 5px;
+  }
+  
+  &.active, &:active, &:focus {
+      background: $buttonActiveBg;
+  }
+}
+
+.buttonRight {
+  @extend .button;
+  float: right;
+  
+  .fa {
+    margin-right: 0px;
+    margin-left: 5px;
+  }
+}
+
+.floatButtons {
+  background: $floatButtonBg;
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  margin: 0px;
+  padding: 10px 0px;
+  width: 100%;
+  border-radius: 0px;
+  background: inherit;
+  z-index: 1;
+  
+  * {
+    opacity: 1.0
+  }
+  
+  &.listView > .button {
+    width: 31.33%;
+    margin: 0px 1%;
+    float: left;
+  }
+
+  & ~ .advert {
+    margin-bottom: 46px;
+  }
+}
+
+.indexDescription {
+  margin: 13px 0px 3px;
+  
+  &:first-child {
+    margin-top: 15px;
+  }
+  
+  span {
+    background: $borderColor;
+    margin-left: 5%;
+    padding: 5px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    font-size: 0.8em;
+    white-space: nowrap;
+  }
+}
+
+@mixin linkBlock {
+  min-width: 200px;
+  display: block;
+}
+
+.indexLink {
+  @include linkBlock;
+  
+  background: rgba(255, 255, 255, 0.8);
+  height: 40px;
+  max-height: 40px;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+  
+  &:active, &:focus {
+    background: #fff;
+    box-shadow: none;
+  }
+  
+  p {
+    color: #000;
+    margin: 0px;
+    font-weight: 900;
+    font-size: 1.4em;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+  
+  .logo {
+    max-width: 100%;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding-top: 4px;
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    
+    svg {
+      width: 100%;
+    }
+  }
+}
+
+.titleLink {
+  background: $titleBg;
+  padding: 10px 5px;
+  text-align: left;
+  
+  // TODO: Replace titleInfo with this
+  .info {
+    font-size: 0.8em;
+    font-weight: normal;
+    display: block;
+    clear: both;
+  }
+  
+  &:active, &:focus {
+    background: $titleActiveBg;
+  }
+}
+
+.loadTitles {
+  width: 100%;
+}
+
+.ajaxArticle {
+  display: none;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 10px 1% 0px;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  background: inherit;
+  z-index: 2;
+  
+  & > .contentBox {
+    border-radius: 5px;
+    
+    .fa-refresh {
+      font-size: 4.0em;
+      margin-left: 46%;
+    }
+  }
+  
+  & > .floatButtons {
+    padding: 10px 1% 0px;
+  }
+}
+
+// TODO: Do something with these
+// Remove contentBox radius because .container
+.weather {
+  .contentText {
+    display: inline-block;
+    width: 49%;
+    height: 50px;
+    
+    &:nth-child(odd) {
+      float: right;
+    }
+  }
+}
+
+.contentBox {
+  @extend .container;
+  
+  padding: 10px;
+  border: 1px solid $borderColor;
+  text-align: left;
+  word-wrap: break-word;
+  clear: both;
+  
+  // TODO: Replace contnt* with these
+  .date {
+    margin: 0px;
+    font-size: 0.8em;
+    font-weight: normal;
+  }
+  
+  .title {
+    margin: 10px 0px 17px;
+    font-size: 1.4em;
+  }
+  
+  .subTitle {
+    font-size: 1.2em;
+    margin: 12px 0px;
+  }
+  
+  .text {
+    font-size: 1.0em;
+    font-weight: normal;
+  }
+}
+
+.langSwitch {
+  float: right;
+  margin: -10px 0px 0px 0px;
+  
+  a {
+    &:not(:first-child) {
+      margin-left: 20px;
+    }
+  
+    img {
+      height: 30px;
+      border-radius: 5px;
+      opacity: 0.8;
+    }
+
+    &:active img, &:hover img {
+      opacity: 1.0;
+    }
+    
+    &:first-child img {
+      margin-left: 0px;
+    }
+  }
+}
+
+.themeSwitch {
+  padding: 10px 0px;
+  text-align: center;
+  
+  a {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    border: inherit;
+    margin: 0px 7px;
+    border-radius: 5px;
+
+    &:first-child {
+      margin-left: 0px;
+    }
+    
+    &:last-child {
+      margin-right: 0px;
+    }
+    
+    &:active, &:focus {
+      box-shadow: 0px 0px 5px 2px #fff;
+      border: 0px;
+      padding: 1px;
+    }
+  }
+}
+
+.categoryContainer {
+  display: none;
+  width: 100%;
+  float: left;
+  margin: 10px 0px 0px;
+  padding: 0px 0px 0px 1%;
+}
+
+@mixin notice {
+  @extend .container;
+  padding: 5px;
+  border: 1px solid;
+}
+
+.success {
+  @include notice;
+  background: #5f8;
+  border-color: #2f2;
+  color: #000;
+}
+
+.error {
+  @include notice;
+  background: #f99;
+  border-color: #f00;
+  color: #000;
+}
+
+.stats {
+  margin-bottom: 15px;
+  padding: 5px 0px 5px 10px;
+  display: block;
+  white-space: nowrap;
+  background: #d3d3d3;
+  color: #000;
+}
+
+input {
+  width: 100%;
+  border-radius: 7px;
+  padding: 4px 10px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  
+  &.checkbox {
+    width: auto;
+  }
+}
+
+textarea {
+  font-family: Arial, Helvetica, Verdana;
+  width: 100%;
+  height: 100px;
+  padding: 4px 10px;
+  border-radius: 7px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+select {
+  border-radius: 7px;
+  padding: 3px 5px;
+  
+  &:focus {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+}
+
+#feedbackType {
+  width: 100%;
+  font-size: 0.7em;
+}
+
+.advert {
+  text-align: center;
+}
