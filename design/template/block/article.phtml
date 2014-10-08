@@ -1,7 +1,7 @@
 <?php if(isset($this->block['ajax']) && $this->block['ajax'] == true): ?>
 <div class="floatButtons">
 	<?php echo $this->getBlock("button", array('href'=>$this->block['url'], 'icon'=>"external-link", 'label'=>"Source", "external"=>true)); ?>
-	<?php echo $this->getBlock("button", array('href'=>"#", 'label'=>"Close", 'customClass'=>"close-ajax", 'pullRight'=>true)); ?>
+	<?php echo $this->getBlock("button", array('href'=>"#", 'icon'=>'times', 'label'=>"Close", 'customClass'=>"close-ajax", 'pullRight'=>true)); ?>
 </div>
 <?php endif; ?>
 <div class="contentBox">

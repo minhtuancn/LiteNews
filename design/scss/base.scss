@@ -1,3 +1,13 @@
+@mixin slideToggle($maxHeight) {
+  transition-property: max-height;
+  transition-duration: 0.3s;
+  transition-timing-function: linear;
+  
+  &.visible {
+    max-height: $maxHeight;
+  }
+}
+
 * {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -19,7 +29,6 @@ body {
   }
 }
 
-// TODO: Find all containers and add this class
 .container {
   display: block;
   background: $contentBg;
@@ -171,11 +180,12 @@ a {
 }
 
 .titleLink {
+  @extend .container;
+  
   background: $titleBg;
   padding: 10px 5px;
   text-align: left;
   
-  // TODO: Replace titleInfo with this
   .info {
     font-size: 0.8em;
     font-weight: normal;
@@ -220,10 +230,8 @@ a {
   }
 }
 
-// TODO: Do something with these
-// Remove contentBox radius because .container
 .weather {
-  .contentText {
+  .text {
     display: inline-block;
     width: 49%;
     height: 50px;
@@ -231,6 +239,15 @@ a {
     &:nth-child(odd) {
       float: right;
     }
+  }
+    
+  .fa-refresh {
+    font-size: 4.0em;
+    margin-left: 46%;
+  }
+  
+  & ~ .floatButtons {
+    padding-bottom: 0px;
   }
 }
 
@@ -320,11 +337,13 @@ a {
 }
 
 .categoryContainer {
-  display: none;
+  @include slideToggle(200px);
+  
   width: 100%;
   float: left;
-  margin: 10px 0px 0px;
+  margin: 10px 0px -10px;
   padding: 0px 0px 0px 1%;
+  max-height: 0px;
 }
 
 @mixin notice {
