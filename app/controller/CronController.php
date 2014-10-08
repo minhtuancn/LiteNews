@@ -86,18 +86,20 @@ class CronController extends Controller {
 		
 		$this->db->RefreshUpdateTime($websiteID);
 		
-		if(Config::GetPath("local/FPC"))
-			$this->UpdateFPC();
+		if(Config::GetPath("local/FPC")) {
+		    $websiteName = $website['id'] == 14 ? "weather" : $website['name'];
+			$this->UpdateFPC($websiteName);
+        }
 	}
 	
 	
-	protected function UpdateFPC() {
-		$params = array(array('page'=>"index"), array('page'=>"collection"), array('page'=>"weather"));
+	protected function UpdateFPC($websiteName) {
+		$params = array(
+		    array('page'=>"index"),
+		    array('page'=>"collection"),
+            array('page'=>$websiteName)
+        );
 		$tempParams = array();
-		
-		foreach(Config::GetPath("website/website", true) as $website) {
-			$params[] = array('page'=>$website['name']);
-		}
 		
 		foreach(array_keys(Config::GetPath("layout/themes/theme", true)) as $theme) {
 			foreach($params as $param) {
