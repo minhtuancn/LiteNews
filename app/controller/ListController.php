@@ -11,9 +11,14 @@ class ListController extends Controller {
 		
 		if($this->page == "collection") {
 			$this->template->setTitle("Collection");
-			
+            $websiteFilter = explode(",", $this->GetUserSetting("websiteFilter"));
+            
 			foreach(Config::GetPath("website/website", true) as $listWebsite) {
-				if($listWebsite['language'] == $this->GetUserSetting("lang") && (!isset($listWebsite['hideFromCollection']) || !$listWebsite['hideFromCollection'])) {
+				if(
+				    $listWebsite['language'] == $this->GetUserSetting("lang")
+				    && (!isset($listWebsite['hideFromCollection']) || !$listWebsite['hideFromCollection'])
+                    && ($websiteFilter[0] == 0 || empty($websiteFilter[0]) || in_array($listWebsite['id'], $websiteFilter))
+                ) {
 					$listWebsites[] = $listWebsite['id'];
 				}
 			}

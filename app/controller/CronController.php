@@ -99,6 +99,11 @@ class CronController extends Controller {
 		    array('page'=>"collection"),
             array('page'=>$websiteName)
         );
+        
+        foreach($params as &$param) {
+            $param['websiteFilter'] = "0";
+        }
+        
 		$tempParams = array();
 		
 		foreach(array_keys(Config::GetPath("layout/themes/theme", true)) as $theme) {
@@ -119,7 +124,10 @@ class CronController extends Controller {
 		$params = $tempParams;
 		$tempParams = array();
 		
-		foreach(Config::GetPath("category/categories/category", true) as $category) {
+        $categories = Config::GetPath("category/categories/category", true);
+        $categories[] = array('id'=>0);
+        
+		foreach($categories as $category) {
 			foreach($params as $param) {
 				$tempParams[] = array_merge($param, array('category'=>$category['id']));
 			}
@@ -131,8 +139,10 @@ class CronController extends Controller {
 			ob_start();
 			
 			$_GET['page'] = $param['page'];
+            $_COOKIE['settings']['websiteFilter'] = $param['websiteFilter'];
 			$_COOKIE['settings']['theme'] = $param['theme'];
 			$_COOKIE['settings']['lang'] = $param['locale'];
+            $_COOKIE['settings']['category'] = $param['category'];
 			include("index.php");
 			
 			$output = ob_get_clean();

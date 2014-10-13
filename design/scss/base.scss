@@ -1,7 +1,8 @@
-@mixin slideToggle($maxHeight) {
+@mixin slideToggle($maxHeight, $duration: 0.3s) {
   transition-property: max-height;
-  transition-duration: 0.3s;
+  transition-duration: $duration;
   transition-timing-function: linear;
+  overflow: hidden;
   
   &.visible {
     max-height: $maxHeight;
@@ -336,12 +337,28 @@ a {
   }
 }
 
+.filterContainer {
+  @include slideToggle(500px, 1.0s);
+  max-height: 0px;
+  width: 100%;
+  float: left;
+  margin: 10px 0px -10px;
+}
+
+.websiteFilter {
+  // TODO: Adjust
+  @include slideToggle(400px);
+  
+  max-height: 0px;
+  width: 100%;
+  float: left;
+}
+
 .categoryContainer {
   @include slideToggle(200px);
   
   width: 100%;
   float: left;
-  margin: 10px 0px -10px;
   padding: 0px 0px 0px 1%;
   max-height: 0px;
 }

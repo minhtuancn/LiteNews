@@ -164,9 +164,10 @@ abstract class Controller {
 			
 			$fpcParams = serialize(array(
 				'page'=>$page,
+				'websiteFilter'=>(string)$this->GetUserSetting('websiteFilter'),
 				'theme'=>intval($this->GetUserSetting("theme")),
 				'locale'=>$this->GetUserSetting("lang"),
-				'category'=>$this->GetUserSetting('category')
+				'category'=>intval($this->GetUserSetting('category'))
 			));
 			$fpc = $this->db->GetFPC($fpcParams);
 			if($fpc !== false) {
