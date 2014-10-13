@@ -134,7 +134,6 @@
 		<name>Foreca</name>
 		<url>http://www.foreca.fi</url>
 		<listPath></listPath>
-		<logo></logo>
 		<language>en</language>
 		<indexExclude>true</indexExclude>
 		<hideFromCollection>true</hideFromCollection>

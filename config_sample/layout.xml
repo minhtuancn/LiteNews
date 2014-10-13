@@ -2,15 +2,18 @@
 
 <config>
 	<css>
-		<path>font-awesome/css/font-awesome.stripped.css</path>
-		<path>base.css</path>
-		<path>responsive.css</path>
+		<path>css/font-awesome/css/font-awesome.stripped.css</path>
+		<path>scss/base.scss</path>
+		<path>css/responsive.css</path>
 	</css>
 	<js>
 		<path>jquery-1.11.1.min.js</path>
+		<path>jQuery.fastClick.js</path>
 		<path>ajaxload.js</path>
+		<path>logo.js</path>
 		<path>floatbuttons.js</path>
 		<path>form.js</path>
+		<path>category.js</path>
 		<path>button.js</path>
 		<path>responsive.js</path>
 	</js>
@@ -18,7 +21,7 @@
 		<theme>Gray</theme>
 		<theme>Pink</theme>
 		<theme>Black</theme>
-		<theme>Yellow</theme>
+		<theme>Light green</theme>
 		<theme>Dark blue</theme>
 		<theme>Light blue</theme>
 	</themes>

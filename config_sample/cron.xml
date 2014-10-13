@@ -6,4 +6,5 @@
 	<filePath>public_html/</filePath>
 	<command>* * * * * cd public_html; php cron.php</command>
 	<showErrors>20</showErrors>
+	<lockFile>cron.lock</lockFile>
 </config>

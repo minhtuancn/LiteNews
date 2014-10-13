@@ -54,7 +54,10 @@
 			<lang>fi</lang>
 			
 			<!-- Theme ID -->
-			<theme>2</theme>
+			<theme>4</theme>
+			
+			<!-- Category ID, 0 is for all -->
+			<category>0</category>
 		</default>
 	</userSettings>
 	
