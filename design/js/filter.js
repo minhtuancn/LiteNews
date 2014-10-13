@@ -10,8 +10,14 @@ $(document).ready(function() {
         $('.websiteFilter').toggleClass('visible');
     });
     
-    $('.websiteFilter .button').fastClick(function(e) {
+    $('.websiteFilter .button').click(function(e) {
         if($(this).attr('id') == "websiteFilterAll" || $(this).attr('id') == "websiteFilterSave") {
+            if($(this).attr('id') == "websiteFilterAll") {
+                $(this).parent().find('div .button').each(function() {
+                    $(this).removeClass('active');
+                });
+            }
+            
             return;
         }
         
@@ -44,7 +50,7 @@ $(document).ready(function() {
 	});
 	
 	$('.categoryContainer .button').click(function() {
-	    $(this).parent().find('.button').each(function() {
+	    $(this).parent().parent().find('.button').each(function() {
 	        $(this).removeClass('active');
 	    });
 	});
