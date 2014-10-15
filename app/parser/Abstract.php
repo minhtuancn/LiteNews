@@ -25,6 +25,7 @@ abstract class Parser {
 	protected function InitArticle() {
 		return array(
 			'title'=>NULL,
+			'image'=>NULL,
 			'subTitle'=>NULL,
 			'bodyText'=>array(),
 			'timestamp'=>0

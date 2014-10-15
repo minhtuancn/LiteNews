@@ -70,6 +70,13 @@ class ItviikkoParser extends Parser {
 		$contentContainer = $contentContainer->item(0)->getElementsByTagName('div');
 		
 		foreach($contentContainer as $div) {
+		    if($div->getAttribute('class') == "imageContainer") {
+		        $image = $div->getElementsByTagName('img');
+                if($image->length > 0) {
+                    $content['image'] = $image->item(0)->getAttribute('src');
+                }
+		    }
+            
 			if($div->getAttribute('class') == "storyText") {
 				$bodyText = $div->getElementsByTagName('p');
 				

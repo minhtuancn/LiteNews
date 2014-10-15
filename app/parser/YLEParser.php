@@ -40,6 +40,11 @@ class YLEParser extends Parser {
 			$timestamp = DateTime::createFromFormat("Y-m-d\TH:i:sT", $date->getAttribute('datetime'));
 			$content['timestamp'] = $timestamp->getTimestamp();
 		}
+        
+        $image = $container->getElementsByTagName('img');
+        if($image->length > 0 && $image->item(0)->parentNode->getAttribute('class') == "openoverlay") {
+            $content['image'] = $image->item(0)->getAttribute('src');
+        }
 		
 		$title = $container->getElementsByTagName('h1');
 		if($title->length == 0)

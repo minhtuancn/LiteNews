@@ -24,6 +24,11 @@ class KalevaParser extends Parser {
 			return $content;
 		
 		$content['title'] = $title->item(0)->nodeValue;
+        
+        $image = $this->dom->getElementById('current-picture');
+        if($image != NULL) {
+            $content['image'] = $image->getAttribute('src');
+        }
 		
 		$dateContainer = $this->dom->getElementsByTagName('span');
 		foreach($dateContainer as $span) {

@@ -34,6 +34,11 @@ class MuropakettiParser extends Parser {
 			return $content;
 		
 		$container = $container->item(0);
+        
+        $image = $container->getElementsByTagName('img');
+        if($image->length > 0) {
+            $content['image'] = $image->item(0)->getAttribute('src');
+        }
 		
 		$title = $container->getElementsByTagName('h2');
 		if($title->length == 0)

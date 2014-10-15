@@ -9,5 +9,6 @@ design/template/block/ad/*
 dev/
 install/
 log/*
+media/
 .sass-cache/
 todo.txt

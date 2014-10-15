@@ -13,6 +13,7 @@ class ArticleSQL extends Database {
 			return $article;
 		
 		$query = $query->fetch(PDO::FETCH_ASSOC);
+        $article['id'] = $query['ID'];
 		$article['title'] = $query['ArticleTitle'];
 		$article['subTitle'] = $query['SubTitle'];
 		$article['timestamp'] = $query['Timestamp'];

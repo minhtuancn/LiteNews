@@ -48,6 +48,18 @@ class MTV3Parser extends Parser {
 			return $content;
 
 		foreach($bodyTextContainer as $div) {
+		    if($div->getAttribute('class') == "img-container") {
+		        $image = $div->getElementsByTagName('img');
+                
+                if($image->length > 0) {
+                    $content['image'] = $image->item(0)->getAttribute('src');
+                    
+                    if(strpos($content['image'], "//") === 0) {
+                        $content['image'] = "http:".$content['image'];
+                    }
+                }
+		    }
+            
 			if($div->getAttribute('class') == "article-66") {
 				$bodyText = $div->getElementsByTagName('p');
 				

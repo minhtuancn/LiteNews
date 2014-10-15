@@ -50,6 +50,14 @@ class IltaSanomatParser extends Parser {
 			$timestamp = DateTime::createFromFormat("d.m.Y H:i", $date);
 			$content['timestamp'] = $timestamp->getTimestamp();
 		}
+        
+        $image = $this->dom->getElementById('mainImage');
+        if($image != NULL) {
+            $image = $image->getElementsByTagName('img');
+            if($image->length > 0) {
+                $content['image'] = $image->item(0)->getAttribute('src');
+            }
+        }
 		
 		$content['title'] = $title->item(0)->nodeValue;
 		$subTitle = $contentBox->getElementsByTagName('p');

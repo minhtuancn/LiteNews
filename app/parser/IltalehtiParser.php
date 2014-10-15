@@ -50,6 +50,11 @@ class IltalehtiParser extends Parser {
 				break;
 			}
 		}
+        
+        $images = $contentBox->item(0)->getElementsByTagName('img');
+        if($images->length > 0) {
+            $content['image'] = $images->item(0)->getAttribute('src');
+        }
 		
 		$contentBox = $contentBox->item(0)->getElementsByTagName('p');
 		if($contentBox->length == 0)

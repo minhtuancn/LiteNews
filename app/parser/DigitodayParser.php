@@ -30,6 +30,14 @@ class DigitodayParser extends Parser {
 			return $content;
 		
 		$content['title'] = $title->item(0)->nodeValue;
+        
+        $images = $container->getElementsByTagName('img');
+        foreach($images as $image) {
+            if($image->parentNode->getAttribute('class') == "imagePanorama") {
+                $content['image'] = $image->getAttribute('src');
+                break;
+            }
+        }
 		
 		$bodyText = $container->getElementsByTagName('p');
 		if($bodyText->length == 0)

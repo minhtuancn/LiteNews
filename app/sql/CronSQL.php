@@ -38,6 +38,8 @@ class CronSQL extends Database {
 			if(!$articleParagraph->execute(array($newArticleID, $p)))
 				return false;
 		}
+        
+        return $newArticleID;
 	}
 	
 	

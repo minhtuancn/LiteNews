@@ -102,6 +102,18 @@ $(document).ready(function() {
 		);
 	});
 	
+	$('body').on('click', '.showImage', function(e) {
+	    e.preventDefault();
+	    $(this).toggle();
+	    image = $(this).parent().find('.articleImage');
+	    image.addClass('visible').attr('src', image.attr('data-url'));
+	});
+	
+	$('body').on('click', '.articleImage', function(e) {
+	    $(this).parent().find('.showImage').toggle();
+	    $(this).removeClass('visible');
+	});
+	
 	$(window).scroll();
 	$(window).resize();
 });
@@ -183,7 +195,7 @@ function ajaxOnResize() {
 		$('body').css('overflow', 'hidden');
 	}
 	
-	$('.ajaxArticle').css('padding-bottom', padding);
+	$('.ajaxArticle > .contentBox').css('padding-bottom', padding);
 }
 
 $(window).resize(function() {

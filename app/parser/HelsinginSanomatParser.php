@@ -31,7 +31,7 @@ class HelsinginSanomatParser extends Parser {
 	public function GetArticle() {
 		$content = $this->InitArticle();
 		
-		$container = $this->dom->getElementByID('main-content');
+		$container = $this->dom->getElementById('main-content');
 		if($container == NULL)
 			return $content;
 		
@@ -39,25 +39,30 @@ class HelsinginSanomatParser extends Parser {
 		if($blocks->length == 0)
 			return $content;
 		
-		$title = new DOMNodeList; // In case of foreach don't find any matches
-		
-		foreach($blocks as $block) {
-			if(trim($block->getAttribute('class'), " ") == "full-article-top") {
-				$title = $block->getElementsByTagName('h1');
-				break;
-			}
-		}
-		
-		if($title->length == 0)
+		$title = $this->dom->getElementById('main-header');
+		if($title == NULL)
 			return $content;
+        
+        $content['title'] = utf8_decode($title->nodeValue);
 		
 		$dateContainer = $container->getElementsByTagname('time');
 		if($dateContainer->length > 0) {
 			$timestamp = DateTime::createFromFormat("Y-m-d\TH:i:sT", $dateContainer->item(0)->getAttribute('datetime'));
 			$content['timestamp'] = $timestamp->getTimestamp();
 		}
+        
+        $divs = $container->getElementsByTagName('div');
+        foreach($divs as $div) {
+            if(strpos($div->getAttribute('class'), "main-image-area") !== false) {
+                $image = $div->getElementsByTagName('img');
+                if($image->length > 0) {
+                    $content['image'] = $image->item(0)->getAttribute('src');
+                    break;
+                }
+            }
+        }
 		
-		$bodyText = $this->dom->getElementByID('article-text-content');
+		$bodyText = $this->dom->getElementById('article-text-content');
 		if($bodyText == NULL)
 			return $content;
 		
@@ -65,7 +70,6 @@ class HelsinginSanomatParser extends Parser {
 		if($bodyText->length == 0)
 			return $content;
 		
-		$content['title'] = utf8_decode($title->item(0)->nodeValue);
 		$content['subTitle'] = "";
 		
 		foreach($bodyText as $p) {

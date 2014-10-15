@@ -12,6 +12,10 @@
 	<?php if($this->block['timestamp'] > 0): ?>
 	<p class="date"><?php echo date("Hi", $this->block['timestamp']) == "0000" ? date("d.m.Y", $this->block['timestamp']) : date("d.m.Y H:i", $this->block['timestamp']); ?></p>
 	<?php endif; ?>
+	<?php if(isset($this->block['id']) && file_exists("media/".$this->block['id'])): ?>
+    <?php echo $this->getBlock("button", array('href'=>"#", 'label'=>"Show image", 'customClass'=>"showImage", 'pullRight'=>true)); ?>
+	<img src="" class="articleImage" data-url="<?php echo $this->getURL("media/".$this->block['id']); ?>" />
+    <?php endif; ?>
 	<p class="title"><?php echo (empty($this->block['title']) ? $this->__("Loading article failed") : $this->block['title']); ?></p>
 	<?php if(!empty($this->block['subTitle'])): ?>
 	<p class="subTitle"><?php echo $this->block['subTitle']; ?></p>

@@ -72,7 +72,12 @@ class CronController extends Controller {
 			$categorySearch = explode("/", $title['url'], 3);
 			$data['category'] = 1;
 			foreach($categories as $category) {
-				if($category['key'] == $website['name'] || $category['key'] == $categorySearch[0] || $category['key'] == $categorySearch[1]) {
+				if(
+				    count($categorySearch) >= 2
+				    && ($category['key'] == $website['name']
+				    || $category['key'] == $categorySearch[0]
+				    || $category['key'] == $categorySearch[1])
+                ) {
 					$data['category'] = $category['id'];
 					break;
 				}
@@ -80,8 +85,17 @@ class CronController extends Controller {
 			
 			$data['listTitle'] = $title['title'];
 			
-			if(!is_null($data['title']) && !empty($data['bodyText']))
-				$this->db->AddArticle($website['id'], $title['url'], $data);
+			if(!is_null($data['title']) && !empty($data['bodyText'])) {
+				$articleID = $this->db->AddArticle($website['id'], $title['url'], $data);
+                
+                if($articleID && !is_null($data['image'])) {
+                    $imageFile = "media/".$articleID;
+                    
+                    if(!file_exists($imageFile)) {
+                        file_put_contents($imageFile, file_get_contents($data['image']));
+                    }
+                }
+            }
 		}
 		
 		$this->db->RefreshUpdateTime($websiteID);
