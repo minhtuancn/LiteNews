@@ -261,7 +261,16 @@ a {
   word-wrap: break-word;
   clear: both;
   
-  // TODO: Replace contnt* with these
+  .articleImage {
+    display: none;
+    max-width: 100%;
+    margin: 0px auto;
+    
+    &.visible {
+      display: block;
+    }
+  }
+  
   .date {
     margin: 0px;
     font-size: 0.8em;
