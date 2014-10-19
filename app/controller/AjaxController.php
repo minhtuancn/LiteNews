@@ -24,7 +24,7 @@ class AjaxController extends Controller {
 			return $this->GetList($action[1], $action[2]);
 		}
 		
-		if($this->GetWebsiteByName($action[1]) != false) {
+		if(sizeof($action) > 1 && $this->GetWebsiteByName($action[1]) != false) {
 			$this->db = new ArticleSQL;
 			return $this->GetArticle($href);
 		}
