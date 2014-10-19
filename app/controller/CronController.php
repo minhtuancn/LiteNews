@@ -38,7 +38,7 @@ class CronController extends Controller {
 			$listPath = array($website['listPath']);
 		
 		foreach($listPath as $path) {
-			$listHTML = @file_get_contents(str_replace(" ", "+", $website['url'].$path));
+			$listHTML = $this->LoadPage(str_replace(" ", "+", $website['url'].$path));
 			
 			if(empty($listHTML)) {
 				self::LogError("Failed to fetch list from ".$website['url'].$path);
@@ -59,7 +59,7 @@ class CronController extends Controller {
 		$categories = Config::GetPath("category/urlKeys/key", true);
 		
 		foreach($titles as $title) {
-			$articleHTML = @file_get_contents(str_replace(" ", "+", $website['url'].$title['url']));
+			$articleHTML = $this->LoadPage(str_replace(" ", "+", $website['url'].$title['url']));
 			
 			if(empty($articleHTML)) {
 				self::LogError("Failed to fetch article: ".$website['url'].$title['url']);
@@ -105,6 +105,20 @@ class CronController extends Controller {
 			$this->UpdateFPC($websiteName);
         }
 	}
+
+
+    protected function LoadPage($url) {
+        $content = @file_get_contents($url);
+        
+        if(empty($content)) {
+            $backupURL = Config::GetPath("local/backupLoader")
+                         ."?key=".Config::GetPath("local/backupLoaderKey")
+                         ."&href=".$url;
+            $content = @file_get_contents($backupURL);
+        }
+        
+        return $content;
+    }
 	
 	
 	protected function UpdateFPC($websiteName) {
