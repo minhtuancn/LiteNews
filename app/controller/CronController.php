@@ -92,7 +92,10 @@ class CronController extends Controller {
                     $imageFile = "media/".$articleID;
                     
                     if(!file_exists($imageFile)) {
-                        file_put_contents($imageFile, file_get_contents($data['image']));
+                        $image = $this->LoadPage($data['image']);
+                        if(!empty($image)) {
+                            file_put_contents($imageFile, $image);
+                        }
                     }
                 }
             }
