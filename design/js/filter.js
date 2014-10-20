@@ -26,13 +26,8 @@ $(document).ready(function() {
         var container = $(this).parent().parent();
         container.find('.button').first().removeClass('active');
         
-        if($(this).hasClass('active')) {
-            $(this).removeClass('active');
-            $(this).blur();
-        }
-        else {
-            $(this).addClass('active');
-        }
+        $(this).toggleClass('active');
+        $(this).blur();
         
         var saveValue = "";
         container.find('div > .button').each(function() {
