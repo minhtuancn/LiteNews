@@ -37,14 +37,21 @@ class AjaxController extends Controller {
 		$titles = false;
 		if($website == "collection") {
 			$websites = array();
-			foreach(Config::GetPath("website/website", true) as $websiteByLang) {
-				if($websiteByLang['language'] == self::GetUserSetting("lang") && (!isset($websites['hideFromCollection']) || !$websites['hideFromCollection'])) {
-					$websites[] = $websiteByLang['id'];
+            $websiteFilter = explode(",", $this->GetUserSetting("websiteFilter"));
+            
+			foreach(Config::GetPath("website/website", true) as $listWebsite) {
+				if(
+				    $listWebsite['language'] == self::GetUserSetting("lang")
+				    && (!isset($listWebsite['hideFromCollection']) || !$listWebsite['hideFromCollection'])
+                    && ($websiteFilter[0] == 0 || empty($websiteFilter[0]) || in_array($listWebsite['id'], $websiteFilter))
+                ) {
+					$websites[] = $listWebsite['id'];
 				}
 			}
 			
 			$offset = $this->db->GetOffset($offsetTime, $websites);
-			$titles = $this->db->LoadTitles($websites, $offset);
+            $category = $this->GetUserSetting("category");
+			$titles = $this->db->LoadTitles($websites, $offset, $category);
 			
 			foreach($titles as &$title) {
 				$title['website'] = $this->GetWebsiteByID($title['website'], "name");
