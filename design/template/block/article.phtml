@@ -1,7 +1,16 @@
+<?php $showImgByDefault = Controller::GetUserSetting("showImages"); ?>
 <?php if(isset($this->block['ajax']) && $this->block['ajax'] == true): ?>
 <div class="floatButtons">
-	<?php echo $this->getBlock("button", array('href'=>$this->block['url'], 'icon'=>"external-link", 'label'=>"Source", "external"=>true)); ?>
-	<?php echo $this->getBlock("button", array('href'=>"#", 'icon'=>'times', 'label'=>"Close", 'customClass'=>"close-ajax", 'pullRight'=>true)); ?>
+	<?php echo $this->getBlock("button", array('href'=>$this->block['url'], 'icon'=>"external-link", "external"=>true)); ?>
+    <?php echo $this->getBlock("button", array(
+        'href'=>"#",
+        'icon'=>'picture-o',
+        'customClass'=>"imageButton"
+                       .((!isset($this->block['id']) || !file_exists("media/".$this->block['id']))
+                       ? " disabled"
+                       : ($showImgByDefault ? " active" : ""))
+    )); ?>
+	<?php echo $this->getBlock("button", array('href'=>"#", 'icon'=>'times', 'customClass'=>"closeAjax")); ?>
 </div>
 <?php endif; ?>
 <div class="contentBox">
@@ -10,11 +19,10 @@
 		$this->block['title'] = $this->__("Loading article failed");
 	?>
 	<?php if($this->block['timestamp'] > 0): ?>
-	<p class="date"><?php echo date("Hi", $this->block['timestamp']) == "0000" ? date("d.m.Y", $this->block['timestamp']) : date("d.m.Y H:i", $this->block['timestamp']); ?></p>
-	<?php endif; ?>
-	<?php if(isset($this->block['id']) && file_exists("media/".$this->block['id'])): ?>
-    <?php echo $this->getBlock("button", array('href'=>"#", 'label'=>"Show image", 'customClass'=>"showImage", 'pullRight'=>true)); ?>
-	<img src="" class="articleImage" data-url="<?php echo $this->getURL("media/".$this->block['id']); ?>" />
+    <p class="date"><?php echo date("Hi", $this->block['timestamp']) == "0000" ? date("d.m.Y", $this->block['timestamp']) : date("d.m.Y H:i", $this->block['timestamp']); ?></p>
+    <?php endif; ?>
+    <?php if(isset($this->block['id']) && file_exists("media/".$this->block['id'])): ?>
+	<img src="<?php if($showImgByDefault) echo $this->getURL("media/".$this->block['id']); ?>" class="articleImage<?php if($showImgByDefault) echo " visible"; ?>" data-url="<?php echo $this->getURL("media/".$this->block['id']); ?>" />
     <?php endif; ?>
 	<p class="title"><?php echo (empty($this->block['title']) ? $this->__("Loading article failed") : $this->block['title']); ?></p>
 	<?php if(!empty($this->block['subTitle'])): ?>

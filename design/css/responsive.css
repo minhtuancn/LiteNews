@@ -28,21 +28,13 @@
 		z-index: auto;
 	}
 
-	.floatButtons.listView {
+	.floatButtons {
 		width: 50%;
 	}
 	
-	.floatButtons.listView > .button {
+	.floatButtons > .button {
 	    width: 30.33%;
 	    margin: 0px 1.5%;
-	}
-	
-	.ajaxArticle .floatButtons {
-	    left: auto;
-	    right: 0px;
-	    width: 48%;
-	    margin: 0px 1%;
-	    padding: 10px 0px 0px;
 	}
 	
 	.weather {

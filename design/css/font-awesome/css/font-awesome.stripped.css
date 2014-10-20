@@ -90,3 +90,9 @@
 .fa-times:before {
   content: "\f00d";
 }
+.fa-picture-o:before {
+  content: "\f03e";
+}
+.fa-check:before {
+  content: "\f00c";
+}

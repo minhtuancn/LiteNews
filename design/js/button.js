@@ -45,6 +45,11 @@ $(document).ready(function() {
 			p.width(width - 40);
 	});
 	
+	$('.button.disabled').fastClick(function(e) {
+	    e.preventDefault();
+	    e.stopPropagation();
+	});
+	
 	$('.button.refresh').fastClick(function(e) {
 		e.preventDefault();
 		document.location.reload(true);

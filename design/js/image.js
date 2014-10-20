@@ -1,14 +1,11 @@
 $(document).ready(function() {
     $('body').on('click', '.imageButton', function(e) {
         e.preventDefault();
-        image = $(this).parent().find('.articleImage');
+        image = $('.articleImage');
         
         if(!image.hasClass('visible')) {
             image.addClass('visible').attr('src', image.attr('data-url'));
-            /* TODO: Clean this mess up */
-            $(this).css({'height': '0px', 'display': 'none'});
             $(this).blur();
-            imageSwitchLabel($(this));
         }
         else if(!$(this).hasClass('active')) {
             $(this).addClass('active');
@@ -23,19 +20,14 @@ $(document).ready(function() {
     
     $('body').on('click', '.articleImage', function(e) {
         $(this).removeClass('visible');
-        imageSwitchLabel($(this).parent().find('.imageButton'));
+        $('.imageButton').removeClass('active');
     });
 });
 
-function imageSwitchLabel(el) {
-    var content = el.find('p');
-    var original = content.text();
-    content.text(el.attr('data-alt'));
-    el.attr('data-alt', original);
-    el.parent().find('.date').css('margin-top', el.height());
-}
-
 function imageSwitchCookie(value) {
+    /* Clear preloaded cache because we need to refresh HTML */
+   ajaxPreLoadData = [];
+    
     $.ajax({
         type: "POST",
         url: ajaxGetUrl() + "/ajaxload",

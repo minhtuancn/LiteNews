@@ -25,8 +25,14 @@ $(document).ready(function() {
 		$.get(
 			$(this).attr('data-load') + "/" + offsetTimestamp,
 			function(data) {
-				$('.titleLink').last().after(data);
-				$('.loadTitles').html(origValue);
+			    var loadButton = $('.loadTitles');
+			    if(data) {
+    				$('.titleLink').last().after(data);
+    				loadButton.html(origValue);
+				}
+				else {
+				    loadButton.html(loadButton.attr('data-alt'));
+				}
 			}
 		);
 	});
@@ -67,7 +73,7 @@ $(document).ready(function() {
 		);
 	});
 	
-	$('body').delegate('.close-ajax', 'click', function(e) {
+	$('body').delegate('.closeAjax', 'click', function(e) {
 		e.preventDefault();
 		
 		$('body').css('overflow', 'visible');

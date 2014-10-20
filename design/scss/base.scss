@@ -72,6 +72,10 @@ a {
   &.active, &:active, &:focus {
       background: $buttonActiveBg;
   }
+  
+  &.disabled {
+    opacity: 0.4;
+  }
 }
 
 .buttonRight {
@@ -100,7 +104,7 @@ a {
     opacity: 1.0
   }
   
-  &.listView > .button {
+  .button {
     width: 31.33%;
     margin: 0px 1%;
     float: left;
@@ -154,6 +158,7 @@ a {
     margin: 0px;
     font-weight: 900;
     font-size: 1.4em;
+    white-space: nowrap;
     display: inline-block;
     position: absolute;
     top: 50%;
@@ -225,10 +230,6 @@ a {
       margin-left: 46%;
     }
   }
-  
-  & > .floatButtons {
-    padding: 10px 1% 0px;
-  }
 }
 
 .weather {
@@ -260,6 +261,32 @@ a {
   text-align: left;
   word-wrap: break-word;
   clear: both;
+  position: relative;
+  
+  .imageButton {
+    position: absolute;
+    top: 5px;
+    right: 1%;
+    
+    p {
+      max-width: none;
+      position: relative;
+    }
+    
+    & ~ .date {
+      margin-top: 44px;
+    }
+    
+    &.active i {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+    }
+    
+    &:not(.active) i {
+      display: none;
+    }
+  }
   
   .articleImage {
     display: none;
@@ -272,7 +299,7 @@ a {
   }
   
   .date {
-    margin: 0px;
+    margin: 6px 0px 0px;
     font-size: 0.8em;
     font-weight: normal;
   }
@@ -443,4 +470,5 @@ select {
 
 .advert {
   text-align: center;
+  overflow: hidden;
 }
