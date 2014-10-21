@@ -112,9 +112,10 @@ class CronController extends Controller {
 
     protected function LoadPage($url) {
         $content = @file_get_contents($url);
+        $backupLoader = Config::GetPath("local/backupLoader");
         
-        if(empty($content)) {
-            $backupURL = Config::GetPath("local/backupLoader")
+        if(empty($content) && !empty($backupLoader)) {
+            $backupURL = $backupLoader
                          ."?key=".Config::GetPath("local/backupLoaderKey")
                          ."&href=".$url;
             $content = @file_get_contents($backupURL);
