@@ -8,6 +8,10 @@
 	
 	<timezone>Europe/Helsinki</timezone>
 	
+	<!-- Backup loader in case of fetching content fails -->
+	<backupLoader></backupLoader>
+	<backupLoaderKey></backupLoaderKey>
+	
 	<!-- Enable full page cache -->
 	<FPC>true</FPC>
 	
@@ -58,6 +62,12 @@
 			
 			<!-- Category ID, 0 is for all -->
 			<category>0</category>
+			
+			<!-- Website filter for collection, 0 is for all -->
+			<websiteFilter>0</websiteFilter>
+			
+			<!-- Show image by default -->
+			<showImages>0</showImages>
 		</default>
 	</userSettings>
 	

@@ -13,8 +13,9 @@
 		<path>logo.js</path>
 		<path>floatbuttons.js</path>
 		<path>form.js</path>
-		<path>category.js</path>
+		<path>filter.js</path>
 		<path>button.js</path>
+		<path>image.js</path>
 		<path>responsive.js</path>
 	</js>
 	<themes>
