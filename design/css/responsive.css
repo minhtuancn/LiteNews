@@ -27,6 +27,11 @@
 		left: auto;
 		z-index: auto;
 	}
+	
+	.ajaxArticle .floatButtons {
+	    left: auto;
+	    right: 0px;
+	}
 
 	.floatButtons {
 		width: 50%;

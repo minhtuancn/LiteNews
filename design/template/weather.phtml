@@ -14,7 +14,7 @@
 </div>
 <?php foreach($this->content['locations'] as $location): ?>
 <a href="<?php echo $this->getURL("weather/".$location); ?>" class="titleLink weatherLink" tabindex="<?php echo ++$this->content['tabIndex']; ?>">
-	<?php echo print_r($location, true); ?>
+	<?php echo $location; ?>
 </a>
 <?php endforeach; ?>
 <?php endif; ?>

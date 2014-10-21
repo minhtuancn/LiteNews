@@ -80,7 +80,7 @@ a {
 
 .buttonRight {
   @extend .button;
-  float: right;
+  float: right !important;
   
   .fa {
     margin-right: 0px;
@@ -104,7 +104,7 @@ a {
     opacity: 1.0
   }
   
-  .button {
+  & > .button {
     width: 31.33%;
     margin: 0px 1%;
     float: left;
@@ -248,8 +248,10 @@ a {
     margin-left: 46%;
   }
   
-  & ~ .floatButtons {
-    padding-bottom: 0px;
+  & ~ .floatButtons > .button {
+    width: 48%;
+    margin: 0px 1%;
+    float: none;
   }
 }
 
