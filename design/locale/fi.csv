@@ -101,3 +101,10 @@
 
 "Clear FPC", "Tyhjennä FPC"
 "Full page cache cleared", "Sivujen välimuisti tyhjennetty"
+
+"Welcome", "Tervetuloa"
+"welcome_p1", "Muutiset on mobiilialustoille suunniteltu uutispalvelu, joka mahdollistaa nopean uutisten selailun hitaillakin yhteyksillä."
+"Features", "Tietoa palvelusta"
+"welcome_p2", "Voit filtteröidä uutiskokoelman listaa makusi mukaiseksi. Valitse listaan vain tietyt sivustot, tai vain yhden kategorian uutiset. (Esimerkiksi IT-uutiset)"
+"welcome_p3", "Paikkakuntasi säätiedot voidaan näyttää suoraan laitteesi sijainnin perusteella."
+"welcome_p4", "Jos suosikkisivustosi puuttuu listasta, mainitse se palautteessasi ja lisäämme sen mieluusti :)"

@@ -18,7 +18,16 @@
 </a>
 <?php endforeach; ?>
 <?php endforeach; ?>
+<br />
 <?php if($this->content['feedback']): ?>
 <?php echo $this->getBlock("button", array('href'=>$this->getURL("feedback"), 'icon'=>"pencil", 'label'=>"Send feedback")); ?>
 <?php endif; ?>
 <?php echo $this->getBlock("button", array('href'=>"https://github.com/anck69/LiteNews", 'icon'=>"external-link", 'label'=>"GitHub", 'pullRight'=>true, 'external'=>true)); ?>
+<div class="contentBox welcome">
+    <p class="title"><?php echo $this->__("Welcome"); ?></p>
+    <p class="text"><?php echo $this->__("welcome_p1"); ?></p>
+    <p class="subTitle"><?php echo $this->__("Features"); ?></p>
+    <p class="text"><?php echo $this->__("welcome_p2"); ?></p>
+    <p class="text"><?php echo $this->__("welcome_p3"); ?></p>
+    <p class="text"><?php echo $this->__("welcome_p4"); ?></p>
+</div>

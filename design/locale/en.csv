@@ -102,3 +102,10 @@
 
 "Clear FPC", "Clear FPC"
 "Full page cache cleared", "Full page cache cleared"
+
+"Welcome", "Welcome"
+"welcome_p1", "Muutiset is a news portal for mobile devices, which offers fast browsing even for slow connections."
+"Features", "Features"
+"welcome_p2", "With filters you can the edit the news stream exactly for your taste. It allows you to select news from multiple websites to show and fetch them from specific category."
+"welcome_p3", "Weather information can be displayed automatically based on your devices geolocation."
+"welcome_p4", "If your favourite news site is missing from the list, feel free to suggest it in feedback :)"
