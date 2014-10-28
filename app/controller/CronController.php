@@ -43,7 +43,7 @@ class CronController extends Controller {
 			if(empty($listHTML)) {
 				self::LogError("Failed to fetch list from ".$website['url'].$path);
 				// Without deleting we may not notice possible malfunctioning
-				$this->db->DeleteArticles($website['id']);
+				//$this->db->DeleteArticles($website['id']);
 				return;
 			}
 			
