@@ -1,7 +1,20 @@
 $(document).ready(function() {
     $('.showFilters').fastClick(function(e) {
         e.preventDefault();
-        $('.filterContainer').toggleClass('visible');
+        var filterContainer = $('.filterContainer');
+        
+        if(filterContainer.hasClass('visible')) {
+            filterContainer.css('transition-duration', '0s');
+            filterContainer.css('max-height', filterContainer.height());
+            filterContainer.removeClass('visible');
+            setTimeout(function() {
+                filterContainer.css('transition-duration', '');
+                filterContainer.css('max-height', '');
+            }, 10);
+        }
+        else {
+            filterContainer.addClass('visible');
+        }
     });
     
     $('.websiteSelect').fastClick(function(e) {
