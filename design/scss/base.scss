@@ -30,6 +30,10 @@ body {
   }
 }
 
+br {
+  clear: both;
+}
+
 .container {
   display: block;
   background: $contentBg;
@@ -182,6 +186,10 @@ a {
     svg {
       width: 100%;
     }
+  }
+  
+  & ~ .button {
+    float: left;
   }
 }
 
@@ -376,11 +384,12 @@ a {
 }
 
 .filterContainer {
-  @include slideToggle(500px, 1.0s);
+  @include slideToggle(500px, 0.3s);
   max-height: 0px;
   width: 100%;
   float: left;
-  margin: 10px 0px -10px;
+  margin: 10px 0px -10px 0.5%;
+  padding: 0px 1%;
 }
 
 .websiteFilter {
@@ -397,7 +406,7 @@ a {
   
   width: 100%;
   float: left;
-  padding: 0px 0px 0px 1%;
+  padding: 0px;
   max-height: 0px;
 }
 
@@ -468,6 +477,13 @@ select {
 #feedbackType {
   width: 100%;
   font-size: 0.7em;
+}
+
+.welcome {
+  display: none;
+  position: absolute;
+  top: 36px;
+  right: 1%;
 }
 
 .advert {

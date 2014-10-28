@@ -7,6 +7,12 @@
 		display: inline-block;
 		width: 49%;
 		float: left;
+		clear: both;
+	}
+	
+	.welcome {
+	   display: block;
+	   width: 49%;
 	}
 }
 
@@ -45,6 +51,10 @@
 	.weather {
 		width: 49%;
 		float: right;
+	}
+	
+	.welcome {
+	    width: 66%;
 	}
 	
 	.ajaxArticle ~ .advert {
