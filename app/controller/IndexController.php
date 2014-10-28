@@ -2,7 +2,6 @@
 class IndexController extends Controller {
 	public function InitPage() {
 		$this->template->setTemplate("main");
-		$this->template->setTitle("Choose website");
 		
 		$websites = Config::GetPath("website/website", true);
 		if(Config::GetPath("local/sortByPopularity"))
