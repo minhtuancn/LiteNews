@@ -35,8 +35,13 @@ class ListController extends Controller {
 		$content = array();
 		$tabIndex = 0;
 		foreach($titles as $title) {
-			if(($title['url'] = $this->FixURL($title['website'], $title['url'])) == false)
+		    $website = $this->GetWebsiteByID($title['website']);
+            if(isset($website['directLinks']) && $website['directLinks']) {
+                $title['url'] = $website['name']."/".$title['url'];
+            }
+            elseif(($title['url'] = $this->FixURL($title['website'], $title['url'])) == false) {
 				continue;
+            }
 			
 			if($this->page == "collection")
 				$title['website'] = $this->GetWebsiteByID($title['website'], 'name');

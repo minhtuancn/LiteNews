@@ -10,9 +10,12 @@ class ArticleController extends Controller {
 		
 		$this->template->setTemplate("article");
 		
-		$this->href = str_replace(" ", "+", $this->href);
-		if($this->href[0] != "/")
-			$this->href = "/".$this->href;
+		if(!isset($website['directLinks']) || !$website['directLinks']) {
+            $this->href = str_replace(" ", "+", "/".$this->href);
+        }
+        else {
+            $this->href = str_replace("http:/", "http://", $this->href);
+        }
 		
 		$contentList = $this->db->LoadArticle($website['id'], $this->href);
 		
@@ -22,7 +25,13 @@ class ArticleController extends Controller {
 			$this->template->setTitle(404);
 		
 		$content = $contentList;
-		$content['url'] = $website['url'].htmlspecialchars($this->href);
+        if(isset($website['directLinks']) && $website['directLinks']) {
+            $content['url'] = htmlspecialchars($this->href);
+        }
+        else {
+            $content['url'] = $website['url'].htmlspecialchars($this->href);
+        }
+        
 		$this->template->setContent($content);
 	}
 }

@@ -86,10 +86,23 @@ class AjaxController extends Controller {
 	
 	protected function GetArticle($href) {
 		$href = explode("/", $href, 3);
-		$websiteID = $this->GetWebsiteByName($href[1], 'id');
-		$href = str_replace(" ", "+", "/".$href[2]);
-		$content = $this->db->LoadArticle($websiteID, $href);
-		$content['url'] = $this->GetWebsiteByID($websiteID, 'url').htmlspecialchars($href);
+		$website = $this->GetWebsiteByName($href[1]);
+        
+        if(!isset($website['directLinks']) || !$website['directLinks']) {
+            $href = str_replace(" ", "+", "/".$href[2]);
+        }
+        else {
+            $href = str_replace("http:/", "http://", $href[2]);
+        }
+        
+		$content = $this->db->LoadArticle($website['id'], $href);
+        if(isset($website['directLinks'])) {
+            $content['url'] = htmlspecialchars($href);
+        }
+        else {
+            $content['url'] = $this->GetWebsiteByID($website['id'], 'url').htmlspecialchars($href);
+        }
+		
 		$content['ajax'] = true;
 		$html = $this->layout->getBlock("article", $content);
 		return $html;

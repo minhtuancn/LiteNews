@@ -59,10 +59,11 @@ class CronController extends Controller {
 		$categories = Config::GetPath("category/urlKeys/key", true);
 		
 		foreach($titles as $title) {
-			$articleHTML = $this->LoadPage(str_replace(" ", "+", $website['url'].$title['url']));
+		    $url = strpos($title['url'], "http") === 0 ? $title['url'] : $website['url'].$title['url'];
+			$articleHTML = $this->LoadPage(str_replace(" ", "+", $url));
 			
 			if(empty($articleHTML)) {
-				self::LogError("Failed to fetch article: ".$website['url'].$title['url']);
+				self::LogError("Failed to fetch article: ".$url);
 				continue;
 			}
 			
