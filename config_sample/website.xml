@@ -138,4 +138,16 @@
 		<indexExclude>true</indexExclude>
 		<hideFromCollection>true</hideFromCollection>
 	</website>
+	
+	<website>
+	    <id>15</id>
+	    <name>CNET</name>
+	    <url>http://www.cnet.com</url>
+	    <listPath>/rss/news/</listPath>
+	    <directLinks>true</directLinks>
+	    <logo>cnet.svg</logo>
+	    <logoScale>100</logoScale>
+	    <language>en</language>
+	    <rss>1</rss>
+	</website>
 </config>
