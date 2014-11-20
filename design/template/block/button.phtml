@@ -2,15 +2,20 @@
 $class = "button";
 if(isset($this->block['pullRight'])) $class .= " buttonRight";
 if(isset($this->block['customClass'])) $class .= " ".$this->block['customClass'];
+if(isset($this->block['icon']) && !is_array($this->block['icon'])) $this->block['icon'] = array($this->block['icon']);
 ?>
 <a href="<?php echo $this->block['href']; ?>" class="<?php echo $class; ?>"<?php if(isset($this->block['external'])) echo ' target="_blank"'; ?>>
 	<?php if(isset($this->block['icon']) && !isset($this->block['pullRight'])): ?>
-	<i class="fa fa-<?php echo $this->block['icon']; ?>"></i>
+    <?php foreach($this->block['icon'] as $icon): ?>
+	<i class="fa fa-<?php echo $icon; ?>"></i>
+	<?php endforeach; ?>
 	<?php endif; ?>
 	<?php if(isset($this->block['label'])): ?>
 	<p><?php echo $this->__($this->block['label']); ?></p>
 	<?php endif; ?>
 	<?php if(isset($this->block['icon']) && isset($this->block['pullRight'])): ?>
-	<i class="fa fa-<?php echo $this->block['icon']; ?>"></i>
+    <?php foreach($this->block['icon'] as $icon): ?>
+    <i class="fa fa-<?php echo $icon; ?>"></i>
+    <?php endforeach; ?>
 	<?php endif; ?>
 </a>
