@@ -9,10 +9,12 @@ $(document).ready(function() {
         }
         else if(!$(this).hasClass('active')) {
             $(this).addClass('active');
+            $(this).find('.fa-toggle-off').removeClass('fa-toggle-off').addClass('fa-toggle-on');
             imageSwitchCookie(1);
         }
         else {
             $(this).removeClass('active');
+            $(this).find('.fa-toggle-on').removeClass('fa-toggle-on').addClass('fa-toggle-off');
             $(this).blur();
             imageSwitchCookie(0)
         }
