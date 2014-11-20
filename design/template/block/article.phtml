@@ -4,7 +4,7 @@
 	<?php echo $this->getBlock("button", array('href'=>$this->block['url'], 'icon'=>"external-link", "external"=>true)); ?>
     <?php echo $this->getBlock("button", array(
         'href'=>"#",
-        'icon'=>'picture-o',
+        'icon'=>array('picture-o', 'toggle-'.($showImgByDefault ? 'on' : 'off').' fa-rotate-270'),
         'customClass'=>"imageButton"
                        .((!isset($this->block['id']) || !file_exists("media/".$this->block['id']))
                        ? " disabled"
