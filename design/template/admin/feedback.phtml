@@ -5,7 +5,7 @@
 	<div class="success"><?php echo $this->content['feedbacksDeleted']." ".$this->__("feedbacks deleted"); ?></div>
 	<?php endif; ?>
 	<div class="contentBox">
-		<p class="contentText">
+		<p class="text">
 			<?php echo $this->__("Page"); ?>&nbsp;
 			<select name="feedbackPage" onchange="document.adminFeedback.submit()">
 				<?php for($i = 1; $i <= $this->content['feedbackPages']; ++$i): ?>
@@ -13,7 +13,7 @@
 				<?php endfor; ?>
 			</select>
 		</p>
-		<p class="contentText">
+		<p class="text">
 			<?php echo $this->__("Delete feedbacks"); ?>&nbsp;
 			<select name="feedbackDeleteMode">
 				<option value="1"><?php echo $this->__("Delete selected"); ?></option>
@@ -25,15 +25,20 @@
 	<?php foreach($this->content['feedback'] as $feedback): ?>
 	<label for="feedback_<?php echo $feedback['ID']; ?>">
 	<div class="contentBox">
-		<p class="contentSubTitle">
+		<p class="subTitle">
 			<input type="checkbox" class="checkbox" name="feedback_<?php echo $feedback['ID']; ?>" id="feedback_<?php echo $feedback['ID']; ?>" />
 			#<?php echo $feedback['ID']; ?>
 		</p>
-		<p class="contentDate">
+		<p class="date">
 			"<?php echo $this->__($this->content['feedbackTypes'][$feedback['Type'] - 1]); ?>" - 
 			<?php echo date("d.m.Y H:i:s", $feedback['Timestamp']); ?>
 		</p>
-		<p class="contentText"><?php echo nl2br(htmlspecialchars($feedback['Content'])); ?></p>
+		<?php if(!empty($feedback['Email'])): ?>
+	    <p class="date">
+	        <?php echo $feedback['Email']; ?>
+	    </p>
+	    <?php endif; ?>
+		<p class="text"><?php echo nl2br(htmlspecialchars($feedback['Content'])); ?></p>
 	</div>
 	</label>
 	<?php endforeach; ?>
