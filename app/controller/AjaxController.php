@@ -35,6 +35,8 @@ class AjaxController extends Controller {
 	
 	protected function GetList($website, $offsetTime) {
 		$titles = false;
+        $category = $this->GetUserSetting("category");
+        
 		if($website == "collection") {
 			$websites = array();
             $websiteFilter = explode(",", $this->GetUserSetting("websiteFilter"));
@@ -50,7 +52,6 @@ class AjaxController extends Controller {
 			}
 			
 			$offset = $this->db->GetOffset($offsetTime, $websites);
-            $category = $this->GetUserSetting("category");
 			$titles = $this->db->LoadTitles($websites, $offset, $category);
 			
 			foreach($titles as &$title) {
@@ -61,7 +62,7 @@ class AjaxController extends Controller {
 		else {
 			$website = $this->GetWebsiteByName($website);
 			$offset = $this->db->GetOffset($offsetTime, $website['id']);
-			$titles = $this->db->LoadTitles(array($website['id']), $offset);
+			$titles = $this->db->LoadTitles(array($website['id']), $offset, $category);
 			
 			foreach($titles as &$title) {
 				$title['url'] = $website.$title['url'];
