@@ -10,7 +10,7 @@
 "Close", "Sulje"
 
 "No articles found", "Artikkeleita ei löytynyt"
-"doesn't contain news from category", "eivät sisällä uutisia kategoriassa"
+"doesn't contain news from category", "ei sisällä uutisia kategoriassa"
 "Loading article failed", "Sivun lataus epäonnistui"
 "More news", "Lisää uutisia"
 
@@ -37,6 +37,7 @@
 "Dark blue", "Tummansininen"
 "Light blue", "Vaaleansininen"
 
+"Website", "Sivusto"
 "Websites", "Sivustot"
 "Categories", "Kategoriat"
 "All", "Kaikki"
