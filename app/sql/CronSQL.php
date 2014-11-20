@@ -28,7 +28,7 @@ class CronSQL extends Database {
 		if($updateArticle !== false) {
             $query = $this->db->prepare("UPDATE Article SET Category=:Category, ListTitle=:ListTitle, ArticleTitle=:ArticleTitle, SubTitle=:SubTitle, Timestamp=:Timestamp WHERE ID=:ID");
             $query->bindParam(":ID", $updateArticle, PDO::PARAM_INT);
-            $deleteParagraphs = $this->db->prepare("DELETE FROM ArticleParagraph WHERE ID=?");
+            $deleteParagraphs = $this->db->prepare("DELETE FROM ArticleParagraph WHERE ArticleID=?");
             $deleteParagraphs->execute(array($updateArticle));
         }
         else {
