@@ -42,6 +42,10 @@ class TheWallStreetJournalParser extends Parser {
 			}
 		}
 		
+        if($date == NULL) {
+            return $content;
+        }
+		
 		$timestamp = DateTime::createFromFormat('Y-m-d\TH:i:s.u\Z', $date);
 		$content['timestamp'] = $timestamp->getTimestamp();
 		
