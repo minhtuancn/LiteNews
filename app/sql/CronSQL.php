@@ -24,37 +24,47 @@ class CronSQL extends Database {
 	}
 	
 	
-	public function AddArticle($website, $url, $data) {
-		$this->DeleteDuplicates($website, $url);
-		
-		$insert = $this->db->prepare("INSERT IGNORE INTO Article (WebsiteID, URL, Category, ListTitle, ArticleTitle, SubTitle, Timestamp) VALUES (?, ?, ?, ?, ?, ?, ?)");
-		if(!$insert->execute(array($website, $url, $data['category'], trim($data['listTitle']), trim($data['title']), trim($data['subTitle']), trim($data['timestamp']))))
+	public function AddArticle($website, $url, $data, $updateArticle=false) {
+		if($updateArticle !== false) {
+            $query = $this->db->prepare("UPDATE Article SET Category=:Category, ListTitle=:ListTitle, ArticleTitle=:ArticleTitle, SubTitle=:SubTitle, Timestamp=:Timestamp WHERE ID=:ID");
+            $query->bindParam(":ID", $updateArticle, PDO::PARAM_INT);
+            $deleteParagraphs = $this->db->prepare("DELETE FROM ArticleParagraph WHERE ID=?");
+            $deleteParagraphs->execute(array($updateArticle));
+        }
+        else {
+            $query = $this->db->prepare("INSERT IGNORE INTO Article (WebsiteID, URL, Category, ListTitle, ArticleTitle, SubTitle, Timestamp) VALUES (:WebsiteID, :URL, :Category, :ListTitle, :ArticleTitle, :SubTitle, :Timestamp)");
+            $query->bindParam(":WebsiteID", $website, PDO::PARAM_INT);
+            $query->bindParam(":URL", $url, PDO::PARAM_STR);
+        }
+        
+        $query->bindParam(":Category", $data['category'], PDO::PARAM_INT);
+        $query->bindParam(":ListTitle", $data['listTitle'], PDO::PARAM_STR);
+        $query->bindParam(":ArticleTitle", $data['title'], PDO::PARAM_STR);
+        $query->bindParam(":SubTitle", $data['subTitle'], PDO::PARAM_STR);
+        $query->bindParam(":Timestamp", $data['timestamp'], PDO::PARAM_INT);
+        
+		if(!$query->execute()) {
 			return false;
+        }
 		
-		$newArticleID = $this->db->lastInsertId("ID");
+        $articleID = $updateArticle === false ? $this->db->lastInsertId("ID") : $updateArticle;
 		$articleParagraph = $this->db->prepare("INSERT INTO ArticleParagraph (ArticleID, Paragraph) VALUES (?, ?)");
 		
 		foreach($data['bodyText'] as $p) {
-			if(!$articleParagraph->execute(array($newArticleID, $p)))
+			if(!$articleParagraph->execute(array($articleID, $p))) {
 				return false;
+			}
 		}
         
-        return $newArticleID;
+        return $articleID;
 	}
 	
-	
-	protected function DeleteDuplicates($websiteID, $url) {
-		$duplicates = $this->db->prepare("SELECT ID FROM Article WHERE WebsiteID=? AND URL=?");
-		$duplicates->execute(array($websiteID, $url));
-		
-		while(($articleID = $duplicates->fetchColumn()) != false) {
-			$article = $this->db->prepare("DELETE FROM Article WHERE ID=?");
-			$article->execute(array($articleID));
-			
-			$paragraphs = $this->db->prepare("DELETE FROM ArticleParagraph WHERE ArticleID=?");
-			$paragraphs->execute(array($articleID));
-		}
-	}
+    
+    public function ArticleExists($websiteID, $url) {
+        $id = $this->db->prepare("SELECT ID FROM Article WHERE WebsiteID=? AND URL=?");
+        $id->execute(array($websiteID, $url));
+        return $id->fetchColumn();
+    }
 	
 	
 	public function DeleteArticles($websiteID) {

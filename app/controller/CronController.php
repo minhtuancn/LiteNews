@@ -85,11 +85,21 @@ class CronController extends Controller {
 			}
 			
 			$data['listTitle'] = $title['title'];
+            
+            foreach($data as &$val) {
+                if(is_string($val)) {
+                    $val = trim($val);
+                }
+            }
 			
 			if(!is_null($data['title']) && !empty($data['bodyText'])) {
-				$articleID = $this->db->AddArticle($website['id'], $title['url'], $data);
+			    $articleID = $this->db->ArticleExists($website['id'], $title['url']);
+				$articleID = $this->db->AddArticle($website['id'], $title['url'], $data, $articleID);
                 
-                if($articleID && !is_null($data['image'])) {
+                if($articleID === false) {
+                    self::LogError("Failed to insert/update article:\n".print_r($data, true));
+                }
+                elseif(!is_null($data['image'])) {
                     $imageFile = "media/".$articleID;
                     
                     if(!file_exists($imageFile)) {
