@@ -55,7 +55,11 @@ class AjaxController extends Controller {
 			$titles = $this->db->LoadTitles($websites, $offset, $category);
 			
 			foreach($titles as &$title) {
-				$title['website'] = $this->GetWebsiteByID($title['website'], "name");
+			    $website = $this->GetWebsiteByID($title['website']);
+				$title['website'] = $website['name'];
+                if(isset($website['directLinks']) && $website['directLinks']) {
+                    $title['url'] = "/".$title['url'];
+                }
 				$title['url'] = $title['website'].$title['url'];
 			}
 		}
@@ -65,7 +69,10 @@ class AjaxController extends Controller {
 			$titles = $this->db->LoadTitles(array($website['id']), $offset, $category);
 			
 			foreach($titles as &$title) {
-				$title['url'] = $website.$title['url'];
+			    if(isset($website['directLinks']) && $website['directLinks']) {
+                    $title['url'] = "/".$title['url'];
+                }
+				$title['url'] = $website['name'].$title['url'];
 			}
 		}
 		
