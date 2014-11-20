@@ -52,6 +52,7 @@ $(document).ready(function() {
 	
 	$('.button.refresh').fastClick(function(e) {
 		e.preventDefault();
+		$(this).addClass('active').find('i').addClass('fa-spin');
 		document.location.reload(true);
 		$('html,body').scrollTop(0);
 	});
